@@ -26,7 +26,7 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         if (e == null) {
             throw new Exception("El empleado no tiene información");
         }
-        if (e.getCedula().equals("")) {
+        if (e.getCedula().equals("")){
              throw new Exception ("La Cedula es Obligatorio");  
         }
         if (e.getNombre().equals("")){

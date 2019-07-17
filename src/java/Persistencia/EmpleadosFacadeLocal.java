@@ -23,6 +23,8 @@ public interface EmpleadosFacadeLocal {
     void remove(Empleados empleados);
 
     Empleados find(Object id);
+    
+    Empleados findCedula(String cedula);
 
     List<Empleados> findAll();
 

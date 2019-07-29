@@ -16,27 +16,27 @@ import javax.validation.constraints.NotNull;
  * @author Desarrollo
  */
 @Embeddable
-public class RequisitoPK implements Serializable {
+public class CalibracionPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
     private int id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fases_id")
-    private int fasesId;
+    @Column(name = "productos_id_potasio")
+    private int productosIdPotasio;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "proyectos_id")
-    private int proyectosId;
+    @Column(name = "productos_id_nitrogeno")
+    private int productosIdNitrogeno;
 
-    public RequisitoPK() {
+    public CalibracionPK() {
     }
 
-    public RequisitoPK(int id, int fasesId, int proyectosId) {
+    public CalibracionPK(int id, int productosIdPotasio, int productosIdNitrogeno) {
         this.id = id;
-        this.fasesId = fasesId;
-        this.proyectosId = proyectosId;
+        this.productosIdPotasio = productosIdPotasio;
+        this.productosIdNitrogeno = productosIdNitrogeno;
     }
 
     public int getId() {
@@ -47,45 +47,45 @@ public class RequisitoPK implements Serializable {
         this.id = id;
     }
 
-    public int getFasesId() {
-        return fasesId;
+    public int getProductosIdPotasio() {
+        return productosIdPotasio;
     }
 
-    public void setFasesId(int fasesId) {
-        this.fasesId = fasesId;
+    public void setProductosIdPotasio(int productosIdPotasio) {
+        this.productosIdPotasio = productosIdPotasio;
     }
 
-    public int getProyectosId() {
-        return proyectosId;
+    public int getProductosIdNitrogeno() {
+        return productosIdNitrogeno;
     }
 
-    public void setProyectosId(int proyectosId) {
-        this.proyectosId = proyectosId;
+    public void setProductosIdNitrogeno(int productosIdNitrogeno) {
+        this.productosIdNitrogeno = productosIdNitrogeno;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) id;
-        hash += (int) fasesId;
-        hash += (int) proyectosId;
+        hash += (int) productosIdPotasio;
+        hash += (int) productosIdNitrogeno;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RequisitoPK)) {
+        if (!(object instanceof CalibracionPK)) {
             return false;
         }
-        RequisitoPK other = (RequisitoPK) object;
+        CalibracionPK other = (CalibracionPK) object;
         if (this.id != other.id) {
             return false;
         }
-        if (this.fasesId != other.fasesId) {
+        if (this.productosIdPotasio != other.productosIdPotasio) {
             return false;
         }
-        if (this.proyectosId != other.proyectosId) {
+        if (this.productosIdNitrogeno != other.productosIdNitrogeno) {
             return false;
         }
         return true;
@@ -93,7 +93,7 @@ public class RequisitoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.RequisitoPK[ id=" + id + ", fasesId=" + fasesId + ", proyectosId=" + proyectosId + " ]";
+        return "Modelo.CalibracionPK[ id=" + id + ", productosIdPotasio=" + productosIdPotasio + ", productosIdNitrogeno=" + productosIdNitrogeno + " ]";
     }
     
 }

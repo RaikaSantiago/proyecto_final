@@ -19,18 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "tipo_desarrollador")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoDesarrollador.findAll", query = "SELECT t FROM TipoDesarrollador t")
-    , @NamedQuery(name = "TipoDesarrollador.findById", query = "SELECT t FROM TipoDesarrollador t WHERE t.tipoDesarrolladorPK.id = :id")
-    , @NamedQuery(name = "TipoDesarrollador.findByNombreCargo", query = "SELECT t FROM TipoDesarrollador t WHERE t.nombreCargo = :nombreCargo")
-    , @NamedQuery(name = "TipoDesarrollador.findByEmpleadosId", query = "SELECT t FROM TipoDesarrollador t WHERE t.tipoDesarrolladorPK.empleadosId = :empleadosId")})
+    @NamedQuery(name = "TipoDesarrollador.findAll", query = "SELECT t FROM TipoDesarrollador t"),
+    @NamedQuery(name = "TipoDesarrollador.findById", query = "SELECT t FROM TipoDesarrollador t WHERE t.tipoDesarrolladorPK.id = :id"),
+    @NamedQuery(name = "TipoDesarrollador.findByNombreCargo", query = "SELECT t FROM TipoDesarrollador t WHERE t.nombreCargo = :nombreCargo"),
+    @NamedQuery(name = "TipoDesarrollador.findByEmpleadosId", query = "SELECT t FROM TipoDesarrollador t WHERE t.tipoDesarrolladorPK.empleadosId = :empleadosId")})
 public class TipoDesarrollador implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected TipoDesarrolladorPK tipoDesarrolladorPK;

@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Modelo.GradosAcademicos;
+import Modelo.Potasio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Desarrollo
  */
 @Stateless
-public class GradosAcademicosFacade extends AbstractFacade<GradosAcademicos> implements GradosAcademicosFacadeLocal {
+public class PotasioFacade extends AbstractFacade<Potasio> implements PotasioFacadeLocal {
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class GradosAcademicosFacade extends AbstractFacade<GradosAcademicos> imp
         return em;
     }
 
-    public GradosAcademicosFacade() {
-        super(GradosAcademicos.class);
+    public PotasioFacade() {
+        super(Potasio.class);
     }
     
 }

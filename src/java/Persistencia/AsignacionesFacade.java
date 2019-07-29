@@ -12,11 +12,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author usuario
+ * @author Desarrollo
  */
 @Stateless
 public class AsignacionesFacade extends AbstractFacade<Asignaciones> implements AsignacionesFacadeLocal {
-
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 

@@ -12,11 +12,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author usuario
+ * @author Desarrollo
  */
 @Stateless
 public class SistemaOperativoFacade extends AbstractFacade<SistemaOperativo> implements SistemaOperativoFacadeLocal {
-
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 

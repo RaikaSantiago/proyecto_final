@@ -12,11 +12,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author usuario
+ * @author Desarrollo
  */
 @Stateless
 public class BaseDatosFacade extends AbstractFacade<BaseDatos> implements BaseDatosFacadeLocal {
-
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 

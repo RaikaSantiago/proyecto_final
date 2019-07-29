@@ -24,17 +24,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "lenguajes_programacion")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LenguajesProgramacion.findAll", query = "SELECT l FROM LenguajesProgramacion l")
-    , @NamedQuery(name = "LenguajesProgramacion.findById", query = "SELECT l FROM LenguajesProgramacion l WHERE l.id = :id")
-    , @NamedQuery(name = "LenguajesProgramacion.findByNombre", query = "SELECT l FROM LenguajesProgramacion l WHERE l.nombre = :nombre")})
+    @NamedQuery(name = "LenguajesProgramacion.findAll", query = "SELECT l FROM LenguajesProgramacion l"),
+    @NamedQuery(name = "LenguajesProgramacion.findById", query = "SELECT l FROM LenguajesProgramacion l WHERE l.id = :id"),
+    @NamedQuery(name = "LenguajesProgramacion.findByNombre", query = "SELECT l FROM LenguajesProgramacion l WHERE l.nombre = :nombre")})
 public class LenguajesProgramacion implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -44,13 +43,13 @@ public class LenguajesProgramacion implements Serializable {
     @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
-    @ManyToMany(mappedBy = "lenguajesProgramacionList")
-    private List<Empleados> empleadosList;
     @JoinTable(name = "programa_proyecto", joinColumns = {
         @JoinColumn(name = "lenguajes_programacion_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "proyectos_id", referencedColumnName = "id")})
     @ManyToMany
     private List<Proyectos> proyectosList;
+    @ManyToMany(mappedBy = "lenguajesProgramacionList")
+    private List<Empleados> empleadosList;
 
     public LenguajesProgramacion() {
     }
@@ -76,21 +75,21 @@ public class LenguajesProgramacion implements Serializable {
     }
 
     @XmlTransient
-    public List<Empleados> getEmpleadosList() {
-        return empleadosList;
-    }
-
-    public void setEmpleadosList(List<Empleados> empleadosList) {
-        this.empleadosList = empleadosList;
-    }
-
-    @XmlTransient
     public List<Proyectos> getProyectosList() {
         return proyectosList;
     }
 
     public void setProyectosList(List<Proyectos> proyectosList) {
         this.proyectosList = proyectosList;
+    }
+
+    @XmlTransient
+    public List<Empleados> getEmpleadosList() {
+        return empleadosList;
+    }
+
+    public void setEmpleadosList(List<Empleados> empleadosList) {
+        this.empleadosList = empleadosList;
     }
 
     @Override

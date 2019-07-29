@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Modelo.Asignaciones;
+import Modelo.Productos;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Desarrollo
  */
 @Local
-public interface AsignacionesFacadeLocal {
+public interface ProductosFacadeLocal {
 
-    void create(Asignaciones asignaciones);
+    void create(Productos productos);
 
-    void edit(Asignaciones asignaciones);
+    void edit(Productos productos);
 
-    void remove(Asignaciones asignaciones);
+    void remove(Productos productos);
 
-    Asignaciones find(Object id);
+    Productos find(Object id);
 
-    List<Asignaciones> findAll();
+    List<Productos> findAll();
 
-    List<Asignaciones> findRange(int[] range);
+    List<Productos> findRange(int[] range);
 
     int count();
     

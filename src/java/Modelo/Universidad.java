@@ -26,19 +26,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "universidad")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Universidad.findAll", query = "SELECT u FROM Universidad u")
-    , @NamedQuery(name = "Universidad.findById", query = "SELECT u FROM Universidad u WHERE u.id = :id")
-    , @NamedQuery(name = "Universidad.findByNombre", query = "SELECT u FROM Universidad u WHERE u.nombre = :nombre")
-    , @NamedQuery(name = "Universidad.findByFechaGrado", query = "SELECT u FROM Universidad u WHERE u.fechaGrado = :fechaGrado")
-    , @NamedQuery(name = "Universidad.findByTitulo", query = "SELECT u FROM Universidad u WHERE u.titulo = :titulo")})
+    @NamedQuery(name = "Universidad.findAll", query = "SELECT u FROM Universidad u"),
+    @NamedQuery(name = "Universidad.findById", query = "SELECT u FROM Universidad u WHERE u.id = :id"),
+    @NamedQuery(name = "Universidad.findByNombre", query = "SELECT u FROM Universidad u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Universidad.findByFechaGrado", query = "SELECT u FROM Universidad u WHERE u.fechaGrado = :fechaGrado"),
+    @NamedQuery(name = "Universidad.findByTitulo", query = "SELECT u FROM Universidad u WHERE u.titulo = :titulo")})
 public class Universidad implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

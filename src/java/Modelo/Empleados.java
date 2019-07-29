@@ -29,28 +29,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "empleados")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Empleados.findAll", query = "SELECT e FROM Empleados e")
-    , @NamedQuery(name = "Empleados.findById", query = "SELECT e FROM Empleados e WHERE e.id = :id")
-    , @NamedQuery(name = "Empleados.findByNombre", query = "SELECT e FROM Empleados e WHERE e.nombre = :nombre")
-    , @NamedQuery(name = "Empleados.findByApellidos", query = "SELECT e FROM Empleados e WHERE e.apellidos = :apellidos")
-    , @NamedQuery(name = "Empleados.findByEmail", query = "SELECT e FROM Empleados e WHERE e.email = :email")
-    , @NamedQuery(name = "Empleados.findByCedula", query = "SELECT e FROM Empleados e WHERE e.cedula = :cedula")
-    , @NamedQuery(name = "Empleados.findByTelefonoFijo", query = "SELECT e FROM Empleados e WHERE e.telefonoFijo = :telefonoFijo")
-    , @NamedQuery(name = "Empleados.findByTelefonoMovil", query = "SELECT e FROM Empleados e WHERE e.telefonoMovil = :telefonoMovil")
-    , @NamedQuery(name = "Empleados.findByDireccion", query = "SELECT e FROM Empleados e WHERE e.direccion = :direccion")
-    , @NamedQuery(name = "Empleados.findByFechaNacimiento", query = "SELECT e FROM Empleados e WHERE e.fechaNacimiento = :fechaNacimiento")
-    , @NamedQuery(name = "Empleados.findByEdad", query = "SELECT e FROM Empleados e WHERE e.edad = :edad")
-    , @NamedQuery(name = "Empleados.findBySexo", query = "SELECT e FROM Empleados e WHERE e.sexo = :sexo")
-    , @NamedQuery(name = "Empleados.findByFechaIngreso", query = "SELECT e FROM Empleados e WHERE e.fechaIngreso = :fechaIngreso")
-    , @NamedQuery(name = "Empleados.findByAntiguedad", query = "SELECT e FROM Empleados e WHERE e.antiguedad = :antiguedad")})
+    @NamedQuery(name = "Empleados.findAll", query = "SELECT e FROM Empleados e"),
+    @NamedQuery(name = "Empleados.findById", query = "SELECT e FROM Empleados e WHERE e.id = :id"),
+    @NamedQuery(name = "Empleados.findByNombre", query = "SELECT e FROM Empleados e WHERE e.nombre = :nombre"),
+    @NamedQuery(name = "Empleados.findByApellidos", query = "SELECT e FROM Empleados e WHERE e.apellidos = :apellidos"),
+    @NamedQuery(name = "Empleados.findByEmail", query = "SELECT e FROM Empleados e WHERE e.email = :email"),
+    @NamedQuery(name = "Empleados.findByCedula", query = "SELECT e FROM Empleados e WHERE e.cedula = :cedula"),
+    @NamedQuery(name = "Empleados.findByTelefonoFijo", query = "SELECT e FROM Empleados e WHERE e.telefonoFijo = :telefonoFijo"),
+    @NamedQuery(name = "Empleados.findByTelefonoMovil", query = "SELECT e FROM Empleados e WHERE e.telefonoMovil = :telefonoMovil"),
+    @NamedQuery(name = "Empleados.findByDireccion", query = "SELECT e FROM Empleados e WHERE e.direccion = :direccion"),
+    @NamedQuery(name = "Empleados.findByFechaNacimiento", query = "SELECT e FROM Empleados e WHERE e.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "Empleados.findByEdad", query = "SELECT e FROM Empleados e WHERE e.edad = :edad"),
+    @NamedQuery(name = "Empleados.findBySexo", query = "SELECT e FROM Empleados e WHERE e.sexo = :sexo"),
+    @NamedQuery(name = "Empleados.findByFechaIngreso", query = "SELECT e FROM Empleados e WHERE e.fechaIngreso = :fechaIngreso"),
+    @NamedQuery(name = "Empleados.findByAntiguedad", query = "SELECT e FROM Empleados e WHERE e.antiguedad = :antiguedad")})
 public class Empleados implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -94,6 +93,10 @@ public class Empleados implements Serializable {
     @Size(max = 45)
     @Column(name = "antiguedad")
     private String antiguedad;
+    @ManyToMany(mappedBy = "empleadosList")
+    private List<BaseDatos> baseDatosList;
+    @ManyToMany(mappedBy = "empleadosList")
+    private List<Cursos> cursosList;
     @JoinTable(name = "em_asignacion_proyecto", joinColumns = {
         @JoinColumn(name = "empleados_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "proyectos_id", referencedColumnName = "id")})
@@ -104,12 +107,8 @@ public class Empleados implements Serializable {
         @JoinColumn(name = "lenguajes_programacion_id", referencedColumnName = "id")})
     @ManyToMany
     private List<LenguajesProgramacion> lenguajesProgramacionList;
-    @ManyToMany(mappedBy = "empleadosList")
-    private List<BaseDatos> baseDatosList;
-    @ManyToMany(mappedBy = "empleadosList")
-    private List<Cursos> cursosList;
     @JoinTable(name = "grados_empleados", joinColumns = {
-        @JoinColumn(name = "empleados_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "empleados_id", referencedColumnName = "id"),
         @JoinColumn(name = "grados_academicos_id", referencedColumnName = "id")})
     @ManyToMany
     private List<GradosAcademicos> gradosAcademicosList;
@@ -235,24 +234,6 @@ public class Empleados implements Serializable {
     }
 
     @XmlTransient
-    public List<Proyectos> getProyectosList() {
-        return proyectosList;
-    }
-
-    public void setProyectosList(List<Proyectos> proyectosList) {
-        this.proyectosList = proyectosList;
-    }
-
-    @XmlTransient
-    public List<LenguajesProgramacion> getLenguajesProgramacionList() {
-        return lenguajesProgramacionList;
-    }
-
-    public void setLenguajesProgramacionList(List<LenguajesProgramacion> lenguajesProgramacionList) {
-        this.lenguajesProgramacionList = lenguajesProgramacionList;
-    }
-
-    @XmlTransient
     public List<BaseDatos> getBaseDatosList() {
         return baseDatosList;
     }
@@ -268,6 +249,24 @@ public class Empleados implements Serializable {
 
     public void setCursosList(List<Cursos> cursosList) {
         this.cursosList = cursosList;
+    }
+
+    @XmlTransient
+    public List<Proyectos> getProyectosList() {
+        return proyectosList;
+    }
+
+    public void setProyectosList(List<Proyectos> proyectosList) {
+        this.proyectosList = proyectosList;
+    }
+
+    @XmlTransient
+    public List<LenguajesProgramacion> getLenguajesProgramacionList() {
+        return lenguajesProgramacionList;
+    }
+
+    public void setLenguajesProgramacionList(List<LenguajesProgramacion> lenguajesProgramacionList) {
+        this.lenguajesProgramacionList = lenguajesProgramacionList;
     }
 
     @XmlTransient

@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Modelo.Asignaciones;
+import Modelo.Nitrogeno;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Desarrollo
  */
 @Local
-public interface AsignacionesFacadeLocal {
+public interface NitrogenoFacadeLocal {
 
-    void create(Asignaciones asignaciones);
+    void create(Nitrogeno nitrogeno);
 
-    void edit(Asignaciones asignaciones);
+    void edit(Nitrogeno nitrogeno);
 
-    void remove(Asignaciones asignaciones);
+    void remove(Nitrogeno nitrogeno);
 
-    Asignaciones find(Object id);
+    Nitrogeno find(Object id);
 
-    List<Asignaciones> findAll();
+    List<Nitrogeno> findAll();
 
-    List<Asignaciones> findRange(int[] range);
+    List<Nitrogeno> findRange(int[] range);
 
     int count();
     

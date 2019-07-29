@@ -27,20 +27,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "cursos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cursos.findAll", query = "SELECT c FROM Cursos c")
-    , @NamedQuery(name = "Cursos.findById", query = "SELECT c FROM Cursos c WHERE c.id = :id")
-    , @NamedQuery(name = "Cursos.findByNombre", query = "SELECT c FROM Cursos c WHERE c.nombre = :nombre")
-    , @NamedQuery(name = "Cursos.findByLugar", query = "SELECT c FROM Cursos c WHERE c.lugar = :lugar")
-    , @NamedQuery(name = "Cursos.findByFechaInicio", query = "SELECT c FROM Cursos c WHERE c.fechaInicio = :fechaInicio")
-    , @NamedQuery(name = "Cursos.findByFechaFin", query = "SELECT c FROM Cursos c WHERE c.fechaFin = :fechaFin")})
+    @NamedQuery(name = "Cursos.findAll", query = "SELECT c FROM Cursos c"),
+    @NamedQuery(name = "Cursos.findById", query = "SELECT c FROM Cursos c WHERE c.id = :id"),
+    @NamedQuery(name = "Cursos.findByNombre", query = "SELECT c FROM Cursos c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Cursos.findByLugar", query = "SELECT c FROM Cursos c WHERE c.lugar = :lugar"),
+    @NamedQuery(name = "Cursos.findByFechaInicio", query = "SELECT c FROM Cursos c WHERE c.fechaInicio = :fechaInicio"),
+    @NamedQuery(name = "Cursos.findByFechaFin", query = "SELECT c FROM Cursos c WHERE c.fechaFin = :fechaFin")})
 public class Cursos implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

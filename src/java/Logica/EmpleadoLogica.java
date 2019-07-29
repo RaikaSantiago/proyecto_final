@@ -23,20 +23,20 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
     
     @Override
     public void registrarEmpleado(Empleados e) throws Exception {
-        if (e == null) {
-            throw new Exception("El empleado no tiene información");
-        }
-        if (e.getCedula().equals("")){
-             throw new Exception ("La Cedula es Obligatorio");  
-        }
-        if (e.getNombre().equals("")){
-          throw new Exception ("El nombre es obligatorio");
-        }
-        Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
-        if (objEmpleado != null){
-          throw new Exception ("El empleado ya existe!");
-        }
-        empleadoDAO.create(e);
+//        if (e == null) {
+//            throw new Exception("El empleado no tiene información");
+//        }
+//        if (e.getCedula().equals("")){
+//             throw new Exception ("La Cedula es Obligatorio");  
+//        }
+//        if (e.getNombre().equals("")){
+//          throw new Exception ("El nombre es obligatorio");
+//        }
+//        Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
+//        if (objEmpleado != null){
+//          throw new Exception ("El empleado ya existe!");
+//        }
+//        empleadoDAO.create(e);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
 
     @Override
     public List<Empleados> consultaEmpleados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return  empleadoDAO.findAll();
     }
 
     @Override

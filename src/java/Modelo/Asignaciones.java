@@ -18,20 +18,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "asignaciones")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Asignaciones.findAll", query = "SELECT a FROM Asignaciones a")
-    , @NamedQuery(name = "Asignaciones.findById", query = "SELECT a FROM Asignaciones a WHERE a.asignacionesPK.id = :id")
-    , @NamedQuery(name = "Asignaciones.findByHoras", query = "SELECT a FROM Asignaciones a WHERE a.horas = :horas")
-    , @NamedQuery(name = "Asignaciones.findByCantidadProyectos", query = "SELECT a FROM Asignaciones a WHERE a.cantidadProyectos = :cantidadProyectos")
-    , @NamedQuery(name = "Asignaciones.findByPresupuestos", query = "SELECT a FROM Asignaciones a WHERE a.presupuestos = :presupuestos")
-    , @NamedQuery(name = "Asignaciones.findByEmpleadosId", query = "SELECT a FROM Asignaciones a WHERE a.asignacionesPK.empleadosId = :empleadosId")})
+    @NamedQuery(name = "Asignaciones.findAll", query = "SELECT a FROM Asignaciones a"),
+    @NamedQuery(name = "Asignaciones.findById", query = "SELECT a FROM Asignaciones a WHERE a.asignacionesPK.id = :id"),
+    @NamedQuery(name = "Asignaciones.findByHoras", query = "SELECT a FROM Asignaciones a WHERE a.horas = :horas"),
+    @NamedQuery(name = "Asignaciones.findByCantidadProyectos", query = "SELECT a FROM Asignaciones a WHERE a.cantidadProyectos = :cantidadProyectos"),
+    @NamedQuery(name = "Asignaciones.findByPresupuestos", query = "SELECT a FROM Asignaciones a WHERE a.presupuestos = :presupuestos"),
+    @NamedQuery(name = "Asignaciones.findByEmpleadosId", query = "SELECT a FROM Asignaciones a WHERE a.asignacionesPK.empleadosId = :empleadosId")})
 public class Asignaciones implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected AsignacionesPK asignacionesPK;

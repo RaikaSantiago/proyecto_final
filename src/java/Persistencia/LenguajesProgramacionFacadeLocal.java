@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author usuario
+ * @author Desarrollo
  */
 @Local
 public interface LenguajesProgramacionFacadeLocal {

@@ -16,59 +16,59 @@ import javax.validation.constraints.NotNull;
  * @author Desarrollo
  */
 @Embeddable
-public class AsignacionesPK implements Serializable {
+public class ProductosPK implements Serializable {
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_potasio")
+    private int idPotasio;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "empleados_id")
-    private int empleadosId;
+    @Column(name = "id_nitrogeno")
+    private int idNitrogeno;
 
-    public AsignacionesPK() {
+    public ProductosPK() {
     }
 
-    public AsignacionesPK(int id, int empleadosId) {
-        this.id = id;
-        this.empleadosId = empleadosId;
+    public ProductosPK(int idPotasio, int idNitrogeno) {
+        this.idPotasio = idPotasio;
+        this.idNitrogeno = idNitrogeno;
     }
 
-    public int getId() {
-        return id;
+    public int getIdPotasio() {
+        return idPotasio;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPotasio(int idPotasio) {
+        this.idPotasio = idPotasio;
     }
 
-    public int getEmpleadosId() {
-        return empleadosId;
+    public int getIdNitrogeno() {
+        return idNitrogeno;
     }
 
-    public void setEmpleadosId(int empleadosId) {
-        this.empleadosId = empleadosId;
+    public void setIdNitrogeno(int idNitrogeno) {
+        this.idNitrogeno = idNitrogeno;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
-        hash += (int) empleadosId;
+        hash += (int) idPotasio;
+        hash += (int) idNitrogeno;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AsignacionesPK)) {
+        if (!(object instanceof ProductosPK)) {
             return false;
         }
-        AsignacionesPK other = (AsignacionesPK) object;
-        if (this.id != other.id) {
+        ProductosPK other = (ProductosPK) object;
+        if (this.idPotasio != other.idPotasio) {
             return false;
         }
-        if (this.empleadosId != other.empleadosId) {
+        if (this.idNitrogeno != other.idNitrogeno) {
             return false;
         }
         return true;
@@ -76,7 +76,7 @@ public class AsignacionesPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.AsignacionesPK[ id=" + id + ", empleadosId=" + empleadosId + " ]";
+        return "Modelo.ProductosPK[ idPotasio=" + idPotasio + ", idNitrogeno=" + idNitrogeno + " ]";
     }
     
 }

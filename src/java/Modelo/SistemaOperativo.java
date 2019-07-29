@@ -22,17 +22,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ALEJANDRA
+ * @author Desarrollo
  */
 @Entity
 @Table(name = "sistema_operativo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "SistemaOperativo.findAll", query = "SELECT s FROM SistemaOperativo s")
-    , @NamedQuery(name = "SistemaOperativo.findById", query = "SELECT s FROM SistemaOperativo s WHERE s.id = :id")
-    , @NamedQuery(name = "SistemaOperativo.findByNombre", query = "SELECT s FROM SistemaOperativo s WHERE s.nombre = :nombre")})
+    @NamedQuery(name = "SistemaOperativo.findAll", query = "SELECT s FROM SistemaOperativo s"),
+    @NamedQuery(name = "SistemaOperativo.findById", query = "SELECT s FROM SistemaOperativo s WHERE s.id = :id"),
+    @NamedQuery(name = "SistemaOperativo.findByNombre", query = "SELECT s FROM SistemaOperativo s WHERE s.nombre = :nombre")})
 public class SistemaOperativo implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

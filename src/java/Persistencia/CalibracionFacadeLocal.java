@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Modelo.Asignaciones;
+import Modelo.Calibracion;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Desarrollo
  */
 @Local
-public interface AsignacionesFacadeLocal {
+public interface CalibracionFacadeLocal {
 
-    void create(Asignaciones asignaciones);
+    void create(Calibracion calibracion);
 
-    void edit(Asignaciones asignaciones);
+    void edit(Calibracion calibracion);
 
-    void remove(Asignaciones asignaciones);
+    void remove(Calibracion calibracion);
 
-    Asignaciones find(Object id);
+    Calibracion find(Object id);
 
-    List<Asignaciones> findAll();
+    List<Calibracion> findAll();
 
-    List<Asignaciones> findRange(int[] range);
+    List<Calibracion> findRange(int[] range);
 
     int count();
     

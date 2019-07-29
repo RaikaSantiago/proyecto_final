@@ -26,13 +26,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Desarrollo
  */
 @Entity
-@Table(name = "fases")
+@Table(name = "nitrogeno")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Fases.findAll", query = "SELECT f FROM Fases f"),
-    @NamedQuery(name = "Fases.findById", query = "SELECT f FROM Fases f WHERE f.id = :id"),
-    @NamedQuery(name = "Fases.findByNombre", query = "SELECT f FROM Fases f WHERE f.nombre = :nombre")})
-public class Fases implements Serializable {
+    @NamedQuery(name = "Nitrogeno.findAll", query = "SELECT n FROM Nitrogeno n"),
+    @NamedQuery(name = "Nitrogeno.findById", query = "SELECT n FROM Nitrogeno n WHERE n.id = :id"),
+    @NamedQuery(name = "Nitrogeno.findByNombreNitrogeno", query = "SELECT n FROM Nitrogeno n WHERE n.nombreNitrogeno = :nombreNitrogeno")})
+public class Nitrogeno implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -40,15 +40,15 @@ public class Fases implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
-    @Column(name = "nombre")
-    private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fases")
-    private List<Requisito> requisitoList;
+    @Column(name = "nombre_nitrogeno")
+    private String nombreNitrogeno;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nitrogeno")
+    private List<Productos> productosList;
 
-    public Fases() {
+    public Nitrogeno() {
     }
 
-    public Fases(Integer id) {
+    public Nitrogeno(Integer id) {
         this.id = id;
     }
 
@@ -60,21 +60,21 @@ public class Fases implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreNitrogeno() {
+        return nombreNitrogeno;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreNitrogeno(String nombreNitrogeno) {
+        this.nombreNitrogeno = nombreNitrogeno;
     }
 
     @XmlTransient
-    public List<Requisito> getRequisitoList() {
-        return requisitoList;
+    public List<Productos> getProductosList() {
+        return productosList;
     }
 
-    public void setRequisitoList(List<Requisito> requisitoList) {
-        this.requisitoList = requisitoList;
+    public void setProductosList(List<Productos> productosList) {
+        this.productosList = productosList;
     }
 
     @Override
@@ -87,10 +87,10 @@ public class Fases implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fases)) {
+        if (!(object instanceof Nitrogeno)) {
             return false;
         }
-        Fases other = (Fases) object;
+        Nitrogeno other = (Nitrogeno) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -99,7 +99,7 @@ public class Fases implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Fases[ id=" + id + " ]";
+        return "Modelo.Nitrogeno[ id=" + id + " ]";
     }
     
 }

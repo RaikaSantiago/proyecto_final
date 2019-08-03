@@ -30,28 +30,38 @@ public class loginVista {
     @EJB
     private EmpleadoLogicaLocal empleadoLogica;
     
-    private InputText txtNssEmpleado;
-    private Password txtClaveEmpleado;
+    private InputText txtNombreEmpleado;
+    private Password txtCedulaEmpleado;
     private CommandButton btnIngresar;
+
+    public EmpleadoLogicaLocal getEmpleadoLogica() {
+        return empleadoLogica;
+    }
+
+    public void setEmpleadoLogica(EmpleadoLogicaLocal empleadoLogica) {
+        this.empleadoLogica = empleadoLogica;
+    }
+
+    public InputText getTxtNombreEmpleado() {
+        return txtNombreEmpleado;
+    }
+
+    public void setTxtNombreEmpleado(InputText txtNombreEmpleado) {
+        this.txtNombreEmpleado = txtNombreEmpleado;
+    }
+
+    public Password getTxtCedulaEmpleado() {
+        return txtCedulaEmpleado;
+    }
+
+    public void setTxtCedulaEmpleado(Password txtCedulaEmpleado) {
+        this.txtCedulaEmpleado = txtCedulaEmpleado;
+    }
     
     public loginVista() {
     }
 
-    public InputText getTxtNssEmpleado() {
-        return txtNssEmpleado;
-    }
-
-    public void setTxtNssEmpleado(InputText txtNssEmpleado) {
-        this.txtNssEmpleado = txtNssEmpleado;
-    }
-
-    public Password getTxtClaveEmpleado() {
-        return txtClaveEmpleado;
-    }
-
-    public void setTxtClaveEmpleado(Password txtClaveEmpleado) {
-        this.txtClaveEmpleado = txtClaveEmpleado;
-    }    
+    
 
     public CommandButton getBtnIngresar() {
         return btnIngresar;
@@ -63,7 +73,24 @@ public class loginVista {
     
     public void ingresar() {
         try {
-         
+         Empleados nuevoEmpleado = new Empleados();
+            nuevoEmpleado.setNombre(txtNombreEmpleado.getValue().toString());
+            nuevoEmpleado.setCedula(txtCedulaEmpleado.getValue().toString());
+            Empleados empleadoLogueado = empleadoLogica.ingresar(nuevoEmpleado);
+            
+            //Guarda al usuario que se carga en la sesion.
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .getSessionMap().put("Empleado", empleadoLogueado);
+            
+//            //Redirecciono a la pagina deseada
+//            if (empleadoLogueado.getTipoempleado().equals("PLANTA")){
+//                FacesContext.getCurrentInstance().getExternalContext()
+//                    .redirect("admin/Planta.xhtml");
+//            }else{
+//                FacesContext.getCurrentInstance().getExternalContext()
+//                    .redirect("admin/Contratista.xhtml");
+//            }
+            
             
          
         } catch (Exception ex) {

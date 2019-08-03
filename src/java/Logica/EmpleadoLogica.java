@@ -59,5 +59,26 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public Empleados ingresar(Empleados empleado) throws Exception {
+         if (empleado == null){
+            throw new Exception("Usuario vacio");
+        }
+        if (empleado.getNombre() == null){
+            throw new Exception("Nombre de usuario obligatorio");
+        }
+        if (empleado.getCedula().equals("")){
+            throw new Exception("Clave es obligatorio");
+        }
+        Empleados objEmpleado = empleadoDAO.find(empleado.getNombre());
+        if (objEmpleado == null){
+            throw new Exception("Usuario no registrado!");
+        }
+        if (!empleado.getCedula().equals(objEmpleado.getCedula())){
+            throw new Exception("La clave no es valida!");
+        }
+        return objEmpleado;
+    }
+
     
 }

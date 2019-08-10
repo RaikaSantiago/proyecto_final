@@ -76,6 +76,7 @@ public class CursosLogica implements CursosLogicaLocal {
 //       if(objBorrar.getEmpleadosList().size()>0 || objBorrar.getIngresoList().size()>0 ){
 //         throw new Exception("El contratista tiene ingresos o contratos asociados");
 //       }
+
        cursosDAO.remove(objBorrar);  
     }
 

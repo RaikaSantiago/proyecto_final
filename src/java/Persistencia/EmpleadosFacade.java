@@ -8,7 +8,9 @@ package Persistencia;
 import Modelo.Empleados;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,17 @@ public class EmpleadosFacade extends AbstractFacade<Empleados> implements Emplea
 
     public EmpleadosFacade() {
         super(Empleados.class);
+    }
+
+    @Override
+    public Empleados findCedula(String cedula) {
+        String Consulta = "select e from Empleados e where e.cedula ="+cedula;
+         try {
+            Query query = em.createQuery(Consulta);
+            return (Empleados) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
     }
     
 }

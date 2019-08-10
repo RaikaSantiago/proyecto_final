@@ -23,26 +23,57 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
     
     @Override
     public void registrarEmpleado(Empleados e) throws Exception {
-//        if (e == null) {
-//            throw new Exception("El empleado no tiene información");
-//        }
-//        if (e.getCedula().equals("")){
-//             throw new Exception ("La Cedula es Obligatorio");  
-//        }
-//        if (e.getNombre().equals("")){
-//          throw new Exception ("El nombre es obligatorio");
-//        }
-//        Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
-//        if (objEmpleado != null){
-//          throw new Exception ("El empleado ya existe!");
-//        }
-//        empleadoDAO.create(e);
+        if (e == null) {
+            throw new Exception("El empleado no tiene información");
+        }
+        if (e.getId()== 0){
+             throw new Exception ("La ID es Obligatorio");  
+        }
+        if (e.getNombre().equals("")){
+          throw new Exception ("El Nombre es obligatorio");
+        }
+        if (e.getApellidos().equals("")){
+             throw new Exception ("Los Apellidos son Obligatorios");  
+        }
+        if (e.getEmail().equals("")){
+            throw new Exception ("El Email es Obligatorio");
+        }
+        if (e.getCedula().equals("")){
+             throw new Exception ("La Cedula es Obligatoria");  
+        }
+        if (e.getTelefonoFijo().equals("")){
+            throw new Exception ("El Telefono Fijo es Obligatorio");
+        }
+        if (e.getTelefonoMovil().equals("")){
+             throw new Exception ("El Telefono Movil es Obligatorio");  
+        }
+        if (e.getDireccion().equals("")){
+             throw new Exception ("La Direccion es Obligatoria");  
+        }
+        if (e.getFechaNacimiento() == null){
+             throw new Exception ("La Fecha de Nacimiento es Obligatoria");  
+        }
+        if (e.getEdad().equals("")){
+             throw new Exception ("La Edad es Obligatoria");  
+        }
+        if (e.getSexo().equals("")){
+             throw new Exception ("El Sexo es Obligatorio");  
+        }
+        if (e.getFechaIngreso()== null){
+             throw new Exception ("La Fecha de Ingreso es Obligatoria");  
+        }
+        if (e.getAntiguedad().equals("")){
+             throw new Exception ("La Antiguedad es Obligatoria");  
+        }
+        
+        Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
+        if (objEmpleado != null){
+          throw new Exception ("El empleado ya existe!");
+        }
+        empleadoDAO.create(e);
     }
 
-    @Override
-    public Empleados consultarEmpleado(Integer cedula) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public List<Empleados> consultaEmpleados() {
@@ -51,6 +82,63 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
 
     @Override
     public void modificarEmpleado(Empleados e) throws Exception {
+       if (e == null) {
+            throw new Exception("El empleado no tiene información");
+        }
+        if (e.getId()== 0){
+             throw new Exception ("La ID es Obligatorio");  
+        }
+        if (e.getNombre().equals("")){
+          throw new Exception ("El Nombre es obligatorio");
+        }
+        if (e.getApellidos().equals("")){
+             throw new Exception ("Los Apellidos son Obligatorios");  
+        }
+        if (e.getEmail().equals("")){
+            throw new Exception ("El Email es Obligatorio");
+        }
+        if (e.getCedula().equals("")){
+             throw new Exception ("La Cedula es Obligatoria");  
+        }
+        if (e.getTelefonoFijo().equals("")){
+            throw new Exception ("El Telefono Fijo es Obligatorio");
+        }
+        if (e.getTelefonoMovil().equals("")){
+             throw new Exception ("El Telefono Movil es Obligatorio");  
+        }
+        if (e.getDireccion().equals("")){
+             throw new Exception ("La Direccion es Obligatoria");  
+        }
+        if (e.getFechaNacimiento() == null){
+             throw new Exception ("La Fecha de Nacimiento es Obligatoria");  
+        }
+        if (e.getEdad().equals("")){
+             throw new Exception ("La Edad es Obligatoria");  
+        }
+        if (e.getSexo().equals("")){
+             throw new Exception ("El Sexo es Obligatorio");  
+        }
+        if (e.getFechaIngreso()== null){
+             throw new Exception ("La Fecha de Ingreso es Obligatoria");  
+        }
+        if (e.getAntiguedad().equals("")){
+             throw new Exception ("La Antiguedad es Obligatoria");  
+        }
+        
+        Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
+        if (objEmpleado != null){
+          throw new Exception ("El empleado ya existe!");
+        }
+        empleadoDAO.edit(e);
+    }
+
+    @Override
+    public Empleados ingresar(Empleados empleado) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Empleados consultarEmpleado(String cedula) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -58,27 +146,6 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
     public void eliminarEmpleado(Empleados e) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public Empleados ingresar(Empleados empleado) throws Exception {
-         if (empleado == null){
-            throw new Exception("Usuario vacio");
-        }
-        if (empleado.getNombre() == null){
-            throw new Exception("Nombre de usuario obligatorio");
-        }
-        if (empleado.getCedula().equals("")){
-            throw new Exception("Clave es obligatorio");
-        }
-        Empleados objEmpleado = empleadoDAO.find(empleado.getNombre());
-        if (objEmpleado == null){
-            throw new Exception("Usuario no registrado!");
-        }
-        if (!empleado.getCedula().equals(objEmpleado.getCedula())){
-            throw new Exception("La clave no es valida!");
-        }
-        return objEmpleado;
     }
 
     
-}

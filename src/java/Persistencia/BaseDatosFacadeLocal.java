@@ -23,6 +23,8 @@ public interface BaseDatosFacadeLocal {
     void remove(BaseDatos baseDatos);
 
     BaseDatos find(Object id);
+    
+    BaseDatos findDB(String nombre);
 
     List<BaseDatos> findAll();
 

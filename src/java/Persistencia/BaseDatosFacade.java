@@ -6,9 +6,12 @@
 package Persistencia;
 
 import Modelo.BaseDatos;
+import Modelo.Empleados;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +29,17 @@ public class BaseDatosFacade extends AbstractFacade<BaseDatos> implements BaseDa
 
     public BaseDatosFacade() {
         super(BaseDatos.class);
+    }
+
+    @Override
+    public BaseDatos findDB(String nombre) {
+        String Consulta = "select db from BaseDatos db where db.nombre ="+nombre;
+         try {
+            Query query = em.createQuery(Consulta);
+            return (BaseDatos) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
     }
     
 }

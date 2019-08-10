@@ -21,7 +21,7 @@ import org.primefaces.component.inputtext.InputText;
 
 @Named(value = "vBaseDatos")
 @RequestScoped
-public class vBaseDatos {
+public class basedatosVista {
 
     @EJB
     Base_DatosLogicaLocal baseDatosLogica;
@@ -94,7 +94,7 @@ public class vBaseDatos {
     
     
     
-    public vBaseDatos() {
+    public basedatosVista() {
     }
     
     public void registrarDB() {
@@ -113,7 +113,7 @@ public class vBaseDatos {
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
                  ex.getMessage()));
-      Logger.getLogger(vBaseDatos.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE,null,ex);
     }        
        
     }
@@ -134,7 +134,7 @@ public class vBaseDatos {
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
                  ex.getMessage()));
-      Logger.getLogger(vBaseDatos.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE,null,ex);
     }        
        
     }
@@ -151,7 +151,7 @@ public class vBaseDatos {
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
                  ex.getMessage()));
-      Logger.getLogger(vBaseDatos.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE,null,ex);
     }        
        
     }

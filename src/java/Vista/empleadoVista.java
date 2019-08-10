@@ -22,7 +22,7 @@ import org.primefaces.component.inputtext.InputText;
 
 @ManagedBean
 @RequestScoped
-public class vEmpleado {
+public class empleadoVista {
     
     @EJB
     EmpleadoLogicaLocal empleadoLogica;
@@ -162,7 +162,7 @@ public class vEmpleado {
     
     
     
-    public vEmpleado() {
+    public empleadoVista() {
     }
 
 
@@ -192,7 +192,7 @@ public class vEmpleado {
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
                  ex.getMessage()));
-      Logger.getLogger(vEmpleado.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(empleadoVista.class.getName()).log(Level.SEVERE,null,ex);
     }        
        
     }
@@ -232,7 +232,7 @@ public class vEmpleado {
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
                  ex.getMessage()));
-      Logger.getLogger(vEmpleado.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(empleadoVista.class.getName()).log(Level.SEVERE,null,ex);
     }        
        
     }
@@ -250,7 +250,7 @@ public class vEmpleado {
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
                  ex.getMessage()));
-      Logger.getLogger(vEmpleado.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(empleadoVista.class.getName()).log(Level.SEVERE,null,ex);
     }        
        
     }

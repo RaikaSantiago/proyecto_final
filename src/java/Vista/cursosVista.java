@@ -7,10 +7,15 @@ package Vista;
 
 import Logica.CursosLogicaLocal;
 import Modelo.Cursos;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
@@ -25,8 +30,8 @@ public class cursosVista {
     private List<Cursos> listaCursos;
     private InputText txtNombre;
     private InputText txtLugar;
-    private InputText txtFechaInicio;
-    private InputText txtFechaFin;
+    private Date txtFechaInicio;
+    private Date txtFechaFin;
     private InputText txtId;
     private CommandButton Registrar;
     private CommandButton Modificar;
@@ -64,19 +69,19 @@ public class cursosVista {
         this.txtLugar = txtLugar;
     }
 
-    public InputText getTxtFechaInicio() {
+    public Date getTxtFechaInicio() {
         return txtFechaInicio;
     }
 
-    public void setTxtFechaInicio(InputText txtFechaInicio) {
+    public void setTxtFechaInicio(Date txtFechaInicio) {
         this.txtFechaInicio = txtFechaInicio;
     }
 
-    public InputText getTxtFechaFin() {
+    public Date getTxtFechaFin() {
         return txtFechaFin;
     }
 
-    public void setTxtFechaFin(InputText txtFechaFin) {
+    public void setTxtFechaFin(Date txtFechaFin) {
         this.txtFechaFin = txtFechaFin;
     }
 
@@ -116,5 +121,68 @@ public class cursosVista {
 
     public cursosVista() {
     }
+     public void registrarCurso() {
+      try {
+        Cursos nuevoCurso = new Cursos();
+        nuevoCurso.setNombre(txtNombre.getValue().toString());
+        nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
+        nuevoCurso.setLugar(txtLugar.getValue().toString());
+        nuevoCurso.setFechaInicio(txtFechaInicio);
+        nuevoCurso.setFechaFin(txtFechaFin);
+
+        cursosLogica.registrarCursos(selectedCurso);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
+                 "El Curso  se ha Registrado Satisfactoriamente"));
+    } catch (Exception ex){
+      FacesContext.getCurrentInstance().addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
+                 ex.getMessage()));
+      Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE,null,ex);
+    }        
+       
+    }
+     
+     public void modificarCurso() {
+      try {
+         Cursos nuevoCurso = new Cursos();
+        nuevoCurso.setNombre(txtNombre.getValue().toString());
+        nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
+        nuevoCurso.setLugar(txtLugar.getValue().toString());
+        nuevoCurso.setFechaInicio(txtFechaInicio);
+        nuevoCurso.setFechaFin(txtFechaFin);
+
+        cursosLogica.modificarCurso(selectedCurso);
+          
+        FacesContext.getCurrentInstance().addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
+                 "El Curso se ha Modificado Satisfactoriamente"));
+    } catch (Exception ex){
+      FacesContext.getCurrentInstance().addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
+                 ex.getMessage()));
+      Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE,null,ex);
+    }        
+       
+    }
     
+    
+    public void eliminarCurso() {
+      try {
+       
+        cursosLogica.eliminarCurso(selectedCurso);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
+                 "El Curso se ha Eliminado Satisfactoriamente"));
+    } catch (Exception ex){
+      FacesContext.getCurrentInstance().addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
+                 ex.getMessage()));
+      Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE,null,ex);
+    }        
+       
+    }
+
 }

@@ -129,7 +129,7 @@ public class asignacionesVista {
        
     }
     
-     public void modificarDB() {
+     public void modificarAsignaciones() {
       try {
         Asignaciones nuevaAsig = new Asignaciones();
         nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));

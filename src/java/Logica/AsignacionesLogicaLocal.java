@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.Asignaciones;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface AsignacionesLogicaLocal {
-    
+    public void registrarAsignaciones(Asignaciones c) throws Exception;
+    public Asignaciones consultarAsignaciones(Asignaciones a) throws Exception;
+    public List<Asignaciones> consultaAsignaciones();
+    public void modificarAsignaciones(Asignaciones c) throws Exception;
+    public void eliminarAsignaciones(Asignaciones c) throws Exception;
 }

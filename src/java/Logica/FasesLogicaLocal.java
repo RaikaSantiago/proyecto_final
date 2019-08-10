@@ -5,13 +5,15 @@
  */
 package Logica;
 
+import Modelo.Fases;
+import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface FasesLogicaLocal {
-    
+      public void registrarFases(Fases c) throws Exception;
+    public Fases consultarFases(Fases c) throws Exception;
+    public List<Fases> consultaFases();
+    public void modificarFases(Fases c) throws Exception;
 }

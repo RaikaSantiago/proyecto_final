@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.Asignaciones;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,30 @@ import javax.ejb.Stateless;
 @Stateless
 public class AsignacionesLogica implements AsignacionesLogicaLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public void registrarAsignaciones(Asignaciones c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Asignaciones consultarAsignaciones(Asignaciones a) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Asignaciones> consultaAsignaciones() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarAsignaciones(Asignaciones c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarAsignaciones(Asignaciones c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
 }

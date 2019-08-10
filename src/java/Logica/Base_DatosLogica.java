@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.BaseDatos;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,31 @@ import javax.ejb.Stateless;
 @Stateless
 public class Base_DatosLogica implements Base_DatosLogicaLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public void registrarBaseDatos(BaseDatos c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public BaseDatos consultarBaseDatos(BaseDatos a) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<BaseDatos> consultaBaseDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarBaseDatos(BaseDatos c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarBaseDatos(BaseDatos c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
 }

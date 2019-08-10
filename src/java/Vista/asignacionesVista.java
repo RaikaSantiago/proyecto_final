@@ -150,14 +150,14 @@ public class asignacionesVista {
        
     }
      
-       public void eliminarEmpleado() {
+       public void eliminarAsignaciones() {
       try {
        
         asignacionesLogica.eliminarAsignaciones(selectedAsig);
         
         FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Base de Datos Eliminada Satisfactoriamente"));
+                 "La Asignacion ha sido Eliminada Satisfactoriamente"));
     } catch (Exception ex){
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",

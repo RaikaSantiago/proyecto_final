@@ -75,6 +75,7 @@ public class vBaseDatos {
     }
 
     public List<BaseDatos> getListaBaseDatos() {
+        listaBaseDatos = baseDatosLogica.consultaBaseDatos();
         return listaBaseDatos;
     }
 
@@ -138,7 +139,7 @@ public class vBaseDatos {
        
     }
     
-    public void eliminarEmpleado() {
+    public void eliminarDB() {
       try {
        
         baseDatosLogica.eliminarBaseDatos(selectedDB);

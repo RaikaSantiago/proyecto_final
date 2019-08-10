@@ -20,6 +20,8 @@ public interface FasesFacadeLocal {
     void remove(Fases fases);
 
     Fases find(Object id);
+    
+    Fases findNombre(String nombre);
 
     List<Fases> findAll();
 

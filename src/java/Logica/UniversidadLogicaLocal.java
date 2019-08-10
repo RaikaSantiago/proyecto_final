@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.Universidad;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface UniversidadLogicaLocal {
-    
+   public void registrarUniversidad(Universidad c) throws Exception;
+    public Universidad consultarUniversidad(Universidad c) throws Exception;
+    public List<Universidad> consultaUniversidad();
+    public void modificarUniversidad(Universidad c) throws Exception;  
 }

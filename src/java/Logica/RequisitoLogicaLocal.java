@@ -5,13 +5,15 @@
  */
 package Logica;
 
+import Modelo.Requisito;
+import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface RequisitoLogicaLocal {
-    
+    public void registrarRequisito(Requisito c) throws Exception;
+    public Requisito consultarRequisito(Requisito c) throws Exception;
+    public List<Requisito> consultaRequisito();
+    public void modificarRequisito(Requisito c) throws Exception; 
 }

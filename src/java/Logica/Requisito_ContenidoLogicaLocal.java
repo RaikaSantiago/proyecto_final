@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.RequisitoContenido;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface Requisito_ContenidoLogicaLocal {
-    
+    public void registrarRequisitoContenido(RequisitoContenido c) throws Exception;
+    public RequisitoContenido consultarRequisitoContenido(RequisitoContenido c) throws Exception;
+    public List<RequisitoContenido> consultaRequisitoContenido();
+    public void modificarRequisitoContenido(RequisitoContenido c) throws Exception; 
 }

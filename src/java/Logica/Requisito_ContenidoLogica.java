@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.RequisitoContenido;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,25 @@ import javax.ejb.Stateless;
 @Stateless
 public class Requisito_ContenidoLogica implements Requisito_ContenidoLogicaLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public void registrarRequisitoContenido(RequisitoContenido c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public RequisitoContenido consultarRequisitoContenido(RequisitoContenido c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<RequisitoContenido> consultaRequisitoContenido() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarRequisitoContenido(RequisitoContenido c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }

@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.Requisito;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -13,6 +15,26 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class RequisitoLogica implements RequisitoLogicaLocal {
+
+    @Override
+    public void registrarRequisito(Requisito c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Requisito consultarRequisito(Requisito c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Requisito> consultaRequisito() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarRequisito(Requisito c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

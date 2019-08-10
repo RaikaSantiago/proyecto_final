@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Modelo.Proyectos;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface ProyectoLogicaLocal {
-    
+    public void registrarProyectos(Proyectos c) throws Exception;
+    public Proyectos consultarProyectos(Proyectos c) throws Exception;
+    public List<Proyectos> consultaProyectos();
+    public void modificarProyectos(Proyectos c) throws Exception; 
 }

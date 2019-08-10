@@ -9,10 +9,7 @@ import Modelo.Fases;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class FasesLogica implements FasesLogicaLocal {
 

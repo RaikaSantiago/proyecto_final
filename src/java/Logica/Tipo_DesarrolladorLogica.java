@@ -9,10 +9,7 @@ import Modelo.TipoDesarrollador;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class Tipo_DesarrolladorLogica implements Tipo_DesarrolladorLogicaLocal {
 

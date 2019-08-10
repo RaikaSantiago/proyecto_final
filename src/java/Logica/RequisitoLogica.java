@@ -9,10 +9,7 @@ import Modelo.Requisito;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class RequisitoLogica implements RequisitoLogicaLocal {
 

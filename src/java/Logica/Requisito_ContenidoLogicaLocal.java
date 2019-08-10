@@ -9,10 +9,7 @@ import Modelo.RequisitoContenido;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface Requisito_ContenidoLogicaLocal {
     public void registrarRequisitoContenido(RequisitoContenido c) throws Exception;

@@ -9,10 +9,7 @@ import Modelo.SistemaOperativo;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface Sistema_OperativoLogicaLocal {
     public void registrarSistemaOperativo(SistemaOperativo c) throws Exception;

@@ -9,10 +9,7 @@ import Modelo.Universidad;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class UniversidadLogica implements UniversidadLogicaLocal {
 

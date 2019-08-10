@@ -9,10 +9,7 @@ import Modelo.RequisitoContenido;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class Requisito_ContenidoLogica implements Requisito_ContenidoLogicaLocal {
 

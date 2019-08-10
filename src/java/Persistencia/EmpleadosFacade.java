@@ -12,10 +12,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Stateless
 public class EmpleadosFacade extends AbstractFacade<Empleados> implements EmpleadosFacadeLocal {
     @PersistenceContext(unitName = "proyecto_finalPU")

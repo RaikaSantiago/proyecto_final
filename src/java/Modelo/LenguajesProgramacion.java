@@ -22,10 +22,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Entity
 @Table(name = "lenguajes_programacion")
 @XmlRootElement

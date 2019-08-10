@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Stateless
 public class RequisitoFacade extends AbstractFacade<Requisito> implements RequisitoFacadeLocal {
     @PersistenceContext(unitName = "proyecto_finalPU")

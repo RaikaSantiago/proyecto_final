@@ -9,10 +9,7 @@ import Modelo.Asignaciones;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface AsignacionesLogicaLocal {
     public void registrarAsignaciones(Asignaciones c) throws Exception;

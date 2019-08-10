@@ -9,10 +9,7 @@ import Modelo.Asignaciones;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class AsignacionesLogica implements AsignacionesLogicaLocal {
 

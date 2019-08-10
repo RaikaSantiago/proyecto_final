@@ -9,10 +9,7 @@ import Modelo.Universidad;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface UniversidadLogicaLocal {
    public void registrarUniversidad(Universidad c) throws Exception;

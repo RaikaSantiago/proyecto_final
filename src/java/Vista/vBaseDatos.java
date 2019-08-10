@@ -18,10 +18,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
-/**
- *
- * @author cristian
- */
+
 @Named(value = "vBaseDatos")
 @RequestScoped
 public class vBaseDatos {

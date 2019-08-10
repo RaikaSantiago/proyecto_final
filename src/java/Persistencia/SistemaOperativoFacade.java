@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Stateless
 public class SistemaOperativoFacade extends AbstractFacade<SistemaOperativo> implements SistemaOperativoFacadeLocal {
     @PersistenceContext(unitName = "proyecto_finalPU")

@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Stateless
 public class LenguajesProgramacionFacade extends AbstractFacade<LenguajesProgramacion> implements LenguajesProgramacionFacadeLocal {
     @PersistenceContext(unitName = "proyecto_finalPU")

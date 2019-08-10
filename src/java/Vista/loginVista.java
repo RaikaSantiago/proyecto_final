@@ -19,10 +19,7 @@ import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
 
-/**
- *
- * @author usuario
- */
+
 @Named(value = "loginVista")
 @RequestScoped
 public class loginVista {

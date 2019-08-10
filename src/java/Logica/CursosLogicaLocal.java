@@ -9,10 +9,7 @@ import Modelo.Cursos;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface CursosLogicaLocal {
     public void registrarCursos(Cursos c) throws Exception;

@@ -11,10 +11,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author cristian
- */
+
 @Stateless
 public class EmpleadoLogica implements EmpleadoLogicaLocal {
 

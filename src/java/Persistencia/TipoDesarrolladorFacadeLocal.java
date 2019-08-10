@@ -9,10 +9,7 @@ import Modelo.TipoDesarrollador;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Local
 public interface TipoDesarrolladorFacadeLocal {
 

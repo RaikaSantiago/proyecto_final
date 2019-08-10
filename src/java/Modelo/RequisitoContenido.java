@@ -21,10 +21,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Entity
 @Table(name = "requisito_contenido")
 @XmlRootElement

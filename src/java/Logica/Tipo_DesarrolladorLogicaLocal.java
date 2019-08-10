@@ -9,10 +9,7 @@ import Modelo.TipoDesarrollador;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface Tipo_DesarrolladorLogicaLocal {
     public void registrarTipoDesarrollador(TipoDesarrollador c) throws Exception;

@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Desarrollo
- */
+
 @Stateless
 public class UniversidadFacade extends AbstractFacade<Universidad> implements UniversidadFacadeLocal {
     @PersistenceContext(unitName = "proyecto_finalPU")

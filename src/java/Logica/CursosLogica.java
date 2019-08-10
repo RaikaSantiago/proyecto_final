@@ -5,10 +5,7 @@ import Modelo.Cursos;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class CursosLogica implements CursosLogicaLocal {
 

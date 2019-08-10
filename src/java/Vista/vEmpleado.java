@@ -19,10 +19,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
-/**
- *
- * @author Desarrollo
- */
+
 @ManagedBean
 @RequestScoped
 public class vEmpleado {

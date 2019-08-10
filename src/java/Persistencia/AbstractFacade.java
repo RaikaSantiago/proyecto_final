@@ -8,10 +8,7 @@ package Persistencia;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Desarrollo
- */
+
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
 

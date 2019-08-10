@@ -9,10 +9,7 @@ import Modelo.Proyectos;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class ProyectoLogica implements ProyectoLogicaLocal {
 

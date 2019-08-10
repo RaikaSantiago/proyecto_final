@@ -9,10 +9,7 @@ import Modelo.Proyectos;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface ProyectoLogicaLocal {
     public void registrarProyectos(Proyectos c) throws Exception;

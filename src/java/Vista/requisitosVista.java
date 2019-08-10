@@ -10,10 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
-/**
- *
- * @author usuario
- */
+
 @Named(value = "requisitosVista")
 @RequestScoped
 public class requisitosVista {

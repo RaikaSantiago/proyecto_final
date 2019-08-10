@@ -9,10 +9,7 @@ import Modelo.GradosAcademicos;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class Grado_AcademicoLogica implements Grado_AcademicoLogicaLocal {
 

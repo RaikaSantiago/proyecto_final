@@ -9,10 +9,7 @@ import Modelo.Empleados;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author cristian
- */
+
 @Local
 public interface EmpleadoLogicaLocal {
     public Empleados ingresar(Empleados empleado)throws Exception;

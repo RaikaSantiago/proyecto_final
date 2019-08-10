@@ -9,10 +9,7 @@ import Modelo.SistemaOperativo;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Stateless
 public class Sistema_OperativoLogica implements Sistema_OperativoLogicaLocal {
 

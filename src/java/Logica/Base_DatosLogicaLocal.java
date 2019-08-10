@@ -9,10 +9,7 @@ import Modelo.BaseDatos;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author ALEJANDRA
- */
+
 @Local
 public interface Base_DatosLogicaLocal {
    public void registrarBaseDatos(BaseDatos c) throws Exception;

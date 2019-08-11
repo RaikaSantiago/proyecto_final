@@ -201,11 +201,11 @@ public class proyectoVista {
         nuevoproyecto.setFechaAsignacion(txtFechaAsignacion);
         nuevoproyecto.setFechaFases(txtFechaFases);
         nuevoproyecto.setCostoTotal(txtCostoTotal);
-        ProyectoLogica.registrarProyectos(nuevoproyecto);
+        ProyectoLogica.modificarProyectos(nuevoproyecto);
         
         FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Proyecto  se ha Registrado Satisfactoriamente"));
+                 "El Proyecto  se ha modificado Satisfactoriamente"));
     } catch (Exception ex){
       FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",

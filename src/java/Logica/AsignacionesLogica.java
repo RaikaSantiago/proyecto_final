@@ -6,7 +6,6 @@
 package Logica;
 
 import Modelo.Asignaciones;
-import Modelo.Empleados;
 import Persistencia.AsignacionesFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,7 +31,7 @@ public class AsignacionesLogica implements AsignacionesLogicaLocal {
         if (c.getPresupuestos().equals("")){
           throw new Exception ("El presupuesto debe estar digitado");
         }
-        asignacionesDAO.create((Asignaciones) c);
+        asignacionesDAO.create(c);
     }
 
     @Override

@@ -1,21 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Logica;
 
 import Modelo.SistemaOperativo;
+import Persistencia.SistemaOperativoFacadeLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 
 @Stateless
 public class Sistema_OperativoLogica implements Sistema_OperativoLogicaLocal {
-
+     
+    @EJB
+    public SistemaOperativoFacadeLocal sistemaOperativoDAO;
+    
     @Override
     public void registrarSistemaOperativo(SistemaOperativo c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      if (c == null) {
+            throw new Exception("El sistema Operativo tiene información");
+        }
+        if (c.getNombre().equals("")){
+          throw new Exception ("El nombre  no puede ir vacio");
+        }
+     
+        sistemaOperativoDAO.create(c);
     }
 
     @Override
@@ -25,14 +33,20 @@ public class Sistema_OperativoLogica implements Sistema_OperativoLogicaLocal {
 
     @Override
     public List<SistemaOperativo> consultaSistemaOperativo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sistemaOperativoDAO.findAll();
     }
 
     @Override
     public void modificarSistemaOperativo(SistemaOperativo c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       if (c == null) {
+            throw new Exception("El Sitema Operativo  no tiene información");
+        }
+        if (c.getNombre().equals("")){
+          throw new Exception ("El nombre  no puede ir vacio");
+        }
+     
+        sistemaOperativoDAO.edit(c);
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+  
 }

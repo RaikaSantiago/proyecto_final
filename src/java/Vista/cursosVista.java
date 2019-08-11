@@ -130,7 +130,7 @@ public class cursosVista {
         nuevoCurso.setFechaInicio(txtFechaInicio);
         nuevoCurso.setFechaFin(txtFechaFin);
 
-        cursosLogica.registrarCursos(selectedCurso);
+        cursosLogica.registrarCursos(nuevoCurso);
         
         FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
@@ -153,7 +153,7 @@ public class cursosVista {
         nuevoCurso.setFechaInicio(txtFechaInicio);
         nuevoCurso.setFechaFin(txtFechaFin);
 
-        cursosLogica.modificarCurso(selectedCurso);
+        cursosLogica.modificarCurso(nuevoCurso);
           
         FacesContext.getCurrentInstance().addMessage(null,
          new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",

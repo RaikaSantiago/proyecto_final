@@ -3,6 +3,7 @@ package Vista;
 
 import Logica.Tipo_DesarrolladorLogicaLocal;
 import Modelo.TipoDesarrollador;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -10,6 +11,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
 
@@ -20,7 +22,43 @@ public class tipodesarrolladorVista {
     @EJB
     Tipo_DesarrolladorLogicaLocal tipodesarrolladorLogica;
     
+    private List<TipoDesarrollador> listaTD;
     private InputText txtNombre_Cargo;
+    private CommandButton Registrar;
+    private CommandButton Modificar;
+    private TipoDesarrollador selectedTD;
+
+    public List<TipoDesarrollador> getListaTD() {
+        return listaTD;
+    }
+
+    public void setListaTD(List<TipoDesarrollador> listaTD) {
+        this.listaTD = listaTD;
+    }
+
+    public CommandButton getRegistrar() {
+        return Registrar;
+    }
+
+    public void setRegistrar(CommandButton Registrar) {
+        this.Registrar = Registrar;
+    }
+
+    public CommandButton getModificar() {
+        return Modificar;
+    }
+
+    public void setModificar(CommandButton Modificar) {
+        this.Modificar = Modificar;
+    }
+
+    public TipoDesarrollador getSelectedTD() {
+        return selectedTD;
+    }
+
+    public void setSelectedTD(TipoDesarrollador selectedTD) {
+        this.selectedTD = selectedTD;
+    }
 
     public Tipo_DesarrolladorLogicaLocal getTipodesarrolladorLogica() {
         return tipodesarrolladorLogica;

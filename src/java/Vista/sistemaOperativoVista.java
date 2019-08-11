@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
 import Logica.Sistema_OperativoLogicaLocal;
 import Modelo.SistemaOperativo;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -14,6 +11,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
 
@@ -23,7 +21,17 @@ public class sistemaOperativoVista {
     
     @EJB
     Sistema_OperativoLogicaLocal sistemaOperativoLogica;
+    
+    private List<SistemaOperativo> listaSO;
 
+    public List<SistemaOperativo> getListaSO() {
+        return listaSO;
+    }
+
+    public void setListaSO(List<SistemaOperativo> listaSO) {
+        this.listaSO = listaSO;
+    }
+    
     public Sistema_OperativoLogicaLocal getSistemaOperativoLogica() {
         return sistemaOperativoLogica;
     }
@@ -41,6 +49,34 @@ public class sistemaOperativoVista {
     }
     
     private InputText txtNombre;
+    private CommandButton Registrar;
+    private CommandButton Modificar;
+    private SistemaOperativo selectedSO;
+
+    public CommandButton getRegistrar() {
+        return Registrar;
+    }
+
+    public void setRegistrar(CommandButton Registrar) {
+        this.Registrar = Registrar;
+    }
+
+    public CommandButton getModificar() {
+        return Modificar;
+    }
+
+    public void setModificar(CommandButton Modificar) {
+        this.Modificar = Modificar;
+    }
+
+    public SistemaOperativo getSelectedSO() {
+        return selectedSO;
+    }
+
+    public void setSelectedSO(SistemaOperativo selectedSO) {
+        this.selectedSO = selectedSO;
+    }
+   
     
     public sistemaOperativoVista() {
     }

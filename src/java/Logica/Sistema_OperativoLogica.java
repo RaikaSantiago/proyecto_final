@@ -17,7 +17,7 @@ public class Sistema_OperativoLogica implements Sistema_OperativoLogicaLocal {
     @Override
     public void registrarSistemaOperativo(SistemaOperativo c) throws Exception {
       if (c == null) {
-            throw new Exception("El sistema Operativo tiene información");
+            throw new Exception("El sistema Operativo no tiene información");
         }
         if (c.getNombre().equals("")){
           throw new Exception ("El nombre  no puede ir vacio");

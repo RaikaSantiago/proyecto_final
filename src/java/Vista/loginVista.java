@@ -14,13 +14,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import Logica.EmpleadoLogicaLocal;
 import Modelo.Empleados;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
 
 
-@Named(value = "loginVista")
+@ManagedBean
 @RequestScoped
 public class loginVista {
 

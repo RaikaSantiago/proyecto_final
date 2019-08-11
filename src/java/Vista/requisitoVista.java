@@ -7,14 +7,12 @@ package Vista;
 
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 
-/**
- *
- * @author usuario
- */
-@Named(value = "requisitoVista")
+
+@ManagedBean
 @RequestScoped
 public class requisitoVista {
 

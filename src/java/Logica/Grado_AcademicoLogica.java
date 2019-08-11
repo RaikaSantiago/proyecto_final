@@ -6,16 +6,32 @@
 package Logica;
 
 import Modelo.GradosAcademicos;
+import Persistencia.GradosAcademicosFacadeLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 
 @Stateless
 public class Grado_AcademicoLogica implements Grado_AcademicoLogicaLocal {
-
+    
+     @EJB
+    public GradosAcademicosFacadeLocal gradosAcademicosDAO;
+     
     @Override
     public void registrarGradosAcademicos(GradosAcademicos c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (c == null) {
+            throw new Exception("El grado Academico no tiene información");
+        }
+        if (c.getTipo().equals("")){
+             throw new Exception ("El Tipo es Obligatorio");  
+        }
+        
+        GradosAcademicos objFase = gradosAcademicosDAO.find(c.getGradosAcademicosPK());
+        if (objFase != null){
+          throw new Exception ("El Grado  Academico ya existe!");
+        }
+        gradosAcademicosDAO.create(c);
     }
 
     @Override
@@ -25,14 +41,23 @@ public class Grado_AcademicoLogica implements Grado_AcademicoLogicaLocal {
 
     @Override
     public List<GradosAcademicos> consultaGradosAcademicos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return gradosAcademicosDAO.findAll();
     }
 
     @Override
     public void modificarGradosAcademicos(GradosAcademicos c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          if (c == null) {
+            throw new Exception("El grado Academico no tiene información");
+        }
+        if (c.getTipo().equals("")){
+             throw new Exception ("El Tipo es Obligatorio");  
+        }
+        
+        GradosAcademicos objFase = gradosAcademicosDAO.find(c.getGradosAcademicosPK());
+        if (objFase != null){
+          throw new Exception ("El Grado  Academico ya existe!");
+        }
+        gradosAcademicosDAO.edit(c);
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }

@@ -63,6 +63,6 @@ public class FasesLogica implements FasesLogicaLocal {
         if (objFase != null){
           throw new Exception ("La Fase ya existe!");
         }
-        fasesDAO.create(f);
+        fasesDAO.edit(f);
     }
 }

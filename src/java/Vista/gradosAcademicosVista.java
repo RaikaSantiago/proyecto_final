@@ -33,8 +33,8 @@ public class gradosAcademicosVista {
         return GradosAcademicosLogica;
     }
 
-    public void setFaseLogica(Grado_AcademicoLogicaLocal faseLogica) {
-        this.GradosAcademicosLogica = faseLogica;
+    public void setFaseLogica(Grado_AcademicoLogicaLocal GALogica) {
+        this.GradosAcademicosLogica = GALogica;
     }
 
     public List<GradosAcademicos> getListaGradosA() {

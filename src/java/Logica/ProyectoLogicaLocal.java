@@ -15,5 +15,6 @@ public interface ProyectoLogicaLocal {
     public void registrarProyectos(Proyectos c) throws Exception;
     public Proyectos consultarProyectos(Proyectos c) throws Exception;
     public List<Proyectos> consultaProyectos();
-    public void modificarProyectos(Proyectos c) throws Exception; 
+    public void modificarProyectos(Proyectos c) throws Exception;
+    public void eliminarProyectos(Proyectos c) throws Exception; 
 }

@@ -214,7 +214,7 @@ public class requisitoContenidoVista {
     }
 
     public List<RequisitoContenido> getListaRequisitoContenido() {
-        listaRequisitoContenido =requisitoContenidoLogica.consultaRequisitoContenido();
+        listaRequisitoContenido = requisitoContenidoLogica.consultaRequisitoContenido();
         return listaRequisitoContenido;
     }
 
@@ -262,7 +262,7 @@ public class requisitoContenidoVista {
             requisitoContenidoLogica.registrarRequisitoContenido(nuevoRequisitoContendio);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
-                            "El requisito no se registro correctamente!"));
+                            "El  cambio del requisito se registro correctamente!"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",

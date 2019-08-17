@@ -16,4 +16,5 @@ public interface RequisitoLogicaLocal {
     public Requisito consultarRequisito(Requisito c) throws Exception;
     public List<Requisito> consultaRequisito();
     public void modificarRequisito(Requisito c) throws Exception; 
+    public void eliminarRequisito(Requisito c) throws Exception; 
 }

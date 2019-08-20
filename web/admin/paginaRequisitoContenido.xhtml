@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Pagina Requisito Contenido</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+
+                <p:layoutUnit position="center">
+                    <h:form id="FormularioRequisitoContenido">
+                        <p:messages id="mensajes" showDetail="true"/>
+                        <p:panelGrid columns="3" id="panelRequisitoContenido">
+                            <h:outputText value="NombreProyecto:"/>
+                            <p:inputText id="nombreProyectoRC"
+                                         binding="#{requisitoContenidoVista.nombreProyectoRC}"/>
+                            <h:outputText value="NumeroSolicitudRC:"/>
+                            <p:inputText id="numeroSolicitudRC"
+                                         binding="#{requisitoContenidoVista.numeroSolicitudRC}"/>
+                            <h:outputText value="TituloRC:"/>
+                            <p:inputText id="tituloRC"
+                                         binding="#{requisitoContenidoVista.tituloRC}"/>
+                            <h:outputText value="FechaRC:"/>
+                            <p:inputText id="fechaRC"
+                                         binding="#{requisitoContenidoVista.fechaRC}"/>
+                            <h:outputText value="SolicitanteRC:"/>
+                            <p:inputText id="solicitanteRC"
+                                         binding="#{requisitoContenidoVista.solicitanteRC}"/>
+                            <h:outputText value="OrigenRC:"/>
+                            <p:inputText id="origenRC"
+                                         binding="#{requisitoContenidoVista.origenRC}"/>
+                            <p:selectOneMenu id="estadoRC" binding="#{requisitoContenidoVista.estadoRC}">
+                                <f:selectItem itemLabel="REGISTRADO" itemValue="REGISTRADO"/>
+                                <f:selectItem itemLabel="EVALUADO" itemValue="EVALUADO"/>
+                                <f:selectItem itemLabel="RECHAZADO" itemValue="RECHAZADO"/>
+                                <f:selectItem itemLabel="APROBADO" itemValue="APROBADO"/>
+                                <f:selectItem itemLabel="VERIFICADO" itemValue="VERIFICADO"/>
+                                <f:selectItem itemLabel="FINALIZADO" itemValue="FINALIZADO"/>
+                            </p:selectOneMenu>
+                            <h:outputText value="PrioridadSolicitanteRC:"/>
+                            <p:inputText id="prioridadSolicitanteRC"
+                                         binding="#{requisitoContenidoVista.prioridadSolicitanteRC}"/>
+                            <h:outputText value="PrioridadRealizaciónRC:"/>
+                            <p:inputText id="prioridadSolicitanteRC"
+                                         binding="#{requisitoContenidoVista.prioridadRealizacionRC}"/>
+                            <h:outputText value="VerificadorRC:"/>
+                            <p:inputText id="verificadorRC"
+                                         binding="#{requisitoContenidoVista.verificadorRC}"/>
+                            <h:outputText value="FechaUltimaActualizacionRC:"/>
+                            <p:inputText id="fechaUltimaActualizacionRC"
+                                         binding="#{requisitoContenidoVista.fechaUltimaActualizacionRC}"/>
+                            <h:outputText value="ReleaseRC:"/>
+                            <p:inputText id="releaseRC"
+                                         binding="#{requisitoContenidoVista.releaseRC}"/>
+                            <h:outputText value="EsfuerzoRC:"/>
+                            <p:inputText id="esfuerzoRC"
+                                         binding="#{requisitoContenidoVista.esfuerzoRC}"/>
+                            <h:outputText value="DescripcionRC:"/>
+                            <p:inputText id="descripcionRC"
+                                         binding="#{requisitoContenidoVista.descripcionRC}"/>
+                            <h:outputText value="ComentariosRC:"/>
+                            <p:inputText id="comentariosRC"
+                                         binding="#{requisitoContenidoVista.comentariosRC}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="ResgistrarRC"
+                                         actionListener="#{requisitoContenidoVista.registrarRequisitoContenido()}"
+                                         update="FormularioRequisitoContenido"/>
+                        <p:commandButton value="EliminarRC" 
+                                         action="#{requisitoContenidoVista.eliminarRequisitoContenido()}" 
+                                         update="FormularioRequisitoContenido">
+                            <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
+                        </p:commandButton>
+                        <p:commandButton value="AmpliacionRC"
+                                         actionListener="#{requisitoContenidoVista}"
+                                         update="FormularioRequisitoContenido"/>
+                        <p:commandButton value="ReduccionRC"
+                                         actionListener="#{requisitoContenidoVista}"
+                                         update="FormularioRequisitoContenido"/>
+                        <p:commandButton value="CambioRC"
+                                         actionListener="#{requisitoContenidoVista.modificarRequisitoContenido()}"
+                                         update="FormularioRequisitoContenido"/>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                            <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+                        </p:confirmDialog> 
+                        <p:dataTable var="c" value="#{requisitoContenidoVista.listaRequisitoContenido}" rows="10"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     selection="#{requisitoContenidoVista.selectedRequisitoContenido}"
+                                     selectionMode="single"
+                                     rowKey="#{c.requisitoContenidoPK}">
+                            <p:ajax event="rowSelect" 
+                                    listener="#{requisitoContenidoVista.selectedRequisitoContenido}" 
+                                    update="FormularioRequisitoContenido:panelRequisitoContenido"/>
+                            <p:column headerText="NombreProyectoRC">
+                                <h:outputText value="#{c.nombreProyecto}" />
+                            </p:column>
+
+                            <p:column headerText="NumeroSolicitudRC">
+                                <h:outputText value="#{c.numeroSolicitud}" />
+                            </p:column>
+
+                            <p:column headerText="tituloRC">
+                                <h:outputText value="#{c.titulo}" />
+                            </p:column>
+
+                            <p:column headerText="fechaRC">
+                                <h:outputText value="#{c.fecha}" />
+                            </p:column>
+
+                            <p:column headerText="solicitanteRC">
+                                <h:outputText value="#{c.solicitante}" />
+                            </p:column>
+
+                            <p:column headerText="origenRC">
+                                <h:outputText value="#{c.origen}" />
+                            </p:column>
+
+                            <p:column headerText="estadoRC">
+                                <h:outputText value="#{c.estado}" />
+                            </p:column>
+
+                            <p:column headerText="prioridadSolicitanteRC">
+                                <h:outputText value="#{c.prioridadSolicitante}" />
+                            </p:column>
+
+                            <p:column headerText="prioridadRealizacionRC">
+                                <h:outputText value="#{c.prioridadRealizacion}" />
+                            </p:column>
+
+                            <p:column headerText="verificadorRC">
+                                <h:outputText value="#{c.verificador}" />
+                            </p:column>
+
+                            <p:column headerText="fechaUltimaActualizacionRC">
+                                <h:outputText value="#{c.fechaActualizacion}" />
+                            </p:column>
+
+                            <p:column headerText="releaseRC">
+                                <h:outputText value="#{c.release}" />
+                            </p:column>
+
+                            <p:column headerText="esfuerzoRC">
+                                <h:outputText value="#{c.esfuerzo}" />
+                            </p:column>
+
+                            <p:column headerText="descripcionRC">
+                                <h:outputText value="#{c.descripcion}" />
+                            </p:column>
+
+                            <p:column headerText="comentariosRC">
+                                <h:outputText value="#{c.comentarios}" />
+                            </p:column>
+
+                            <f:facet name="paginatorTopLeft">
+                                <p:commandButton type="button" icon="pi pi-refresh" />
+                            </f:facet>
+
+                            <f:facet name="paginatorBottomRight">
+                                <p:commandButton type="button" icon="pi pi-cloud-upload" />
+                            </f:facet>
+
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
+

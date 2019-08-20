@@ -16,24 +16,42 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
-
 
 @ManagedBean
 @RequestScoped
 public class requisitoVista {
 
     private RequisitoLogicaLocal requisitoLogica;
-    
+
     private List<Requisito> listaRequisito;
     private Requisito selectedRequisito;
     private CommandButton registrarRequisito;
+    private CommandButton modificarRequisito;
     private CommandButton eliminarRequisito;
     private InputText descripcionRequisito;
     private InputText tipoRequisito;
-    private InputText estadoRequisito;
-    
+    private SelectOneMenu estadoRequisito;
+
     public requisitoVista() {
+    }
+
+    public List<Requisito> getListaRequisito() {
+        listaRequisito = requisitoLogica.consultaRequisito();
+        return listaRequisito;
+    }
+
+    public void setListaRequisito(List<Requisito> listaRequisito) {
+        this.listaRequisito = listaRequisito;
+    }
+
+    public Requisito getSelectedRequisito() {
+        return selectedRequisito;
+    }
+
+    public void setSelectedRequisito(Requisito selectedRequisito) {
+        this.selectedRequisito = selectedRequisito;
     }
 
     public CommandButton getRegistrarRequisito() {
@@ -42,6 +60,14 @@ public class requisitoVista {
 
     public void setRegistrarRequisito(CommandButton registrarRequisito) {
         this.registrarRequisito = registrarRequisito;
+    }
+
+    public CommandButton getModificarRequisito() {
+        return modificarRequisito;
+    }
+
+    public void setModificarRequisito(CommandButton modificarRequisito) {
+        this.modificarRequisito = modificarRequisito;
     }
 
     public CommandButton getEliminarRequisito() {
@@ -68,36 +94,28 @@ public class requisitoVista {
         this.tipoRequisito = tipoRequisito;
     }
 
-    public InputText getEstadoRequisito() {
+    public SelectOneMenu getEstadoRequisito() {
         return estadoRequisito;
     }
 
-    public void setEstadoRequisito(InputText estadoRequisito) {
-        listaRequisito = requisitoLogica.consultaRequisito();
+    public void setEstadoRequisito(SelectOneMenu estadoRequisito) {
         this.estadoRequisito = estadoRequisito;
     }
 
-    public List<Requisito> getListaRequisito() {
-        return listaRequisito;
-    }
-
-    public void setListaRequisito(List<Requisito> listaRequisito) {
-        this.listaRequisito = listaRequisito;
-    }
-    
-    public void seleccionarRequisito(SelectEvent e){
+    public void seleccionarRequisito(SelectEvent e) {
         selectedRequisito = (Requisito) e.getObject();
         descripcionRequisito.setValue(selectedRequisito.getDescripcion());
         tipoRequisito.setValue(selectedRequisito.getTipo());
         estadoRequisito.setValue(selectedRequisito.getEstado());
     }
-    
-    public void registrarRequisito(){
+
+    public void registrarRequisito() {
         try {
             Requisito nuevoRequisito = new Requisito();
             nuevoRequisito.setDescripcion(descripcionRequisito.getValue().toString());
             nuevoRequisito.setTipo(tipoRequisito.getValue().toString());
             nuevoRequisito.setEstado(estadoRequisito.getValue().toString());
+            requisitoLogica.registrarRequisito(nuevoRequisito);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
                             "El requisito se registro correctamente!"));
@@ -106,6 +124,39 @@ public class requisitoVista {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
                             ex.getMessage()));
             Logger.getLogger(requisitoContenidoVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void modificarRequisito() {
+        try {
+            Requisito nuevoRequisito = selectedRequisito;
+            nuevoRequisito.setDescripcion(descripcionRequisito.getValue().toString());
+            nuevoRequisito.setTipo(tipoRequisito.getValue().toString());
+            nuevoRequisito.setEstado(estadoRequisito.getValue().toString());
+            requisitoLogica.modificarRequisito(nuevoRequisito);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El requisito modificado correctamente!"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(requisitoVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void eliminarRequisito() {
+        try {
+            requisitoLogica.eliminarRequisito(selectedRequisito);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El requisito fue eliminado correctamente!"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(requisitoVista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

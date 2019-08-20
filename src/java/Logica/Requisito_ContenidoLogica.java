@@ -133,7 +133,14 @@ public class Requisito_ContenidoLogica implements Requisito_ContenidoLogicaLocal
 
     @Override
     public void eliminarRequisitoContenido(RequisitoContenido c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (c == null){
+            throw new Exception("El cambio de requisito no tiene información");
+        }
+        RequisitoContenido requisitoContenidoBorrar = RequisitoContenidoDAO.find(c.getRequisitoContenidoPK());
+        if (requisitoContenidoBorrar == null){
+            throw new Exception("El requisito no existe");
+        }
+        RequisitoContenidoDAO.remove(requisitoContenidoBorrar);
     }
 
     

@@ -43,7 +43,7 @@ public class RequisitoLogica implements RequisitoLogicaLocal {
 
     @Override
     public List<Requisito> consultaRequisito() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return requisitoDAO.findAll();
     }
 
     @Override
@@ -69,6 +69,13 @@ public class RequisitoLogica implements RequisitoLogicaLocal {
 
     @Override
     public void eliminarRequisito(Requisito c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (c == null){
+            throw new Exception("El requisito no tiene información");
+        }
+        Requisito requisitoBorrar = requisitoDAO.find(c.getRequisitoPK());
+        if (requisitoBorrar == null){
+            throw new Exception("El requisito no existe");
+        }
+        requisitoDAO.remove(requisitoBorrar);
     }
 }

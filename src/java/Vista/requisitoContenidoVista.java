@@ -11,13 +11,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
 
 
@@ -40,7 +40,7 @@ public class requisitoContenidoVista {
     private Date fechaRC;
     private InputText solicitanteRC;
     private InputText origenRC;
-    private InputText estadoRC;
+    private SelectOneMenu estadoRC;
     private InputText prioridadSolicitanteRC;
     private InputText prioridadRealizacionRC;
     private InputText verificadorRC;
@@ -51,6 +51,23 @@ public class requisitoContenidoVista {
     private InputText comentariosRC;
     
     public requisitoContenidoVista() {
+    }
+
+    public List<RequisitoContenido> getListaRequisitoContenido() {
+        listaRequisitoContenido = requisitoContenidoLogica.consultaRequisitoContenido();
+        return listaRequisitoContenido;
+    }
+
+    public void setListaRequisitoContenido(List<RequisitoContenido> listaRequisitoContenido) {
+        this.listaRequisitoContenido = listaRequisitoContenido;
+    }
+
+    public RequisitoContenido getSelectedRequisitoContenido() {
+        return selectedRequisitoContenido;
+    }
+
+    public void setSelectedRequisitoContenido(RequisitoContenido selectedRequisitoContenido) {
+        this.selectedRequisitoContenido = selectedRequisitoContenido;
     }
 
     public CommandButton getRegistrarRC() {
@@ -141,11 +158,11 @@ public class requisitoContenidoVista {
         this.origenRC = origenRC;
     }
 
-    public InputText getEstadoRC() {
+    public SelectOneMenu getEstadoRC() {
         return estadoRC;
     }
 
-    public void setEstadoRC(InputText estadoRC) {
+    public void setEstadoRC(SelectOneMenu estadoRC) {
         this.estadoRC = estadoRC;
     }
 
@@ -212,15 +229,6 @@ public class requisitoContenidoVista {
     public void setComentariosRC(InputText comentariosRC) {
         this.comentariosRC = comentariosRC;
     }
-
-    public List<RequisitoContenido> getListaRequisitoContenido() {
-        listaRequisitoContenido = requisitoContenidoLogica.consultaRequisitoContenido();
-        return listaRequisitoContenido;
-    }
-
-    public void setListaRequisitoContenido(List<RequisitoContenido> listaRequisitoContenido) {
-        this.listaRequisitoContenido = listaRequisitoContenido;
-    }
     
     public void seleccionarRequisitoContenido(SelectEvent e) {
         selectedRequisitoContenido = (RequisitoContenido) e.getObject();
@@ -262,7 +270,7 @@ public class requisitoContenidoVista {
             requisitoContenidoLogica.registrarRequisitoContenido(nuevoRequisitoContendio);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
-                            "El  cambio del requisito se registro correctamente!"));
+                            "El  cambio del requisito contenido se registro correctamente!"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
@@ -272,5 +280,50 @@ public class requisitoContenidoVista {
 
     }
     
+    public void modificarRequisitoContenido() {
+        try {
+            RequisitoContenido nuevoRequisitoContendio = new RequisitoContenido();
+            nuevoRequisitoContendio.setNombreProyecto(nombreProyectoRC.getValue().toString());
+            nuevoRequisitoContendio.setNumeroSolicitud(Integer.parseInt(numeroSolicitudRC.getValue().toString()));
+            nuevoRequisitoContendio.setTitulo(tituloRC.getValue().toString());
+            nuevoRequisitoContendio.setFecha(fechaRC);
+            nuevoRequisitoContendio.setSolicitante(solicitanteRC.getValue().toString());
+            nuevoRequisitoContendio.setOrigen(origenRC.getValue().toString());
+            nuevoRequisitoContendio.setEstado(estadoRC.getValue().toString());
+            nuevoRequisitoContendio.setPrioridadSolicitante(prioridadSolicitanteRC.getValue().toString());
+            nuevoRequisitoContendio.setPrioridadRealizacion(prioridadRealizacionRC.getValue().toString());
+            nuevoRequisitoContendio.setVerificador(verificadorRC.getValue().toString());
+            nuevoRequisitoContendio.setFechaActualizacion(fechaUltimaActualizacionRC);
+            nuevoRequisitoContendio.setRelease(releaseRC.getValue().toString());
+            nuevoRequisitoContendio.setEsfuerzo(esfuerzoRC.getValue().toString());
+            nuevoRequisitoContendio.setDescripcion(descripcionRC.getValue().toString());
+            nuevoRequisitoContendio.setComentarios(comentariosRC.getValue().toString());
+            requisitoContenidoLogica.modificarRequisitoContenido(nuevoRequisitoContendio);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El  cambio del requisito contenido se modifico correctamente!"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(requisitoContenidoVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public void eliminarRequisitoContenido() {
+        try {
+            requisitoContenidoLogica.eliminarRequisitoContenido(selectedRequisitoContenido);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El  cambio del requisito contenido se elimino correctamente!"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(requisitoContenidoVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     
 }

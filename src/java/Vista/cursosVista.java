@@ -19,15 +19,15 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
-
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped
 public class cursosVista {
-    
-     @EJB
+
+    @EJB
     private CursosLogicaLocal cursosLogica;
-    
+
     private List<Cursos> listaCursos;
     private InputText txtNombre;
     private InputText txtLugar;
@@ -36,8 +36,8 @@ public class cursosVista {
     private InputText txtId;
     private CommandButton Registrar;
     private CommandButton Modificar;
-    private Cursos selectedCurso; 
-    
+    private Cursos selectedCurso;
+
     public CursosLogicaLocal getCursosLogica() {
         return cursosLogica;
     }
@@ -118,72 +118,78 @@ public class cursosVista {
         this.selectedCurso = selectedCurso;
     }
 
-
-
     public cursosVista() {
     }
-     public void registrarCurso() {
-      try {
-        Cursos nuevoCurso = new Cursos();
-        nuevoCurso.setNombre(txtNombre.getValue().toString());
-        nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
-        nuevoCurso.setLugar(txtLugar.getValue().toString());
-        nuevoCurso.setFechaInicio(txtFechaInicio);
-        nuevoCurso.setFechaFin(txtFechaFin);
 
-        cursosLogica.registrarCursos(nuevoCurso);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Curso  se ha Registrado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
-    }
-     
-     public void modificarCurso() {
-      try {
-         Cursos nuevoCurso = new Cursos();
-        nuevoCurso.setNombre(txtNombre.getValue().toString());
-        nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
-        nuevoCurso.setLugar(txtLugar.getValue().toString());
-        nuevoCurso.setFechaInicio(txtFechaInicio);
-        nuevoCurso.setFechaFin(txtFechaFin);
-
-        cursosLogica.modificarCurso(nuevoCurso);
-          
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Curso se ha Modificado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+    public void seleccionarCursos (SelectEvent e){
+        selectedCurso = (Cursos) e.getObject();
+        txtId.setValue(selectedCurso.getId());
+        txtNombre.setValue(selectedCurso.getNombre());
+        txtLugar.setValue(selectedCurso.getLugar());
+        //falta las fechas para poder seleccionar en las tablas.
     }
     
-    
+    public void registrarCurso() {
+        try {
+            Cursos nuevoCurso = new Cursos();
+            nuevoCurso.setNombre(txtNombre.getValue().toString());
+            nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
+            nuevoCurso.setLugar(txtLugar.getValue().toString());
+            nuevoCurso.setFechaInicio(txtFechaInicio);
+            nuevoCurso.setFechaFin(txtFechaFin);
+
+            cursosLogica.registrarCursos(nuevoCurso);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Curso  se ha Registrado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void modificarCurso() {
+        try {
+            Cursos nuevoCurso = new Cursos();
+            nuevoCurso.setNombre(txtNombre.getValue().toString());
+            nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
+            nuevoCurso.setLugar(txtLugar.getValue().toString());
+            nuevoCurso.setFechaInicio(txtFechaInicio);
+            nuevoCurso.setFechaFin(txtFechaFin);
+
+            cursosLogica.modificarCurso(nuevoCurso);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Curso se ha Modificado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void eliminarCurso() {
-      try {
-       
-        cursosLogica.eliminarCurso(selectedCurso);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Curso se ha Eliminado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+        try {
+
+            cursosLogica.eliminarCurso(selectedCurso);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Curso se ha Eliminado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(cursosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

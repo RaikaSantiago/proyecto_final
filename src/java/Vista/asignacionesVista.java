@@ -18,6 +18,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.event.SelectEvent;
 
 
 @ManagedBean
@@ -109,6 +110,15 @@ public class asignacionesVista {
     public void setSelectedAsig(Asignaciones selectedAsig) {
         this.selectedAsig = selectedAsig;
     }
+    
+    public void seleccionarAsignaciones(SelectEvent e){
+        selectedAsig = (Asignaciones) e.getObject();
+        txthoras.setValue(selectedAsig.getHoras());
+        txtpresupuesto.setValue(selectedAsig.getPresupuestos());
+        txtcantidad_proyectos.setValue(selectedAsig.getCantidadProyectos());
+        txtId.setValue(selectedAsig.getAsignacionesPK());
+    }
+    
     public void registrarAsignaciones() {
       try {
         Asignaciones nuevaAsig = new Asignaciones();

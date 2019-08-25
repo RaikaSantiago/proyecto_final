@@ -18,6 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.event.SelectEvent;
 
 
 @ManagedBean
@@ -35,6 +36,9 @@ public class basedatosVista {
     private CommandButton Modificar;
     private BaseDatos selectedDB;
 
+    public basedatosVista() {
+    }
+    
     public InputText getTxtId() {
         return txtId;
     }
@@ -92,11 +96,12 @@ public class basedatosVista {
         this.selectedDB = selectedDB;
     }
     
-    
-    
-    
-    public basedatosVista() {
-    }
+    public void seleccionarBaseDeDatos(SelectEvent e){
+        selectedDB = (BaseDatos) e.getObject();
+        txtId.setValue(selectedDB.getId());
+        txtNombre.setValue(selectedDB.getNombre());
+        txtTipo.setValue(selectedDB.getTipo());
+    }   
     
     public void registrarDB() {
       try {

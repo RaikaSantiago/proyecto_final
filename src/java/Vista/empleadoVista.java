@@ -18,6 +18,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.event.SelectEvent;
 
 
 @ManagedBean
@@ -157,15 +158,27 @@ public class empleadoVista {
 
     public void setSelectedEmpleado(Empleados selectedEmpleado) {
         this.selectedEmpleado = selectedEmpleado;
-    }
-    
-    
-    
+    }   
     
     public empleadoVista() {
     }
 
-
+    public void seleccionarEmpleado(SelectEvent e){
+        selectedEmpleado = (Empleados) e.getObject();
+        txtId.setValue(selectedEmpleado.getId());
+        txtNombre.setValue(selectedEmpleado.getNombre());
+        txtApellidos.setValue(selectedEmpleado.getApellidos());
+        txtCedula.setValue(selectedEmpleado.getCedula());
+        txtEmail.setValue(selectedEmpleado.getEmail());
+        txtDireccion.setValue(selectedEmpleado.getDireccion());
+        txtEdad.setValue(selectedEmpleado.getEdad());
+        txtSexo.setValue(selectedEmpleado.getSexo());
+        txtTelefonoFijo.setValue(selectedEmpleado.getTelefonoFijo());
+        txtTelefonoMovil.setValue(selectedEmpleado.getTelefonoMovil());
+        txtAntiguedad.setValue(selectedEmpleado.getAntiguedad());
+        //FechaNacimiento.setValue(selectedEmpleado.getFechaNacimiento());
+        //FechaIngreso.setValue(selectedEmpleado.getFechaIngreso());
+    }
    
     public void registrarEmpleado() {
       try {

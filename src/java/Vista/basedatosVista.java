@@ -20,15 +20,14 @@ import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.event.SelectEvent;
 
-
 @ManagedBean
 @RequestScoped
 public class basedatosVista {
 
     @EJB
     Base_DatosLogicaLocal baseDatosLogica;
-    
-    private List<BaseDatos> listaBaseDatos; 
+
+    private List<BaseDatos> listaBaseDatos;
     private InputText txtId;
     private InputText txtNombre;
     private InputText txtTipo;
@@ -38,7 +37,7 @@ public class basedatosVista {
 
     public basedatosVista() {
     }
-    
+
     public InputText getTxtId() {
         return txtId;
     }
@@ -95,70 +94,70 @@ public class basedatosVista {
     public void setSelectedDB(BaseDatos selectedDB) {
         this.selectedDB = selectedDB;
     }
-    
-    public void seleccionarBaseDeDatos(SelectEvent e){
+
+    public void seleccionarBaseDeDatos(SelectEvent e) {
         selectedDB = (BaseDatos) e.getObject();
         txtId.setValue(selectedDB.getId());
         txtNombre.setValue(selectedDB.getNombre());
         txtTipo.setValue(selectedDB.getTipo());
-    }   
-    
+    }
+
     public void registrarDB() {
-      try {
-        BaseDatos nuevaDB = new BaseDatos();
-        nuevaDB.setId(Integer.parseInt(txtId.getValue().toString()));
-        nuevaDB.setNombre(txtNombre.getValue().toString());
-        nuevaDB.setTipo(txtTipo.getValue().toString());
-        
-        baseDatosLogica.registrarBaseDatos(nuevaDB);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Base de Datos Registrada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+        try {
+            BaseDatos nuevaDB = new BaseDatos();
+            nuevaDB.setId(Integer.parseInt(txtId.getValue().toString()));
+            nuevaDB.setNombre(txtNombre.getValue().toString());
+            nuevaDB.setTipo(txtTipo.getValue().toString());
+
+            baseDatosLogica.registrarBaseDatos(nuevaDB);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Base de Datos Registrada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
     public void modificarDB() {
-      try {
-        BaseDatos nuevaDB = new BaseDatos();
-        nuevaDB.setId(Integer.parseInt(txtId.getValue().toString()));
-        nuevaDB.setNombre(txtNombre.getValue().toString());
-        nuevaDB.setTipo(txtTipo.getValue().toString());
-        
-        baseDatosLogica.modificarBaseDatos(nuevaDB);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Base de Datos Modificada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+        try {
+            BaseDatos nuevaDB = new BaseDatos();
+            nuevaDB.setId(Integer.parseInt(txtId.getValue().toString()));
+            nuevaDB.setNombre(txtNombre.getValue().toString());
+            nuevaDB.setTipo(txtTipo.getValue().toString());
+
+            baseDatosLogica.modificarBaseDatos(nuevaDB);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Base de Datos Modificada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
     public void eliminarDB() {
-      try {
-       
-        baseDatosLogica.eliminarBaseDatos(selectedDB);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Base de Datos Eliminada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+        try {
+
+            baseDatosLogica.eliminarBaseDatos(selectedDB);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Base de Datos Eliminada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

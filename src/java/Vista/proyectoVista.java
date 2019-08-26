@@ -21,6 +21,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.event.SelectEvent;
 
 
 
@@ -166,7 +167,21 @@ public class proyectoVista {
     }
     
     public proyectoVista() {
+        
     }
+    
+    public void seleccionarProyecto(SelectEvent e){
+        selectedProyecto = (Proyectos) e.getObject();
+        txtCodigo.setValue(selectedProyecto.getCodigo());
+        txtNombre.setValue(selectedProyecto.getNombre());
+        txtArea.setValue(selectedProyecto.getArea());
+        //txtFecha.setValue(selectedProyecto.getFecha());
+        //txtFechaAsignacion.setValue(selectedProyecto.getFechaAsignacion());
+        //txtFechaFases.setValue(selectedProyecto.getFechaFases());
+        //txtFechaLiberacion.setValue(selectedProyecto.getFechaLiberacion());
+        //txtCostoTotal.(selectedProyecto.getCostoTotal());
+    }
+    
      public void registrarProyecto() {
       try {
         Proyectos nuevoproyecto = new Proyectos();

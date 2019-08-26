@@ -1,4 +1,3 @@
-
 package Vista;
 
 import Logica.Tipo_DesarrolladorLogicaLocal;
@@ -13,7 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
-
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped
@@ -21,7 +20,7 @@ public class tipodesarrolladorVista {
 
     @EJB
     Tipo_DesarrolladorLogicaLocal tipodesarrolladorLogica;
-    
+
     private List<TipoDesarrollador> listaTD;
     private InputText txtNombre_Cargo;
     private CommandButton Registrar;
@@ -75,44 +74,51 @@ public class tipodesarrolladorVista {
     public void setTxtNombre_Cargo(InputText txtNombre_Cargo) {
         this.txtNombre_Cargo = txtNombre_Cargo;
     }
-    
+
     public tipodesarrolladorVista() {
-    }
-     public void registrarTipoDesarrollador() {
-      try {
-        TipoDesarrollador nuevoTD = new TipoDesarrollador();
-        nuevoTD.setNombreCargo(txtNombre_Cargo.getValue().toString());
         
-        tipodesarrolladorLogica.registrarTipoDesarrollador(nuevoTD);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Tipo de Desarrollador  se ha Registrado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(tipodesarrolladorVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
     }
     
-         public void modificarTipoDesarrllador() {
-      try {
-        TipoDesarrollador nuevoTD = new TipoDesarrollador();
-        nuevoTD.setNombreCargo(txtNombre_Cargo.getValue().toString());
-        
-         tipodesarrolladorLogica.modificarTipoDesarrollador(nuevoTD);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Tipo Desarrollador  se ha Modificado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(tipodesarrolladorVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+    public void seleccionarTipoDesarrollador (SelectEvent e){
+        selectedTD = (TipoDesarrollador) e.getObject();
+        txtNombre_Cargo.setValue(selectedTD.getNombreCargo());
+    }
+
+    public void registrarTipoDesarrollador() {
+        try {
+            TipoDesarrollador nuevoTD = new TipoDesarrollador();
+            nuevoTD.setNombreCargo(txtNombre_Cargo.getValue().toString());
+
+            tipodesarrolladorLogica.registrarTipoDesarrollador(nuevoTD);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Tipo de Desarrollador  se ha Registrado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(tipodesarrolladorVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void modificarTipoDesarrllador() {
+        try {
+            TipoDesarrollador nuevoTD = new TipoDesarrollador();
+            nuevoTD.setNombreCargo(txtNombre_Cargo.getValue().toString());
+
+            tipodesarrolladorLogica.modificarTipoDesarrollador(nuevoTD);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Tipo Desarrollador  se ha Modificado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(tipodesarrolladorVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

@@ -18,7 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
-
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped
@@ -26,7 +26,7 @@ public class faseVista {
 
     @EJB
     FasesLogicaLocal faseLogica;
-    
+
     private List<Fases> listaFases;
     private InputText txtId;
     private InputText txtNombre;
@@ -82,47 +82,52 @@ public class faseVista {
     public void setListaFases(List<Fases> listaFases) {
         this.listaFases = listaFases;
     }
-    
-     
-    
+
     public faseVista() {
+
     }
-    
+
+    public void seleccionarFases(SelectEvent e) {
+        selectedFase = (Fases) e.getObject();
+        txtId.setValue(selectedFase.getId());
+        txtNombre.setValue(selectedFase.getNombre());
+    }
+
     public void registrarFase() {
-      try {
-        Fases nuevaFase = new Fases();
-        nuevaFase.setId(Integer.parseInt(txtId.getValue().toString()));
-        nuevaFase.setNombre(txtNombre.getValue().toString());
-        faseLogica.registrarFases(nuevaFase);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Fase Registrada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(faseVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+        try {
+            Fases nuevaFase = new Fases();
+            nuevaFase.setId(Integer.parseInt(txtId.getValue().toString()));
+            nuevaFase.setNombre(txtNombre.getValue().toString());
+            faseLogica.registrarFases(nuevaFase);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Fase Registrada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(faseVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
-     public void modificarFase() {
-      try {
-        Fases nuevaFase = new Fases();
-        nuevaFase.setId(Integer.parseInt(txtId.getValue().toString()));
-        nuevaFase.setNombre(txtNombre.getValue().toString());
-        faseLogica.modificarFases(nuevaFase);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Fase Modificada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(faseVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+
+    public void modificarFase() {
+        try {
+            Fases nuevaFase = new Fases();
+            nuevaFase.setId(Integer.parseInt(txtId.getValue().toString()));
+            nuevaFase.setNombre(txtNombre.getValue().toString());
+            faseLogica.modificarFases(nuevaFase);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Fase Modificada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(faseVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

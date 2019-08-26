@@ -1,4 +1,3 @@
-
 package Vista;
 
 import Logica.Sistema_OperativoLogicaLocal;
@@ -14,15 +13,15 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
-
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped
 public class sistemaOperativoVista {
-    
+
     @EJB
     Sistema_OperativoLogicaLocal sistemaOperativoLogica;
-    
+
     private List<SistemaOperativo> listaSO;
 
     public List<SistemaOperativo> getListaSO() {
@@ -32,7 +31,7 @@ public class sistemaOperativoVista {
     public void setListaSO(List<SistemaOperativo> listaSO) {
         this.listaSO = listaSO;
     }
-    
+
     public Sistema_OperativoLogicaLocal getSistemaOperativoLogica() {
         return sistemaOperativoLogica;
     }
@@ -48,7 +47,7 @@ public class sistemaOperativoVista {
     public void setTxtNombre(InputText txtNombre) {
         this.txtNombre = txtNombre;
     }
-    
+
     private InputText txtNombre;
     private CommandButton Registrar;
     private CommandButton Modificar;
@@ -77,46 +76,51 @@ public class sistemaOperativoVista {
     public void setSelectedSO(SistemaOperativo selectedSO) {
         this.selectedSO = selectedSO;
     }
-   
-    
+
     public sistemaOperativoVista() {
+
     }
-    
-     public void registrarSistemaOperativo() {
-      try {
-        SistemaOperativo nuevoso = new SistemaOperativo();
-        nuevoso.setNombre(txtNombre.getValue().toString());
-        
-        sistemaOperativoLogica.registrarSistemaOperativo(nuevoso);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Sistema Operativo  se ha Registrado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(sistemaOperativoVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+
+    public void seleccionarSistemasOperativos(SelectEvent e) {
+        selectedSO = (SistemaOperativo) e.getObject();
+        txtNombre.setValue(selectedSO.getNombre());
     }
-    
-         public void modificarSistemaOperativo() {
-      try {
-        SistemaOperativo nuevoso = new SistemaOperativo();
-        nuevoso.setNombre(txtNombre.getValue().toString());
-        
-         sistemaOperativoLogica.modificarSistemaOperativo(nuevoso);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "El Sistema Operativo  se ha Modificado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(sistemaOperativoVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+
+    public void registrarSistemaOperativo() {
+        try {
+            SistemaOperativo nuevoso = new SistemaOperativo();
+            nuevoso.setNombre(txtNombre.getValue().toString());
+
+            sistemaOperativoLogica.registrarSistemaOperativo(nuevoso);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Sistema Operativo  se ha Registrado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(sistemaOperativoVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void modificarSistemaOperativo() {
+        try {
+            SistemaOperativo nuevoso = new SistemaOperativo();
+            nuevoso.setNombre(txtNombre.getValue().toString());
+
+            sistemaOperativoLogica.modificarSistemaOperativo(nuevoso);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El Sistema Operativo  se ha Modificado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(sistemaOperativoVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

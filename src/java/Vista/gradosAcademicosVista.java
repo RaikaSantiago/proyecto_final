@@ -1,4 +1,3 @@
-
 package Vista;
 
 import Logica.Grado_AcademicoLogicaLocal;
@@ -14,8 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
-
-
+import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped
@@ -23,13 +21,13 @@ public class gradosAcademicosVista {
 
     @EJB
     Grado_AcademicoLogicaLocal GradosAcademicosLogica;
-    
+
     private List<GradosAcademicos> listaGradosA;
     private InputText txtTipo;
     private CommandButton Registrar;
     private CommandButton Modificar;
     private GradosAcademicos selectedGradosA;
-    
+
     public Grado_AcademicoLogicaLocal getFaseLogica() {
         return GradosAcademicosLogica;
     }
@@ -77,45 +75,50 @@ public class gradosAcademicosVista {
     public void setSelectedGradosA(GradosAcademicos selectedGradosA) {
         this.selectedGradosA = selectedGradosA;
     }
-   
 
     public gradosAcademicosVista() {
+
     }
-    
-     public void registrarGA() {
-      try {
-        GradosAcademicos nuevaGA = new GradosAcademicos();
-        nuevaGA.setTipo(txtTipo.getValue().toString());
-        GradosAcademicosLogica.registrarGradosAcademicos(nuevaGA);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Fase Registrada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(gradosAcademicosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+
+    public void seleccionarGradosAcademicos(SelectEvent e) {
+        selectedGradosA = (GradosAcademicos) e.getObject();
+        txtTipo.setValue(selectedGradosA.getTipo());
     }
-     
+
+    public void registrarGA() {
+        try {
+            GradosAcademicos nuevaGA = new GradosAcademicos();
+            nuevaGA.setTipo(txtTipo.getValue().toString());
+            GradosAcademicosLogica.registrarGradosAcademicos(nuevaGA);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Fase Registrada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(gradosAcademicosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void modificarFase() {
-      try {
-       GradosAcademicos nuevaGA = new GradosAcademicos();
-        nuevaGA.setTipo(txtTipo.getValue().toString());
-      
-        GradosAcademicosLogica.modificarGradosAcademicos(nuevaGA);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "Fase Modificada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(gradosAcademicosVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
-    } 
+        try {
+            GradosAcademicos nuevaGA = new GradosAcademicos();
+            nuevaGA.setTipo(txtTipo.getValue().toString());
+
+            GradosAcademicosLogica.modificarGradosAcademicos(nuevaGA);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "Fase Modificada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(gradosAcademicosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

@@ -20,14 +20,13 @@ import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
 
-
 @ManagedBean
 @RequestScoped
 public class loginVista {
 
     @EJB
     private EmpleadoLogicaLocal empleadoLogica;
-    
+
     private InputText txtNombreEmpleado;
     private Password txtCedulaEmpleado;
     private CommandButton btnIngresar;
@@ -55,11 +54,9 @@ public class loginVista {
     public void setTxtCedulaEmpleado(Password txtCedulaEmpleado) {
         this.txtCedulaEmpleado = txtCedulaEmpleado;
     }
-    
+
     public loginVista() {
     }
-
-    
 
     public CommandButton getBtnIngresar() {
         return btnIngresar;
@@ -68,18 +65,18 @@ public class loginVista {
     public void setBtnIngresar(CommandButton btnIngresar) {
         this.btnIngresar = btnIngresar;
     }
-    
+
     public void ingresar() {
         try {
-         Empleados nuevoEmpleado = new Empleados();
+            Empleados nuevoEmpleado = new Empleados();
             nuevoEmpleado.setNombre(txtNombreEmpleado.getValue().toString());
             nuevoEmpleado.setCedula(txtCedulaEmpleado.getValue().toString());
             Empleados empleadoLogueado = empleadoLogica.ingresar(nuevoEmpleado);
-            
+
             //Guarda al usuario que se carga en la sesion.
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("Empleado", empleadoLogueado);
-            
+
 //            //Redirecciono a la pagina deseada
 //            if (empleadoLogueado.getTipoempleado().equals("PLANTA")){
 //                FacesContext.getCurrentInstance().getExternalContext()
@@ -88,19 +85,16 @@ public class loginVista {
 //                FacesContext.getCurrentInstance().getExternalContext()
 //                    .redirect("admin/Contratista.xhtml");
 //            }
-            
-            
-         
         } catch (Exception ex) {
-            FacesContext.getCurrentInstance().addMessage(null, 
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje", 
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
                             ex.getMessage()));
             Logger.getLogger(loginVista.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    public void cerrarSesion(){
+
+    public void cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().remove("Empleado");

@@ -20,7 +20,6 @@ import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.event.SelectEvent;
 
-
 @ManagedBean
 @RequestScoped
 public class asignacionesVista {
@@ -36,6 +35,7 @@ public class asignacionesVista {
     private CommandButton Registrar;
     private CommandButton Modificar;
     private Asignaciones selectedAsig;
+
     public asignacionesVista() {
     }
 
@@ -110,71 +110,71 @@ public class asignacionesVista {
     public void setSelectedAsig(Asignaciones selectedAsig) {
         this.selectedAsig = selectedAsig;
     }
-    
-    public void seleccionarAsignaciones(SelectEvent e){
+
+    public void seleccionarAsignaciones(SelectEvent e) {
         selectedAsig = (Asignaciones) e.getObject();
         txthoras.setValue(selectedAsig.getHoras());
         txtpresupuesto.setValue(selectedAsig.getPresupuestos());
         txtcantidad_proyectos.setValue(selectedAsig.getCantidadProyectos());
         txtId.setValue(selectedAsig.getAsignacionesPK());
     }
-    
-    public void registrarAsignaciones() {
-      try {
-        Asignaciones nuevaAsig = new Asignaciones();
-        nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
-        nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
-        nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
 
-        asignacionesLogica.registrarAsignaciones(nuevaAsig);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "La Asignacion  se ha Registrado Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(asignacionesVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+    public void registrarAsignaciones() {
+        try {
+            Asignaciones nuevaAsig = new Asignaciones();
+            nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
+            nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
+            nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
+
+            asignacionesLogica.registrarAsignaciones(nuevaAsig);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "La Asignacion  se ha Registrado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(asignacionesVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
-     public void modificarAsignaciones() {
-      try {
-        Asignaciones nuevaAsig = new Asignaciones();
-        nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
-        nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
-        nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
-        
-        asignacionesLogica.modificarAsignaciones(nuevaAsig);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "La asignaciones ha sido Modificada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(asignacionesVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+
+    public void modificarAsignaciones() {
+        try {
+            Asignaciones nuevaAsig = new Asignaciones();
+            nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
+            nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
+            nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
+
+            asignacionesLogica.modificarAsignaciones(nuevaAsig);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "La asignaciones ha sido Modificada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(asignacionesVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-     
-       public void eliminarAsignaciones() {
-      try {
-       
-        asignacionesLogica.eliminarAsignaciones(selectedAsig);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje",
-                 "La Asignacion ha sido Eliminada Satisfactoriamente"));
-    } catch (Exception ex){
-      FacesContext.getCurrentInstance().addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensaje",
-                 ex.getMessage()));
-      Logger.getLogger(asignacionesVista.class.getName()).log(Level.SEVERE,null,ex);
-    }        
-       
+
+    public void eliminarAsignaciones() {
+        try {
+
+            asignacionesLogica.eliminarAsignaciones(selectedAsig);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "La Asignacion ha sido Eliminada Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(asignacionesVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

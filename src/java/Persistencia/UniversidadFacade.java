@@ -8,7 +8,9 @@ package Persistencia;
 import Modelo.Universidad;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 
 @Stateless
@@ -24,5 +26,18 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
     public UniversidadFacade() {
         super(Universidad.class);
     }
+
+    @Override
+    public Universidad findNombre(String nombre) {
+        String Consulta = "select u from Universidad u where u.nombre ="+nombre;
+         try {
+            Query query = em.createQuery(Consulta);
+            return (Universidad) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+    
+    
     
 }

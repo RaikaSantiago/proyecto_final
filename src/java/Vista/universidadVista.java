@@ -12,22 +12,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.event.SelectEvent;
 
-
-@Named(value = "universidadVista")
+@ManagedBean
 @RequestScoped
 public class universidadVista {
 
-    
     @EJB
     UniversidadLogicaLocal universidadLogica;
-    
+
     private List<Universidad> listaUniversidad;
     private InputText txtID;
     private InputText txtNombre;
@@ -110,12 +109,18 @@ public class universidadVista {
     public void setEliminar(CommandButton Eliminar) {
         this.Eliminar = Eliminar;
     }
-    
-    
-    
+
     public universidadVista() {
     }
-    
+
+    public void seleccionarUniversidad(SelectEvent e) {
+        selectedUni = (Universidad) e.getObject();
+        txtID.setValue(selectedUni.getId());
+        txtNombre.setValue(selectedUni.getNombre());
+        txtTitulo.setValue(selectedUni.getTitulo());
+        //FechaGrado.toString(Integer.parseInt(selectedUni.getFechaGrado()));
+    }
+
     public void registrarUniversidad() {
         try {
             Universidad nuevaUni = new Universidad();
@@ -136,9 +141,9 @@ public class universidadVista {
         }
     }
 
-        public void modificarUniversidad(){
-        
-            try {
+    public void modificarUniversidad() {
+
+        try {
             Universidad nuevaUni = new Universidad();
             nuevaUni.setId(Integer.parseInt(txtID.getValue().toString()));
             nuevaUni.setNombre(txtNombre.getValue().toString());
@@ -155,7 +160,6 @@ public class universidadVista {
                             ex.getMessage()));
             Logger.getLogger(universidadVista.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-        }
+
+    }
 }
- 

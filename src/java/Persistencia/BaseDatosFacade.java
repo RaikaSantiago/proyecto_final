@@ -6,16 +6,19 @@
 package Persistencia;
 
 import Modelo.BaseDatos;
-import Modelo.Empleados;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Stateless
 public class BaseDatosFacade extends AbstractFacade<BaseDatos> implements BaseDatosFacadeLocal {
+
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 

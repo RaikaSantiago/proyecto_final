@@ -11,11 +11,14 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Embeddable
 public class RequisitoContenidoPK implements Serializable {
+
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private int id;
     @Basic(optional = false)

@@ -10,9 +10,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Stateless
 public class RequisitoContenidoFacade extends AbstractFacade<RequisitoContenido> implements RequisitoContenidoFacadeLocal {
+
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 

@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,27 +22,30 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "cursos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cursos.findAll", query = "SELECT c FROM Cursos c"),
-    @NamedQuery(name = "Cursos.findById", query = "SELECT c FROM Cursos c WHERE c.id = :id"),
-    @NamedQuery(name = "Cursos.findByNombre", query = "SELECT c FROM Cursos c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Cursos.findByLugar", query = "SELECT c FROM Cursos c WHERE c.lugar = :lugar"),
-    @NamedQuery(name = "Cursos.findByFechaInicio", query = "SELECT c FROM Cursos c WHERE c.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Cursos.findByFechaFin", query = "SELECT c FROM Cursos c WHERE c.fechaFin = :fechaFin")})
+    @NamedQuery(name = "Cursos.findAll", query = "SELECT c FROM Cursos c")
+    , @NamedQuery(name = "Cursos.findById", query = "SELECT c FROM Cursos c WHERE c.id = :id")
+    , @NamedQuery(name = "Cursos.findByNombre", query = "SELECT c FROM Cursos c WHERE c.nombre = :nombre")
+    , @NamedQuery(name = "Cursos.findByLugar", query = "SELECT c FROM Cursos c WHERE c.lugar = :lugar")
+    , @NamedQuery(name = "Cursos.findByFechaInicio", query = "SELECT c FROM Cursos c WHERE c.fechaInicio = :fechaInicio")
+    , @NamedQuery(name = "Cursos.findByFechaFin", query = "SELECT c FROM Cursos c WHERE c.fechaFin = :fechaFin")})
 public class Cursos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)

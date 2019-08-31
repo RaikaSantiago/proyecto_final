@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,28 +19,28 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Desarrollo
+ * @author usuario
  */
 @Entity
 @Table(name = "base_datos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BaseDatos.findAll", query = "SELECT b FROM BaseDatos b"),
-    @NamedQuery(name = "BaseDatos.findById", query = "SELECT b FROM BaseDatos b WHERE b.id = :id"),
-    @NamedQuery(name = "BaseDatos.findByNombre", query = "SELECT b FROM BaseDatos b WHERE b.nombre = :nombre"),
-    @NamedQuery(name = "BaseDatos.findByTipo", query = "SELECT b FROM BaseDatos b WHERE b.tipo = :tipo")})
+    @NamedQuery(name = "BaseDatos.findAll", query = "SELECT b FROM BaseDatos b")
+    , @NamedQuery(name = "BaseDatos.findById", query = "SELECT b FROM BaseDatos b WHERE b.id = :id")
+    , @NamedQuery(name = "BaseDatos.findByNombre", query = "SELECT b FROM BaseDatos b WHERE b.nombre = :nombre")
+    , @NamedQuery(name = "BaseDatos.findByTipo", query = "SELECT b FROM BaseDatos b WHERE b.tipo = :tipo")})
 public class BaseDatos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)

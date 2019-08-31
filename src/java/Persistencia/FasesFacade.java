@@ -12,9 +12,13 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Stateless
 public class FasesFacade extends AbstractFacade<Fases> implements FasesFacadeLocal {
+
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 
@@ -37,7 +41,5 @@ public class FasesFacade extends AbstractFacade<Fases> implements FasesFacadeLoc
             return null;
         }
     }
-    
-    
     
 }

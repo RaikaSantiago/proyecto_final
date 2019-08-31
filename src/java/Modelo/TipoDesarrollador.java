@@ -6,54 +6,59 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "tipo_desarrollador")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoDesarrollador.findAll", query = "SELECT t FROM TipoDesarrollador t"),
-    @NamedQuery(name = "TipoDesarrollador.findById", query = "SELECT t FROM TipoDesarrollador t WHERE t.tipoDesarrolladorPK.id = :id"),
-    @NamedQuery(name = "TipoDesarrollador.findByNombreCargo", query = "SELECT t FROM TipoDesarrollador t WHERE t.nombreCargo = :nombreCargo"),
-    @NamedQuery(name = "TipoDesarrollador.findByEmpleadosId", query = "SELECT t FROM TipoDesarrollador t WHERE t.tipoDesarrolladorPK.empleadosId = :empleadosId")})
+    @NamedQuery(name = "TipoDesarrollador.findAll", query = "SELECT t FROM TipoDesarrollador t")
+    , @NamedQuery(name = "TipoDesarrollador.findById", query = "SELECT t FROM TipoDesarrollador t WHERE t.id = :id")
+    , @NamedQuery(name = "TipoDesarrollador.findByNombreCargo", query = "SELECT t FROM TipoDesarrollador t WHERE t.nombreCargo = :nombreCargo")})
 public class TipoDesarrollador implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected TipoDesarrolladorPK tipoDesarrolladorPK;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
+    private Integer id;
     @Size(max = 45)
     @Column(name = "nombre_cargo")
     private String nombreCargo;
-    @JoinColumn(name = "empleados_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Empleados empleados;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDesarrolladorId")
+    private List<Empleados> empleadosList;
 
     public TipoDesarrollador() {
     }
 
-    public TipoDesarrollador(TipoDesarrolladorPK tipoDesarrolladorPK) {
-        this.tipoDesarrolladorPK = tipoDesarrolladorPK;
+    public TipoDesarrollador(Integer id) {
+        this.id = id;
     }
 
-    public TipoDesarrollador(int id, int empleadosId) {
-        this.tipoDesarrolladorPK = new TipoDesarrolladorPK(id, empleadosId);
+    public Integer getId() {
+        return id;
     }
 
-    public TipoDesarrolladorPK getTipoDesarrolladorPK() {
-        return tipoDesarrolladorPK;
-    }
-
-    public void setTipoDesarrolladorPK(TipoDesarrolladorPK tipoDesarrolladorPK) {
-        this.tipoDesarrolladorPK = tipoDesarrolladorPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombreCargo() {
@@ -64,18 +69,19 @@ public class TipoDesarrollador implements Serializable {
         this.nombreCargo = nombreCargo;
     }
 
-    public Empleados getEmpleados() {
-        return empleados;
+    @XmlTransient
+    public List<Empleados> getEmpleadosList() {
+        return empleadosList;
     }
 
-    public void setEmpleados(Empleados empleados) {
-        this.empleados = empleados;
+    public void setEmpleadosList(List<Empleados> empleadosList) {
+        this.empleadosList = empleadosList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (tipoDesarrolladorPK != null ? tipoDesarrolladorPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -86,7 +92,7 @@ public class TipoDesarrollador implements Serializable {
             return false;
         }
         TipoDesarrollador other = (TipoDesarrollador) object;
-        if ((this.tipoDesarrolladorPK == null && other.tipoDesarrolladorPK != null) || (this.tipoDesarrolladorPK != null && !this.tipoDesarrolladorPK.equals(other.tipoDesarrolladorPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -94,7 +100,7 @@ public class TipoDesarrollador implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.TipoDesarrollador[ tipoDesarrolladorPK=" + tipoDesarrolladorPK + " ]";
+        return "Modelo.TipoDesarrollador[ id=" + id + " ]";
     }
     
 }

@@ -12,9 +12,13 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Stateless
 public class UniversidadFacade extends AbstractFacade<Universidad> implements UniversidadFacadeLocal {
+
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 
@@ -26,7 +30,7 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
     public UniversidadFacade() {
         super(Universidad.class);
     }
-
+    
     @Override
     public Universidad findNombre(String nombre) {
         String Consulta = "select u from Universidad u where u.nombre ="+nombre;
@@ -37,7 +41,4 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
             return null;
         }
     }
-    
-    
-    
 }

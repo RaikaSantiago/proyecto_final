@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,31 +24,34 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "proyectos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Proyectos.findAll", query = "SELECT p FROM Proyectos p"),
-    @NamedQuery(name = "Proyectos.findById", query = "SELECT p FROM Proyectos p WHERE p.id = :id"),
-    @NamedQuery(name = "Proyectos.findByCodigo", query = "SELECT p FROM Proyectos p WHERE p.codigo = :codigo"),
-    @NamedQuery(name = "Proyectos.findByNombre", query = "SELECT p FROM Proyectos p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Proyectos.findByArea", query = "SELECT p FROM Proyectos p WHERE p.area = :area"),
-    @NamedQuery(name = "Proyectos.findByFecha", query = "SELECT p FROM Proyectos p WHERE p.fecha = :fecha"),
-    @NamedQuery(name = "Proyectos.findByFechaAsignacion", query = "SELECT p FROM Proyectos p WHERE p.fechaAsignacion = :fechaAsignacion"),
-    @NamedQuery(name = "Proyectos.findByFechaLiberacion", query = "SELECT p FROM Proyectos p WHERE p.fechaLiberacion = :fechaLiberacion"),
-    @NamedQuery(name = "Proyectos.findByFechaFases", query = "SELECT p FROM Proyectos p WHERE p.fechaFases = :fechaFases"),
-    @NamedQuery(name = "Proyectos.findByCostoTotal", query = "SELECT p FROM Proyectos p WHERE p.costoTotal = :costoTotal")})
+    @NamedQuery(name = "Proyectos.findAll", query = "SELECT p FROM Proyectos p")
+    , @NamedQuery(name = "Proyectos.findById", query = "SELECT p FROM Proyectos p WHERE p.id = :id")
+    , @NamedQuery(name = "Proyectos.findByCodigo", query = "SELECT p FROM Proyectos p WHERE p.codigo = :codigo")
+    , @NamedQuery(name = "Proyectos.findByNombre", query = "SELECT p FROM Proyectos p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Proyectos.findByArea", query = "SELECT p FROM Proyectos p WHERE p.area = :area")
+    , @NamedQuery(name = "Proyectos.findByFecha", query = "SELECT p FROM Proyectos p WHERE p.fecha = :fecha")
+    , @NamedQuery(name = "Proyectos.findByFechaAsignacion", query = "SELECT p FROM Proyectos p WHERE p.fechaAsignacion = :fechaAsignacion")
+    , @NamedQuery(name = "Proyectos.findByFechaLiberacion", query = "SELECT p FROM Proyectos p WHERE p.fechaLiberacion = :fechaLiberacion")
+    , @NamedQuery(name = "Proyectos.findByFechaFases", query = "SELECT p FROM Proyectos p WHERE p.fechaFases = :fechaFases")
+    , @NamedQuery(name = "Proyectos.findByCostoTotal", query = "SELECT p FROM Proyectos p WHERE p.costoTotal = :costoTotal")})
 public class Proyectos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
@@ -75,6 +80,8 @@ public class Proyectos implements Serializable {
     private Float costoTotal;
     @ManyToMany(mappedBy = "proyectosList")
     private List<BaseDatos> baseDatosList;
+    @ManyToMany(mappedBy = "proyectosList")
+    private List<Empleados> empleadosList;
     @JoinTable(name = "so_proyecto", joinColumns = {
         @JoinColumn(name = "proyectos_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "sistema_operativo_id", referencedColumnName = "id")})
@@ -82,8 +89,6 @@ public class Proyectos implements Serializable {
     private List<SistemaOperativo> sistemaOperativoList;
     @ManyToMany(mappedBy = "proyectosList")
     private List<LenguajesProgramacion> lenguajesProgramacionList;
-    @ManyToMany(mappedBy = "proyectosList")
-    private List<Empleados> empleadosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyectos")
     private List<Requisito> requisitoList;
 
@@ -176,6 +181,15 @@ public class Proyectos implements Serializable {
     }
 
     @XmlTransient
+    public List<Empleados> getEmpleadosList() {
+        return empleadosList;
+    }
+
+    public void setEmpleadosList(List<Empleados> empleadosList) {
+        this.empleadosList = empleadosList;
+    }
+
+    @XmlTransient
     public List<SistemaOperativo> getSistemaOperativoList() {
         return sistemaOperativoList;
     }
@@ -191,15 +205,6 @@ public class Proyectos implements Serializable {
 
     public void setLenguajesProgramacionList(List<LenguajesProgramacion> lenguajesProgramacionList) {
         this.lenguajesProgramacionList = lenguajesProgramacionList;
-    }
-
-    @XmlTransient
-    public List<Empleados> getEmpleadosList() {
-        return empleadosList;
-    }
-
-    public void setEmpleadosList(List<Empleados> empleadosList) {
-        this.empleadosList = empleadosList;
     }
 
     @XmlTransient

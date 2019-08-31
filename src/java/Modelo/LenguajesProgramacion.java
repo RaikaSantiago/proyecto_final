@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,36 +19,39 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "lenguajes_programacion")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LenguajesProgramacion.findAll", query = "SELECT l FROM LenguajesProgramacion l"),
-    @NamedQuery(name = "LenguajesProgramacion.findById", query = "SELECT l FROM LenguajesProgramacion l WHERE l.id = :id"),
-    @NamedQuery(name = "LenguajesProgramacion.findByNombre", query = "SELECT l FROM LenguajesProgramacion l WHERE l.nombre = :nombre")})
+    @NamedQuery(name = "LenguajesProgramacion.findAll", query = "SELECT l FROM LenguajesProgramacion l")
+    , @NamedQuery(name = "LenguajesProgramacion.findById", query = "SELECT l FROM LenguajesProgramacion l WHERE l.id = :id")
+    , @NamedQuery(name = "LenguajesProgramacion.findByNombre", query = "SELECT l FROM LenguajesProgramacion l WHERE l.nombre = :nombre")})
 public class LenguajesProgramacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
+    @ManyToMany(mappedBy = "lenguajesProgramacionList")
+    private List<Empleados> empleadosList;
     @JoinTable(name = "programa_proyecto", joinColumns = {
         @JoinColumn(name = "lenguajes_programacion_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "proyectos_id", referencedColumnName = "id")})
     @ManyToMany
     private List<Proyectos> proyectosList;
-    @ManyToMany(mappedBy = "lenguajesProgramacionList")
-    private List<Empleados> empleadosList;
 
     public LenguajesProgramacion() {
     }
@@ -72,21 +77,21 @@ public class LenguajesProgramacion implements Serializable {
     }
 
     @XmlTransient
-    public List<Proyectos> getProyectosList() {
-        return proyectosList;
-    }
-
-    public void setProyectosList(List<Proyectos> proyectosList) {
-        this.proyectosList = proyectosList;
-    }
-
-    @XmlTransient
     public List<Empleados> getEmpleadosList() {
         return empleadosList;
     }
 
     public void setEmpleadosList(List<Empleados> empleadosList) {
         this.empleadosList = empleadosList;
+    }
+
+    @XmlTransient
+    public List<Proyectos> getProyectosList() {
+        return proyectosList;
+    }
+
+    public void setProyectosList(List<Proyectos> proyectosList) {
+        this.proyectosList = proyectosList;
     }
 
     @Override

@@ -21,31 +21,35 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "requisito_contenido")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "RequisitoContenido.findAll", query = "SELECT r FROM RequisitoContenido r"),
-    @NamedQuery(name = "RequisitoContenido.findById", query = "SELECT r FROM RequisitoContenido r WHERE r.requisitoContenidoPK.id = :id"),
-    @NamedQuery(name = "RequisitoContenido.findByNombreProyecto", query = "SELECT r FROM RequisitoContenido r WHERE r.nombreProyecto = :nombreProyecto"),
-    @NamedQuery(name = "RequisitoContenido.findByNumeroSolicitud", query = "SELECT r FROM RequisitoContenido r WHERE r.numeroSolicitud = :numeroSolicitud"),
-    @NamedQuery(name = "RequisitoContenido.findByTitulo", query = "SELECT r FROM RequisitoContenido r WHERE r.titulo = :titulo"),
-    @NamedQuery(name = "RequisitoContenido.findByFecha", query = "SELECT r FROM RequisitoContenido r WHERE r.fecha = :fecha"),
-    @NamedQuery(name = "RequisitoContenido.findBySolicitante", query = "SELECT r FROM RequisitoContenido r WHERE r.solicitante = :solicitante"),
-    @NamedQuery(name = "RequisitoContenido.findByOrigen", query = "SELECT r FROM RequisitoContenido r WHERE r.origen = :origen"),
-    @NamedQuery(name = "RequisitoContenido.findByEstado", query = "SELECT r FROM RequisitoContenido r WHERE r.estado = :estado"),
-    @NamedQuery(name = "RequisitoContenido.findByPrioridadSolicitante", query = "SELECT r FROM RequisitoContenido r WHERE r.prioridadSolicitante = :prioridadSolicitante"),
-    @NamedQuery(name = "RequisitoContenido.findByPrioridadRealizacion", query = "SELECT r FROM RequisitoContenido r WHERE r.prioridadRealizacion = :prioridadRealizacion"),
-    @NamedQuery(name = "RequisitoContenido.findByVerificador", query = "SELECT r FROM RequisitoContenido r WHERE r.verificador = :verificador"),
-    @NamedQuery(name = "RequisitoContenido.findByFechaActualizacion", query = "SELECT r FROM RequisitoContenido r WHERE r.fechaActualizacion = :fechaActualizacion"),
-    @NamedQuery(name = "RequisitoContenido.findByRelease", query = "SELECT r FROM RequisitoContenido r WHERE r.release = :release"),
-    @NamedQuery(name = "RequisitoContenido.findByEsfuerzo", query = "SELECT r FROM RequisitoContenido r WHERE r.esfuerzo = :esfuerzo"),
-    @NamedQuery(name = "RequisitoContenido.findByDescripcion", query = "SELECT r FROM RequisitoContenido r WHERE r.descripcion = :descripcion"),
-    @NamedQuery(name = "RequisitoContenido.findByComentarios", query = "SELECT r FROM RequisitoContenido r WHERE r.comentarios = :comentarios"),
-    @NamedQuery(name = "RequisitoContenido.findByRequisitoId", query = "SELECT r FROM RequisitoContenido r WHERE r.requisitoContenidoPK.requisitoId = :requisitoId"),
-    @NamedQuery(name = "RequisitoContenido.findByRequisitoFasesId", query = "SELECT r FROM RequisitoContenido r WHERE r.requisitoContenidoPK.requisitoFasesId = :requisitoFasesId")})
+    @NamedQuery(name = "RequisitoContenido.findAll", query = "SELECT r FROM RequisitoContenido r")
+    , @NamedQuery(name = "RequisitoContenido.findById", query = "SELECT r FROM RequisitoContenido r WHERE r.requisitoContenidoPK.id = :id")
+    , @NamedQuery(name = "RequisitoContenido.findByNombreProyecto", query = "SELECT r FROM RequisitoContenido r WHERE r.nombreProyecto = :nombreProyecto")
+    , @NamedQuery(name = "RequisitoContenido.findByNumeroSolicitud", query = "SELECT r FROM RequisitoContenido r WHERE r.numeroSolicitud = :numeroSolicitud")
+    , @NamedQuery(name = "RequisitoContenido.findByTitulo", query = "SELECT r FROM RequisitoContenido r WHERE r.titulo = :titulo")
+    , @NamedQuery(name = "RequisitoContenido.findByFecha", query = "SELECT r FROM RequisitoContenido r WHERE r.fecha = :fecha")
+    , @NamedQuery(name = "RequisitoContenido.findBySolicitante", query = "SELECT r FROM RequisitoContenido r WHERE r.solicitante = :solicitante")
+    , @NamedQuery(name = "RequisitoContenido.findByOrigen", query = "SELECT r FROM RequisitoContenido r WHERE r.origen = :origen")
+    , @NamedQuery(name = "RequisitoContenido.findByEstado", query = "SELECT r FROM RequisitoContenido r WHERE r.estado = :estado")
+    , @NamedQuery(name = "RequisitoContenido.findByPrioridadSolicitante", query = "SELECT r FROM RequisitoContenido r WHERE r.prioridadSolicitante = :prioridadSolicitante")
+    , @NamedQuery(name = "RequisitoContenido.findByPrioridadRealizacion", query = "SELECT r FROM RequisitoContenido r WHERE r.prioridadRealizacion = :prioridadRealizacion")
+    , @NamedQuery(name = "RequisitoContenido.findByVerificador", query = "SELECT r FROM RequisitoContenido r WHERE r.verificador = :verificador")
+    , @NamedQuery(name = "RequisitoContenido.findByFechaActualizacion", query = "SELECT r FROM RequisitoContenido r WHERE r.fechaActualizacion = :fechaActualizacion")
+    , @NamedQuery(name = "RequisitoContenido.findByRelease", query = "SELECT r FROM RequisitoContenido r WHERE r.release = :release")
+    , @NamedQuery(name = "RequisitoContenido.findByEsfuerzo", query = "SELECT r FROM RequisitoContenido r WHERE r.esfuerzo = :esfuerzo")
+    , @NamedQuery(name = "RequisitoContenido.findByDescripcion", query = "SELECT r FROM RequisitoContenido r WHERE r.descripcion = :descripcion")
+    , @NamedQuery(name = "RequisitoContenido.findByComentarios", query = "SELECT r FROM RequisitoContenido r WHERE r.comentarios = :comentarios")
+    , @NamedQuery(name = "RequisitoContenido.findByRequisitoId", query = "SELECT r FROM RequisitoContenido r WHERE r.requisitoContenidoPK.requisitoId = :requisitoId")
+    , @NamedQuery(name = "RequisitoContenido.findByRequisitoFasesId", query = "SELECT r FROM RequisitoContenido r WHERE r.requisitoContenidoPK.requisitoFasesId = :requisitoFasesId")})
 public class RequisitoContenido implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected RequisitoContenidoPK requisitoContenidoPK;
@@ -94,9 +98,8 @@ public class RequisitoContenido implements Serializable {
     @Column(name = "comentarios")
     private String comentarios;
     @JoinColumns({
-        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false),
-        @JoinColumn(name = "requisito_id", referencedColumnName = "id", insertable = false, updatable = false),
-        @JoinColumn(name = "requisito_fases_id", referencedColumnName = "fases_id", insertable = false, updatable = false)})
+        @JoinColumn(name = "requisito_id", referencedColumnName = "id", insertable = false, updatable = false)
+        , @JoinColumn(name = "requisito_fases_id", referencedColumnName = "fases_id", insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Requisito requisito;
 

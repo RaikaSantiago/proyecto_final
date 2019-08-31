@@ -10,9 +10,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Stateless
 public class GradosAcademicosFacade extends AbstractFacade<GradosAcademicos> implements GradosAcademicosFacadeLocal {
+
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 

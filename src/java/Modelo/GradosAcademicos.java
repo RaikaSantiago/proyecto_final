@@ -20,16 +20,20 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "grados_academicos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "GradosAcademicos.findAll", query = "SELECT g FROM GradosAcademicos g"),
-    @NamedQuery(name = "GradosAcademicos.findById", query = "SELECT g FROM GradosAcademicos g WHERE g.gradosAcademicosPK.id = :id"),
-    @NamedQuery(name = "GradosAcademicos.findByTipo", query = "SELECT g FROM GradosAcademicos g WHERE g.tipo = :tipo"),
-    @NamedQuery(name = "GradosAcademicos.findByUniversidadId", query = "SELECT g FROM GradosAcademicos g WHERE g.gradosAcademicosPK.universidadId = :universidadId")})
+    @NamedQuery(name = "GradosAcademicos.findAll", query = "SELECT g FROM GradosAcademicos g")
+    , @NamedQuery(name = "GradosAcademicos.findById", query = "SELECT g FROM GradosAcademicos g WHERE g.gradosAcademicosPK.id = :id")
+    , @NamedQuery(name = "GradosAcademicos.findByTipo", query = "SELECT g FROM GradosAcademicos g WHERE g.tipo = :tipo")
+    , @NamedQuery(name = "GradosAcademicos.findByUniversidadId", query = "SELECT g FROM GradosAcademicos g WHERE g.gradosAcademicosPK.universidadId = :universidadId")})
 public class GradosAcademicos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected GradosAcademicosPK gradosAcademicosPK;

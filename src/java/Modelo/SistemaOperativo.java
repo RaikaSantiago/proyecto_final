@@ -10,29 +10,34 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "sistema_operativo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "SistemaOperativo.findAll", query = "SELECT s FROM SistemaOperativo s"),
-    @NamedQuery(name = "SistemaOperativo.findById", query = "SELECT s FROM SistemaOperativo s WHERE s.id = :id"),
-    @NamedQuery(name = "SistemaOperativo.findByNombre", query = "SELECT s FROM SistemaOperativo s WHERE s.nombre = :nombre")})
+    @NamedQuery(name = "SistemaOperativo.findAll", query = "SELECT s FROM SistemaOperativo s")
+    , @NamedQuery(name = "SistemaOperativo.findById", query = "SELECT s FROM SistemaOperativo s WHERE s.id = :id")
+    , @NamedQuery(name = "SistemaOperativo.findByNombre", query = "SELECT s FROM SistemaOperativo s WHERE s.nombre = :nombre")})
 public class SistemaOperativo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)

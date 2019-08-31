@@ -21,19 +21,23 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Entity
 @Table(name = "requisito")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Requisito.findAll", query = "SELECT r FROM Requisito r"),
-    @NamedQuery(name = "Requisito.findById", query = "SELECT r FROM Requisito r WHERE r.requisitoPK.id = :id"),
-    @NamedQuery(name = "Requisito.findByDescripcion", query = "SELECT r FROM Requisito r WHERE r.descripcion = :descripcion"),
-    @NamedQuery(name = "Requisito.findByTipo", query = "SELECT r FROM Requisito r WHERE r.tipo = :tipo"),
-    @NamedQuery(name = "Requisito.findByEstado", query = "SELECT r FROM Requisito r WHERE r.estado = :estado"),
-    @NamedQuery(name = "Requisito.findByFasesId", query = "SELECT r FROM Requisito r WHERE r.requisitoPK.fasesId = :fasesId"),
-    @NamedQuery(name = "Requisito.findByProyectosId", query = "SELECT r FROM Requisito r WHERE r.requisitoPK.proyectosId = :proyectosId")})
+    @NamedQuery(name = "Requisito.findAll", query = "SELECT r FROM Requisito r")
+    , @NamedQuery(name = "Requisito.findById", query = "SELECT r FROM Requisito r WHERE r.requisitoPK.id = :id")
+    , @NamedQuery(name = "Requisito.findByDescripcion", query = "SELECT r FROM Requisito r WHERE r.descripcion = :descripcion")
+    , @NamedQuery(name = "Requisito.findByTipo", query = "SELECT r FROM Requisito r WHERE r.tipo = :tipo")
+    , @NamedQuery(name = "Requisito.findByEstado", query = "SELECT r FROM Requisito r WHERE r.estado = :estado")
+    , @NamedQuery(name = "Requisito.findByFasesId", query = "SELECT r FROM Requisito r WHERE r.requisitoPK.fasesId = :fasesId")
+    , @NamedQuery(name = "Requisito.findByProyectosId", query = "SELECT r FROM Requisito r WHERE r.requisitoPK.proyectosId = :proyectosId")})
 public class Requisito implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected RequisitoPK requisitoPK;

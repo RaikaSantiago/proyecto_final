@@ -9,7 +9,10 @@ import Modelo.BaseDatos;
 import java.util.List;
 import javax.ejb.Local;
 
-
+/**
+ *
+ * @author usuario
+ */
 @Local
 public interface BaseDatosFacadeLocal {
 

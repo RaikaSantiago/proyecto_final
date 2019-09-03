@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Pagina Cursos</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Menu">
+                                <p:menuitem value="salir" 
+                                            action="#{loginVista.cerrarSesion()}"/>
+
+                            </p:submenu>
+
+                        </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+
+                <p:layoutUnit position="center">
+                    <h:form id="FormularioCursos">
+                        <p:messages id="mensajes" showDetail="true"/>
+                        <p:panelGrid columns="3" id="panelCursos">
+                            <h:outputText value="Id"/>
+                            <p:inputText id="IdCursos"
+                                         binding="#{cursosVista.txtId}"
+                                         required="true" 
+                                         requiredMessage="La ID de los cursos es obligatorio!"/>
+                            <h:outputText value="Nombre"/>
+                            <p:inputText id="Nombre"
+                                         binding="#{cursosVista.txtNombre}"
+                                         required="true" 
+                                         requiredMessage="El nombre del curso es obligatorio!"/>
+                            <h:outputText value="Lugar"/>
+                            <p:inputText id="Lugar"
+                                         binding="#{cursosVista.txtLugar}"
+                                         required="true" 
+                                         requiredMessage="El lugar para el curso es obligatorio!"/>
+                            <h:outputText value="FechaInicio:" />
+                            <h:outputText value="#{cursosVista.txtFechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="FechaFin:" />
+                            <h:outputText value="#{cursosVista.txtFechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:panelGrid>
+                        <p:commandButton value="Resgistrar"
+                                         actionListener="#{cursosVista.registrarCurso()}"
+                                         update="FormularioCursos"/>
+                        <p:commandButton value="Modificar"
+                                         actionListener="#{cursosVista.modificarCurso()}"
+                                         update="FormularioCursos"/>
+                        <p:commandButton value="Eliminar" 
+                                         action="#{cursosVista.eliminarCurso()}" 
+                                         update="FormularioCursos">
+                            <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                            <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+                        </p:confirmDialog> 
+                        <p:dataTable var="c" value="#{cursosVista.listaCursos}" rows="10"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     selection="#{cursosVista.selectedCurso}"
+                                     selectionMode="single"
+                                     rowKey="#{c.id}">
+                            <p:ajax event="rowSelect" 
+                                    listener="#{cursosVista.selectedCurso}" 
+                                    update="FormularioCursos:panelCursos"/>
+                            <p:column headerText="Id_Cursos">
+                                <h:outputText value="#{c.id}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre_Cursos">
+                                <h:outputText value="#{c.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Lugar_Cursos">
+                                <h:outputText value="#{c.lugar}" />
+                            </p:column>
+
+                            <p:column headerText="FechaInicio_Cursos">
+                                <h:outputText value="#{c.fechaInicio}" />
+                            </p:column>
+                            
+                            <p:column headerText="FechaFin_Cursos">
+                                <h:outputText value="#{c.fechaFin}" />
+                            </p:column>
+
+                            <f:facet name="paginatorTopLeft">
+                                <p:commandButton type="button" icon="pi pi-refresh" />
+                            </f:facet>
+
+                            <f:facet name="paginatorBottomRight">
+                                <p:commandButton type="button" icon="pi pi-cloud-upload" />
+                            </f:facet>
+
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>

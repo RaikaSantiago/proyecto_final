@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Pagina Asignaciones</title>
+                <title>Pagina Base De Datos</title>
             </f:facet>
         </h:head>
 
@@ -32,69 +32,60 @@
 
 
                 <p:layoutUnit position="center">
-                    <h:form id="FormularioAsignaciones">
+                    <h:form id="FormularioBaseDeDatos">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelAsignaciones">
-                            <h:outputText value="Id:"/>
-                            <p:inputText id="IdAsignaciones"
-                                         binding="#{asignacionesVista.txtId}"
+                        <p:panelGrid columns="3" id="panelBaseDeDatos">
+                            <h:outputText value="Id"/>
+                            <p:inputText id="IdBaseDeDatos"
+                                         binding="#{basedatosVista.txtId}"
                                          required="true" 
-                                         requiredMessage="La ID de la asignacion es obligatorio!"/>
-                            <h:outputText value="Cantidad Proyectos"/>
-                            <p:inputText id="Cantidad_Proyectos"
-                                         binding="#{asignacionesVista.txtcantidad_proyectos}"
+                                         requiredMessage="La ID de la Base de datos es obligatorio!"/>
+                            <h:outputText value="Nombre"/>
+                            <p:inputText id="Nombre"
+                                         binding="#{basedatosVista.txtNombre}"
                                          required="true" 
-                                         requiredMessage="La cantidad de proyectos es obligatorio!"/>
-                            <h:outputText value="Presupuesto"/>
-                            <p:inputText id="Presupuesto"
-                                         binding="#{asignacionesVista.txtpresupuesto}"
+                                         requiredMessage="El nombre de la base de datos es obligatorio!"/>
+                            <h:outputText value="Tipo"/>
+                            <p:inputText id="Tipo"
+                                         binding="#{basedatosVista.txtTipo}"
                                          required="true" 
-                                         requiredMessage="La presupuesto para el proyecto es obligatorio!"/>
-                            <h:outputText value="Horas"/>
-                            <p:inputText id="Horas"
-                                         binding="#{asignacionesVista.txthoras}"
-                                         required="true" 
-                                         requiredMessage="La cantidad de horas para el proyecto es obligatorio!"/>
+                                         requiredMessage="El tipo para la base de datos es obligatorio!"/>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
-                                             actionListener="#{asignacionesVista.registrarAsignaciones()}"
-                                             update="FormularioAsignaciones"/>
+                                             actionListener="#{basedatosVista.registrarDB()}"
+                                             update="FormularioBaseDeDatos"/>
                             <p:commandButton value="Modificar"
-                                             actionListener="#{asignacionesVista.modificarAsignaciones()}"
-                                             update="FormularioAsignaciones"/>
+                                             actionListener="#{basedatosVista.modificarDB()}"
+                                             update="FormularioBaseDeDatos"/>
                             <p:commandButton value="Eliminar" 
-                                             action="#{asignacionesVista.eliminarAsignaciones()}" 
-                                             update="FormularioRequisito">
+                                             action="#{basedatosVista.eliminarDB()}" 
+                                             update="FormularioBaseDeDatos">
                                 <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
                             <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
                         </p:confirmDialog> 
-                            <p:dataTable var="c" value="#{asignacionesVista.listaAsignaciones}" rows="10"
+                            <p:dataTable var="c" value="#{basedatosVista.listaBaseDatos}" rows="10"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,10,15"
-                                     selection="#{asignacionesVista.selectedAsig}"
+                                     selection="#{basedatosVista.selectedDB}"
                                      selectionMode="single"
-                                     rowKey="#{c.asignacionesPK}">
+                                     rowKey="#{c.id}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{asignacionesVista.selectedAsig}" 
-                                    update="FormularioAsignaciones:panelAsignaciones"/>
-                            <p:column headerText="IdAsignaciones">
-                                <h:outputText value="#{c.asignacionesPK}" />
+                                    listener="#{basedatosVista.selectedDB}" 
+                                    update="FormularioBaseDeDatos:panelBaseDeDatos"/>
+                            <p:column headerText="Id_BD">
+                                <h:outputText value="#{c.id}" />
                             </p:column>
 
-                            <p:column headerText="Cantidad_Proyectos">
-                                <h:outputText value="#{c.cantidadProyectos}" />
+                            <p:column headerText="Nombre_BD">
+                                <h:outputText value="#{c.nombre}" />
                             </p:column>
 
-                            <p:column headerText="Presupuesto">
-                                <h:outputText value="#{c.presupuestos}" />
-                            </p:column>
-
-                            <p:column headerText="Horas">
-                                <h:outputText value="#{c.horas}" />
+                            <p:column headerText="Tipo_BD">
+                                <h:outputText value="#{c.tipo}" />
                             </p:column>
 
                             <f:facet name="paginatorTopLeft">

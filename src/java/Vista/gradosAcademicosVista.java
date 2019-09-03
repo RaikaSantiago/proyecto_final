@@ -10,7 +10,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.event.SelectEvent;
@@ -103,7 +102,7 @@ public class gradosAcademicosVista {
 
     }
 
-    public void modificarFase() {
+    public void modificarGA() {
         try {
             GradosAcademicos nuevaGA = new GradosAcademicos();
             nuevaGA.setTipo(txtTipo.getValue().toString());

@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import Logica.EmpleadoLogicaLocal;
@@ -27,8 +26,8 @@ public class loginVista {
     @EJB
     private EmpleadoLogicaLocal empleadoLogica;
 
-    private InputText txtNombreEmpleado;
-    private Password txtCedulaEmpleado;
+    private InputText txtCedulaEmpleado;
+    private Password txtNombreEmpleado;
     private CommandButton btnIngresar;
 
     public EmpleadoLogicaLocal getEmpleadoLogica() {
@@ -39,20 +38,20 @@ public class loginVista {
         this.empleadoLogica = empleadoLogica;
     }
 
-    public InputText getTxtNombreEmpleado() {
-        return txtNombreEmpleado;
-    }
-
-    public void setTxtNombreEmpleado(InputText txtNombreEmpleado) {
-        this.txtNombreEmpleado = txtNombreEmpleado;
-    }
-
-    public Password getTxtCedulaEmpleado() {
+    public InputText getTxtCedulaEmpleado() {
         return txtCedulaEmpleado;
     }
 
-    public void setTxtCedulaEmpleado(Password txtCedulaEmpleado) {
+    public void setTxtCedulaEmpleado(InputText txtCedulaEmpleado) {
         this.txtCedulaEmpleado = txtCedulaEmpleado;
+    }
+
+    public Password getTxtNombreEmpleado() {
+        return txtNombreEmpleado;
+    }
+
+    public void setTxtNombreEmpleado(Password txtNombreEmpleado) {
+        this.txtNombreEmpleado = txtNombreEmpleado;
     }
 
     public loginVista() {
@@ -77,14 +76,10 @@ public class loginVista {
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("Empleado", empleadoLogueado);
 
-//            //Redirecciono a la pagina deseada
-//            if (empleadoLogueado.getTipoempleado().equals("PLANTA")){
-//                FacesContext.getCurrentInstance().getExternalContext()
-//                    .redirect("admin/Planta.xhtml");
-//            }else{
-//                FacesContext.getCurrentInstance().getExternalContext()
-//                    .redirect("admin/Contratista.xhtml");
-//            }
+            //Redirecciono a la pagina deseada
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("admin/paginaRequisito.xhtml");
+
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",

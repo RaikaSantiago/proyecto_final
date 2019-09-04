@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 public class RequisitoContenidoPK implements Serializable {
 
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private int id;
     @Basic(optional = false)

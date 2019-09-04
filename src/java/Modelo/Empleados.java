@@ -12,19 +12,17 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -50,13 +48,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Empleados.findByEdad", query = "SELECT e FROM Empleados e WHERE e.edad = :edad")
     , @NamedQuery(name = "Empleados.findBySexo", query = "SELECT e FROM Empleados e WHERE e.sexo = :sexo")
     , @NamedQuery(name = "Empleados.findByFechaIngreso", query = "SELECT e FROM Empleados e WHERE e.fechaIngreso = :fechaIngreso")
-    , @NamedQuery(name = "Empleados.findByAntiguedad", query = "SELECT e FROM Empleados e WHERE e.antiguedad = :antiguedad")})
+    , @NamedQuery(name = "Empleados.findByAntiguedad", query = "SELECT e FROM Empleados e WHERE e.antiguedad = :antiguedad")
+    , @NamedQuery(name = "Empleados.findByClave", query = "SELECT e FROM Empleados e WHERE e.clave = :clave")})
 public class Empleados implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
@@ -96,6 +95,9 @@ public class Empleados implements Serializable {
     @Size(max = 45)
     @Column(name = "antiguedad")
     private String antiguedad;
+    @Size(max = 45)
+    @Column(name = "clave")
+    private String clave;
     @JoinTable(name = "em_asignacion_proyecto", joinColumns = {
         @JoinColumn(name = "empleados_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "proyectos_id", referencedColumnName = "id")})
@@ -111,7 +113,7 @@ public class Empleados implements Serializable {
     @ManyToMany(mappedBy = "empleadosList")
     private List<Cursos> cursosList;
     @JoinTable(name = "grados_empleados", joinColumns = {
-        @JoinColumn(name = "empleados_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "empleados_id", referencedColumnName = "id"),
         @JoinColumn(name = "grados_academicos_id", referencedColumnName = "id")})
     @ManyToMany
     private List<GradosAcademicos> gradosAcademicosList;
@@ -120,9 +122,8 @@ public class Empleados implements Serializable {
         @JoinColumn(name = "sistema_operativo_id", referencedColumnName = "id")})
     @ManyToMany
     private List<SistemaOperativo> sistemaOperativoList;
-    @JoinColumn(name = "tipo_desarrollador_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private TipoDesarrollador tipoDesarrolladorId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleados")
+    private List<TipoDesarrollador> tipoDesarrolladorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleados")
     private List<Asignaciones> asignacionesList;
 
@@ -237,6 +238,14 @@ public class Empleados implements Serializable {
         this.antiguedad = antiguedad;
     }
 
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
     @XmlTransient
     public List<Proyectos> getProyectosList() {
         return proyectosList;
@@ -291,12 +300,13 @@ public class Empleados implements Serializable {
         this.sistemaOperativoList = sistemaOperativoList;
     }
 
-    public TipoDesarrollador getTipoDesarrolladorId() {
-        return tipoDesarrolladorId;
+    @XmlTransient
+    public List<TipoDesarrollador> getTipoDesarrolladorList() {
+        return tipoDesarrolladorList;
     }
 
-    public void setTipoDesarrolladorId(TipoDesarrollador tipoDesarrolladorId) {
-        this.tipoDesarrolladorId = tipoDesarrolladorId;
+    public void setTipoDesarrolladorList(List<TipoDesarrollador> tipoDesarrolladorList) {
+        this.tipoDesarrolladorList = tipoDesarrolladorList;
     }
 
     @XmlTransient

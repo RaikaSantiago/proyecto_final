@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author usuario
  */
 @Embeddable
-public class RequisitoPK implements Serializable {
+public class TipoDesarrolladorPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
@@ -24,20 +24,15 @@ public class RequisitoPK implements Serializable {
     private int id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fases_id")
-    private int fasesId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "proyectos_id")
-    private int proyectosId;
+    @Column(name = "empleados_id")
+    private int empleadosId;
 
-    public RequisitoPK() {
+    public TipoDesarrolladorPK() {
     }
 
-    public RequisitoPK(int id, int fasesId, int proyectosId) {
+    public TipoDesarrolladorPK(int id, int empleadosId) {
         this.id = id;
-        this.fasesId = fasesId;
-        this.proyectosId = proyectosId;
+        this.empleadosId = empleadosId;
     }
 
     public int getId() {
@@ -48,45 +43,33 @@ public class RequisitoPK implements Serializable {
         this.id = id;
     }
 
-    public int getFasesId() {
-        return fasesId;
+    public int getEmpleadosId() {
+        return empleadosId;
     }
 
-    public void setFasesId(int fasesId) {
-        this.fasesId = fasesId;
-    }
-
-    public int getProyectosId() {
-        return proyectosId;
-    }
-
-    public void setProyectosId(int proyectosId) {
-        this.proyectosId = proyectosId;
+    public void setEmpleadosId(int empleadosId) {
+        this.empleadosId = empleadosId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) id;
-        hash += (int) fasesId;
-        hash += (int) proyectosId;
+        hash += (int) empleadosId;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RequisitoPK)) {
+        if (!(object instanceof TipoDesarrolladorPK)) {
             return false;
         }
-        RequisitoPK other = (RequisitoPK) object;
+        TipoDesarrolladorPK other = (TipoDesarrolladorPK) object;
         if (this.id != other.id) {
             return false;
         }
-        if (this.fasesId != other.fasesId) {
-            return false;
-        }
-        if (this.proyectosId != other.proyectosId) {
+        if (this.empleadosId != other.empleadosId) {
             return false;
         }
         return true;
@@ -94,7 +77,7 @@ public class RequisitoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.RequisitoPK[ id=" + id + ", fasesId=" + fasesId + ", proyectosId=" + proyectosId + " ]";
+        return "Modelo.TipoDesarrolladorPK[ id=" + id + ", empleadosId=" + empleadosId + " ]";
     }
     
 }

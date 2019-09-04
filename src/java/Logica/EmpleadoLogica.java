@@ -131,7 +131,10 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
 
     @Override
     public Empleados ingresar(Empleados empleado) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (empleado == null){
+            throw new Exception("Usuario vacio");
+        }
+        return empleado;
     }
 
     @Override

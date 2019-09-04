@@ -30,7 +30,7 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
     public UniversidadFacade() {
         super(Universidad.class);
     }
-    
+
     @Override
     public Universidad findNombre(String nombre) {
         String Consulta = "select u from Universidad u where u.nombre ="+nombre;
@@ -41,4 +41,5 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
             return null;
         }
     }
+    
 }

@@ -24,18 +24,18 @@
                         <div align="center">
                             <p:panelGrid columns="2">
                                 <h:outputText value="Usuario:"/>
-                                <p:inputText id="txtNombreEmpleado"
-                                             binding="#{loginVista.txtNombreEmpleado}"
+                                <p:inputText id="txtCedulaEmpleado"
+                                             binding="#{loginVista.txtCedulaEmpleado}"
                                              required="true" requiredMessage="El Usuario es obligatorio!"/>
                                 <h:outputText value="Contraseña:"/>
                                 <p:password id="txtClave"
-                                            binding="#{loginVista.txtCedulaEmpleado}"
+                                            binding="#{loginVista.txtNombreEmpleado}"
                                             required="true" requiredMessage="La clave es obligatoria!"
                                             feedback="true"/>
                             </p:panelGrid>
                             <p:commandButton id="btnIngresar" 
                                              value="ingresar" 
-                                             action="#{loginVista.btnIngresar}"
+                                             action="#{loginVista.ingresar()}"
                                              update="login">
                             </p:commandButton>                 
                         </div>

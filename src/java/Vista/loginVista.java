@@ -78,7 +78,7 @@ public class loginVista {
 
             //Redirecciono a la pagina deseada
             FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("admin/paginaRequisito.xhtml");
+                    .redirect("Principal/principal.xhtml");
 
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,

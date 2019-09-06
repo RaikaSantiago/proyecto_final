@@ -62,6 +62,9 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         if (e.getAntiguedad().equals("")){
              throw new Exception ("La Antiguedad es Obligatoria");  
         }
+        if (e.getClave().equals("")){
+             throw new Exception ("La clave es obligatoria");  
+        }
         
         Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
         if (objEmpleado != null){
@@ -119,6 +122,9 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
              throw new Exception ("La Fecha de Ingreso es Obligatoria");  
         }
         if (e.getAntiguedad().equals("")){
+             throw new Exception ("La Antiguedad es Obligatoria");  
+        }
+        if (e.getClave().equals("")){
              throw new Exception ("La Antiguedad es Obligatoria");  
         }
         

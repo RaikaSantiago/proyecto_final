@@ -99,7 +99,8 @@ public class RequisitoContenido implements Serializable {
     private String comentarios;
     @JoinColumns({
         @JoinColumn(name = "requisito_id", referencedColumnName = "id", insertable = false, updatable = false)
-        , @JoinColumn(name = "requisito_fases_id", referencedColumnName = "fases_id", insertable = false, updatable = false)})
+        , @JoinColumn(name = "requisito_fases_id", referencedColumnName = "fases_id", insertable = false, updatable = false),
+        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Requisito requisito;
 

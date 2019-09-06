@@ -41,9 +41,26 @@ public class empleadoVista {
     private InputText txtSexo;
     private Date FechaIngreso;
     private InputText txtAntiguedad;
+    private InputText txtClave;
     private Empleados selectedEmpleado;
     private CommandButton Registrar;
     private CommandButton Modificar;
+
+    public List<Empleados> getListaEmpleados() {
+        return listaEmpleados;
+    }
+
+    public void setListaEmpleados(List<Empleados> listaEmpleados) {
+        this.listaEmpleados = listaEmpleados;
+    }
+
+    public InputText getTxtClave() {
+        return txtClave;
+    }
+
+    public void setTxtClave(InputText txtClave) {
+        this.txtClave = txtClave;
+    }
     private CommandButton Eliminar;
 
     public InputText getTxtId() {
@@ -174,6 +191,7 @@ public class empleadoVista {
         txtTelefonoFijo.setValue(selectedEmpleado.getTelefonoFijo());
         txtTelefonoMovil.setValue(selectedEmpleado.getTelefonoMovil());
         txtAntiguedad.setValue(selectedEmpleado.getAntiguedad());
+        txtClave.setValue(selectedEmpleado.getClave());
         //FechaNacimiento.setValue(selectedEmpleado.getFechaNacimiento());
         //FechaIngreso.setValue(selectedEmpleado.getFechaIngreso());
     }
@@ -194,6 +212,7 @@ public class empleadoVista {
             nuevoEmpleado.setSexo(txtSexo.getValue().toString());
             nuevoEmpleado.setFechaIngreso(FechaIngreso);
             nuevoEmpleado.setAntiguedad(txtAntiguedad.getValue().toString());
+            nuevoEmpleado.setClave(txtClave.getValue().toString());
             empleadoLogica.registrarEmpleado(nuevoEmpleado);
 
             FacesContext.getCurrentInstance().addMessage(null,
@@ -233,6 +252,7 @@ public class empleadoVista {
             nuevoEmpleado.setSexo(txtSexo.getValue().toString());
             nuevoEmpleado.setFechaIngreso(FechaIngreso);
             nuevoEmpleado.setAntiguedad(txtAntiguedad.getValue().toString());
+            nuevoEmpleado.setClave(txtClave.getValue().toString());
 
             empleadoLogica.modificarEmpleado(nuevoEmpleado);
 

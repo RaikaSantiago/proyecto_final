@@ -34,7 +34,7 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioAsignaciones">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelAsignaciones">
+                        <p:panelGrid columns="5" id="panelAsignaciones">
                             <h:outputText value="Id"/>
                             <p:inputText id="IdAsignaciones"
                                          binding="#{asignacionesVista.txtId}"
@@ -61,16 +61,7 @@
                                              update="FormularioAsignaciones"/>
                             <p:commandButton value="Modificar"
                                              actionListener="#{asignacionesVista.modificarAsignaciones()}"
-                                             update="FormularioAsignaciones"/>
-                            <p:commandButton value="Eliminar" 
-                                             action="#{asignacionesVista.eliminarAsignaciones()}" 
-                                             update="FormularioAsignaciones">
-                                <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
-                            </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                            <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-                        </p:confirmDialog> 
+                                             update="FormularioAsignaciones"/>                            
                             <p:dataTable var="c" value="#{asignacionesVista.listaAsignaciones}" rows="10"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -80,7 +71,7 @@
                                      rowKey="#{c.asignacionesPK}">
                             <p:ajax event="rowSelect" 
                                     listener="#{asignacionesVista.selectedAsig}" 
-                                    update="FormularioAsignaciones:panelAsignaciones"/>
+                                    update=":FormularioAsignaciones:panelAsignaciones"/>
                             <p:column headerText="IdAsignaciones">
                                 <h:outputText value="#{c.asignacionesPK}" />
                             </p:column>

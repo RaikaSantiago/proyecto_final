@@ -27,7 +27,7 @@ public class loginVista {
     private EmpleadoLogicaLocal empleadoLogica;
 
     private InputText txtCedulaEmpleado;
-    private Password txtNombreEmpleado;
+    private Password txtClave;
     private CommandButton btnIngresar;
 
     public EmpleadoLogicaLocal getEmpleadoLogica() {
@@ -46,12 +46,12 @@ public class loginVista {
         this.txtCedulaEmpleado = txtCedulaEmpleado;
     }
 
-    public Password getTxtNombreEmpleado() {
-        return txtNombreEmpleado;
+    public Password getTxtClave() {
+        return txtClave;
     }
 
-    public void setTxtNombreEmpleado(Password txtNombreEmpleado) {
-        this.txtNombreEmpleado = txtNombreEmpleado;
+    public void setTxtClave(Password txtClave) {
+        this.txtClave = txtClave;
     }
 
     public loginVista() {
@@ -68,8 +68,8 @@ public class loginVista {
     public void ingresar() {
         try {
             Empleados nuevoEmpleado = new Empleados();
-            nuevoEmpleado.setNombre(txtNombreEmpleado.getValue().toString());
             nuevoEmpleado.setCedula(txtCedulaEmpleado.getValue().toString());
+            nuevoEmpleado.setClave(txtClave.getValue().toString());
             Empleados empleadoLogueado = empleadoLogica.ingresar(nuevoEmpleado);
 
             //Guarda al usuario que se carga en la sesion.
@@ -78,7 +78,7 @@ public class loginVista {
 
             //Redirecciono a la pagina deseada
             FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("Principal/principal.xhtml");
+                    .redirect("admin/paginaPrincipal.xhtml");
 
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,

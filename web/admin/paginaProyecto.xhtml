@@ -86,7 +86,7 @@
                                          rowKey="#{c.id}">
                                 <p:ajax event="rowSelect" 
                                         listener="#{proyectoVista.selectedProyecto}" 
-                                        update="FormularioProyecto:panelProyecto"/>
+                                        update=": FormularioProyecto:panelProyecto"/>
                                 <p:column headerText="Codigo_proyecto">
                                     <h:outputText value="#{c.codigo}" />
                                 </p:column>

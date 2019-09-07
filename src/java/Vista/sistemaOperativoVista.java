@@ -25,6 +25,7 @@ public class sistemaOperativoVista {
     private List<SistemaOperativo> listaSO;
 
     public List<SistemaOperativo> getListaSO() {
+        listaSO = sistemaOperativoLogica.consultaSistemaOperativo();
         return listaSO;
     }
 

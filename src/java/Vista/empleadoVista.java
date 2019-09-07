@@ -47,6 +47,7 @@ public class empleadoVista {
     private CommandButton Modificar;
 
     public List<Empleados> getListaEmpleados() {
+        listaEmpleados = empleadoLogica.consultaEmpleados();
         return listaEmpleados;
     }
 

@@ -34,7 +34,8 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioProyecto">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelProyecto">
+                        <p:panelGrid columns="9" id="panelProyecto">
+                        
                             <h:outputText value="CodigoProyecto"/>
                             <p:inputText id="CodigoProyecto"
                                          binding="#{proyectoVista.txtCodigo}"
@@ -71,12 +72,13 @@
                                          binding="#{proyectoVista.txtCostoTotal}"
                                          required="true"
                                          requiredMessage="El costo total es obligatorio!"/>
+                            </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{proyectoVista.registrarProyecto()}"
-                                             update="FormularioProyecto"/>
+                                             update=":FormularioProyecto"/>
                             <p:commandButton value="Modificar"
                                              actionListener="#{proyectoVista.modificarProyecto()}"
-                                             update="FormularioProyecto"/> 
+                                             update=":FormularioProyecto"/> 
                             <p:dataTable var="c" value="#{proyectoVista.listaProyecto}" rows="10"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -86,7 +88,7 @@
                                          rowKey="#{c.id}">
                                 <p:ajax event="rowSelect" 
                                         listener="#{proyectoVista.selectedProyecto}" 
-                                        update=": FormularioProyecto:panelProyecto"/>
+                                        update=":FormularioProyecto:panelProyecto"/>
                                 <p:column headerText="Codigo_proyecto">
                                     <h:outputText value="#{c.codigo}" />
                                 </p:column>

@@ -105,7 +105,6 @@ public class basedatosVista {
     public void registrarDB() {
         try {
             BaseDatos nuevaDB = new BaseDatos();
-            nuevaDB.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevaDB.setNombre(txtNombre.getValue().toString());
             nuevaDB.setTipo(txtTipo.getValue().toString());
 
@@ -116,7 +115,7 @@ public class basedatosVista {
                             "Base de Datos Registrada Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al Registrar",
                             ex.getMessage()));
             Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,7 +5,6 @@
  */
 package Vista;
 
-
 import Logica.ProyectoLogicaLocal;
 import Modelo.Proyectos;
 import java.sql.Timestamp;
@@ -44,6 +43,7 @@ public class proyectoVista {
     private Proyectos selectedProyecto;
 
     public List<Proyectos> getListaProyecto() {
+        listaProyecto = ProyectoLogica.consultaProyectos();
         return listaProyecto;
     }
 

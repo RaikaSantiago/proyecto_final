@@ -61,13 +61,13 @@
                         </p:panelGrid>
                         <p:commandButton value="Resgistrar"
                                          actionListener="#{cursosVista.registrarCurso()}"
-                                         update="FormularioCursos"/>
+                                         update=":FormularioCursos"/>
                         <p:commandButton value="Modificar"
                                          actionListener="#{cursosVista.modificarCurso()}"
-                                         update="FormularioCursos"/>
+                                         update=":FormularioCursos"/>
                         <p:commandButton value="Eliminar" 
                                          action="#{cursosVista.eliminarCurso()}" 
-                                         update="FormularioCursos">
+                                         update=":FormularioCursos">
                             <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -83,7 +83,7 @@
                                      rowKey="#{c.id}">
                             <p:ajax event="rowSelect" 
                                     listener="#{cursosVista.selectedCurso}" 
-                                    update="FormularioCursos:panelCursos"/>
+                                    update=":FormularioCursos:panelCursos"/>
                             <p:column headerText="Id_Cursos">
                                 <h:outputText value="#{c.id}" />
                             </p:column>

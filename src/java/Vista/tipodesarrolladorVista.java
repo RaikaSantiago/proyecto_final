@@ -28,6 +28,7 @@ public class tipodesarrolladorVista {
     private TipoDesarrollador selectedTD;
 
     public List<TipoDesarrollador> getListaTD() {
+        listaTD = tipodesarrolladorLogica.consultaTipoDesarrollador();
         return listaTD;
     }
 

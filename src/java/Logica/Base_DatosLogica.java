@@ -20,9 +20,7 @@ public class Base_DatosLogica implements Base_DatosLogicaLocal {
     
     @Override
     public void registrarBaseDatos(BaseDatos db) throws Exception {
-        if (db.getId()== 0){
-             throw new Exception ("El ID de la Base de Datos es Obligatorio");  
-        }
+
         if (db.getNombre().equals("")){
              throw new Exception ("El nombre de la Base de Datos es Obligatorio");  
         }
@@ -49,9 +47,6 @@ public class Base_DatosLogica implements Base_DatosLogicaLocal {
 
     @Override
     public void modificarBaseDatos(BaseDatos db) throws Exception {
-        if (db.getId()== 0){
-             throw new Exception ("El ID de la Base de Datos es Obligatorio");  
-        }
         if (db.getNombre().equals("")){
              throw new Exception ("El nombre de la Base de Datos es Obligatorio");  
         }

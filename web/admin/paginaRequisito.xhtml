@@ -51,13 +51,13 @@
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{requisitoVista.registrarRequisito()}"
-                                             update="FormularioRequisito"/>
+                                             update=":FormularioRequisito"/>
                             <p:commandButton value="Modificar"
                                              actionListener="#{requisitoVista.modificarRequisito()}"
-                                             update="FormularioRequisito"/>
+                                             update=":FormularioRequisito"/>
                             <p:commandButton value="Eliminar" 
                                              action="#{requisitoVista.eliminarRequisito()}" 
-                                             update="FormularioRequisito">
+                                             update=":FormularioRequisito">
                                 <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -73,7 +73,7 @@
                                      rowKey="#{c.requisitoPK}">
                             <p:ajax event="rowSelect" 
                                     listener="#{requisitoVista.selectedRequisito}" 
-                                    update="FormularioRequisito:panelRequisito"/>
+                                    update=":FormularioRequisito:panelRequisito"/>
                             <p:column headerText="IdRequisito">
                                 <h:outputText value="#{c.requisitoPK}" />
                             </p:column>

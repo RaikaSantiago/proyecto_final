@@ -87,21 +87,21 @@
                         </p:panelGrid>
                         <p:commandButton value="ResgistrarRC"
                                          actionListener="#{requisitoContenidoVista.registrarRequisitoContenido()}"
-                                         update="FormularioRequisitoContenido"/>
+                                         update=":FormularioRequisitoContenido"/>
                         <p:commandButton value="EliminarRC" 
                                          action="#{requisitoContenidoVista.eliminarRequisitoContenido()}" 
-                                         update="FormularioRequisitoContenido">
+                                         update=":FormularioRequisitoContenido">
                             <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                         <p:commandButton value="AmpliacionRC"
                                          actionListener="#{requisitoContenidoVista}"
-                                         update="FormularioRequisitoContenido"/>
+                                         update=":FormularioRequisitoContenido"/>
                         <p:commandButton value="ReduccionRC"
                                          actionListener="#{requisitoContenidoVista}"
-                                         update="FormularioRequisitoContenido"/>
+                                         update=":FormularioRequisitoContenido"/>
                         <p:commandButton value="CambioRC"
                                          actionListener="#{requisitoContenidoVista.modificarRequisitoContenido()}"
-                                         update="FormularioRequisitoContenido"/>
+                                         update=":FormularioRequisitoContenido"/>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
                             <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
@@ -115,7 +115,7 @@
                                      rowKey="#{c.requisitoContenidoPK}">
                             <p:ajax event="rowSelect" 
                                     listener="#{requisitoContenidoVista.selectedRequisitoContenido}" 
-                                    update="FormularioRequisitoContenido:panelRequisitoContenido"/>
+                                    update=":FormularioRequisitoContenido:panelRequisitoContenido"/>
                             <p:column headerText="NombreProyectoRC">
                                 <h:outputText value="#{c.nombreProyecto}" />
                             </p:column>

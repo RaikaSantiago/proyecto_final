@@ -43,10 +43,10 @@
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{gradosAcademicosVista.registrarGA()}"
-                                             update="FormularioGradosAcademicos"/>
+                                             update=":FormularioGradosAcademicos"/>
                             <p:commandButton value="Modificar"
                                              actionListener="#{gradosAcademicosVista.modificarGA()}"
-                                             update="FormularioGradosAcademicos"/>
+                                             update=":FormularioGradosAcademicos"/>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
                             <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
@@ -60,7 +60,7 @@
                                      rowKey="#{c.gradosAcademicosPK}">
                             <p:ajax event="rowSelect" 
                                     listener="#{gradosAcademicosVista.selectedGradosA}" 
-                                    update="FormularioGradosAcademicos:panelGradosAcademicos"/>
+                                    update=":FormularioGradosAcademicos:panelGradosAcademicos"/>
                             <p:column headerText="Tipo_gradosAcademicos">
                                 <h:outputText value="#{c.tipo}" />
                             </p:column>

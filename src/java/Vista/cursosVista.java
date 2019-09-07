@@ -46,6 +46,7 @@ public class cursosVista {
     }
 
     public List<Cursos> getListaCursos() {
+        listaCursos = cursosLogica.consultaCurso();
         return listaCursos;
     }
 

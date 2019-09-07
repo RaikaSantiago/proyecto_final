@@ -36,6 +36,7 @@ public class gradosAcademicosVista {
     }
 
     public List<GradosAcademicos> getListaGradosA() {
+        listaGradosA = GradosAcademicosLogica.consultaGradosAcademicos();
         return listaGradosA;
     }
 

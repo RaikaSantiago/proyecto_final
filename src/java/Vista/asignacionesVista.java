@@ -48,6 +48,7 @@ public class asignacionesVista {
     }
 
     public List<Asignaciones> getListaAsignaciones() {
+        listaAsignaciones = asignacionesLogica.consultaAsignaciones();
         return listaAsignaciones;
     }
 

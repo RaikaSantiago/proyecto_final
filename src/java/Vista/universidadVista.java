@@ -115,7 +115,6 @@ public class universidadVista {
 
     public void seleccionarUniversidad(SelectEvent e) {
         selectedUni = (Universidad) e.getObject();
-        txtID.setValue(selectedUni.getId());
         txtNombre.setValue(selectedUni.getNombre());
         txtTitulo.setValue(selectedUni.getTitulo());
         //FechaGrado.toString(Integer.parseInt(selectedUni.getFechaGrado()));
@@ -124,7 +123,6 @@ public class universidadVista {
     public void registrarUniversidad() {
         try {
             Universidad nuevaUni = new Universidad();
-            nuevaUni.setId(Integer.parseInt(txtID.getValue().toString()));
             nuevaUni.setNombre(txtNombre.getValue().toString());
             nuevaUni.setFechaGrado(FechaGrado);
             nuevaUni.setTitulo(txtTitulo.getValue().toString());
@@ -135,7 +133,7 @@ public class universidadVista {
                             "Universidad Registrada Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al registrar",
                             ex.getMessage()));
             Logger.getLogger(universidadVista.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -144,8 +142,7 @@ public class universidadVista {
     public void modificarUniversidad() {
 
         try {
-            Universidad nuevaUni = new Universidad();
-            nuevaUni.setId(Integer.parseInt(txtID.getValue().toString()));
+            Universidad nuevaUni = selectedUni ;
             nuevaUni.setNombre(txtNombre.getValue().toString());
             nuevaUni.setFechaGrado(FechaGrado);
             nuevaUni.setTitulo(txtTitulo.getValue().toString());
@@ -156,7 +153,7 @@ public class universidadVista {
                             "Universidad Modificada Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al modificar",
                             ex.getMessage()));
             Logger.getLogger(universidadVista.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -23,9 +23,6 @@ public class UniversidadLogica implements UniversidadLogicaLocal {
         if (u == null) {
             throw new Exception("La universidad no tiene información");
         }
-        if (u.getId() == 0) {
-            throw new Exception("El ID de la universidad es obligatorio");
-        }
         if (u.getNombre().equals("")) {
             throw new Exception("El nombre de la universidad es obligatorio");
         }
@@ -57,9 +54,6 @@ public class UniversidadLogica implements UniversidadLogicaLocal {
     public void modificarUniversidad(Universidad u) throws Exception {
         if (u == null) {
             throw new Exception("La universidad no tiene información");
-        }
-        if (u.getId() == 0) {
-            throw new Exception("El ID de la universidad es obligatorio");
         }
         if (u.getNombre().equals("")) {
             throw new Exception("El nombre de la universidad es obligatorio");

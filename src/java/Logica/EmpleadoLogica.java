@@ -136,11 +136,24 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
     }
 
     @Override
-    public Empleados ingresar(Empleados empleado) throws Exception {
-        if (empleado == null){
+    public Empleados Ingresar(Empleados empleado) throws Exception {
+         if (empleado == null){
             throw new Exception("Usuario vacio");
         }
-        return empleado;
+        if (empleado.getCedula() == null){
+            throw new Exception("La Cedula es obligatoria");
+        }
+        if (empleado.getClave().equals("")){
+            throw new Exception("Clave es obligatorio");
+        }
+        Empleados objEmpleado = empleadoDAO.find(empleado.getCedula());
+        if (objEmpleado == null){
+            throw new Exception("Usuario no registrado!");
+        }
+        if (!empleado.getClave().equals(objEmpleado.getClave())){
+            throw new Exception("La clave no es valida!");
+        }
+        return objEmpleado;
     }
 
     @Override

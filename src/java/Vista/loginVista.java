@@ -70,19 +70,24 @@ public class loginVista {
             Empleados nuevoEmpleado = new Empleados();
             nuevoEmpleado.setCedula(txtCedulaEmpleado.getValue().toString());
             nuevoEmpleado.setClave(txtClave.getValue().toString());
-            Empleados empleadoLogueado = empleadoLogica.ingresar(nuevoEmpleado);
+            Empleados empleadoLogueado = empleadoLogica.Ingresar(nuevoEmpleado);
 
             //Guarda al usuario que se carga en la sesion.
             FacesContext.getCurrentInstance().getExternalContext()
-                    .getSessionMap().put("Empleado", empleadoLogueado);
+                    .getSessionMap().put("Empleados", empleadoLogueado);
 
             //Redirecciono a la pagina deseada
-            FacesContext.getCurrentInstance().getExternalContext()
+            if (empleadoLogueado.getTipoDesarrolladorId().equals("1")){
+                FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("admin/paginaBaseDatos.xhtml");
+            }else{
+                FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("admin/paginaAsignaciones.xhtml");
+            }
 
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Verificar el nombre y la contraseña",
                             ex.getMessage()));
             Logger.getLogger(loginVista.class.getName()).log(Level.SEVERE, null, ex);
         }

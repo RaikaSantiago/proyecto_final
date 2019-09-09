@@ -12,7 +12,7 @@ import javax.ejb.Local;
 
 @Local
 public interface EmpleadoLogicaLocal {
-    public Empleados ingresar(Empleados empleado)throws Exception;
+    public Empleados Ingresar(Empleados empleado)throws Exception;
     public void registrarEmpleado(Empleados e) throws Exception;
     public Empleados consultarEmpleado(String cedula) throws Exception;
     public List<Empleados> consultaEmpleados();

@@ -33,6 +33,7 @@ public class basedatosVista {
     private InputText txtTipo;
     private CommandButton Registrar;
     private CommandButton Modificar;
+    private CommandButton Eliminar;
     private BaseDatos selectedDB;
 
     public basedatosVista() {
@@ -95,6 +96,14 @@ public class basedatosVista {
         this.selectedDB = selectedDB;
     }
 
+    public CommandButton getEliminar() {
+        return Eliminar;
+    }
+
+    public void setEliminar(CommandButton Eliminar) {
+        this.Eliminar = Eliminar;
+    }
+
     public void seleccionarBaseDeDatos(SelectEvent e) {
         selectedDB = (BaseDatos) e.getObject();
         txtId.setValue(selectedDB.getId());
@@ -124,8 +133,7 @@ public class basedatosVista {
 
     public void modificarDB() {
         try {
-            BaseDatos nuevaDB = new BaseDatos();
-            nuevaDB.setId(Integer.parseInt(txtId.getValue().toString()));
+            BaseDatos nuevaDB = selectedDB;
             nuevaDB.setNombre(txtNombre.getValue().toString());
             nuevaDB.setTipo(txtTipo.getValue().toString());
 

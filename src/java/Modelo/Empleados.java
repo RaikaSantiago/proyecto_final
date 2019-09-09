@@ -12,10 +12,13 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -54,8 +57,8 @@ public class Empleados implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
@@ -95,7 +98,9 @@ public class Empleados implements Serializable {
     @Size(max = 45)
     @Column(name = "antiguedad")
     private String antiguedad;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "clave")
     private String clave;
     @JoinTable(name = "em_asignacion_proyecto", joinColumns = {
@@ -122,8 +127,9 @@ public class Empleados implements Serializable {
         @JoinColumn(name = "sistema_operativo_id", referencedColumnName = "id")})
     @ManyToMany
     private List<SistemaOperativo> sistemaOperativoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleados")
-    private List<TipoDesarrollador> tipoDesarrolladorList;
+    @JoinColumn(name = "tipo_desarrollador_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private TipoDesarrollador tipoDesarrolladorId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleados")
     private List<Asignaciones> asignacionesList;
 
@@ -132,6 +138,11 @@ public class Empleados implements Serializable {
 
     public Empleados(Integer id) {
         this.id = id;
+    }
+
+    public Empleados(Integer id, String clave) {
+        this.id = id;
+        this.clave = clave;
     }
 
     public Integer getId() {
@@ -300,13 +311,12 @@ public class Empleados implements Serializable {
         this.sistemaOperativoList = sistemaOperativoList;
     }
 
-    @XmlTransient
-    public List<TipoDesarrollador> getTipoDesarrolladorList() {
-        return tipoDesarrolladorList;
+    public TipoDesarrollador getTipoDesarrolladorId() {
+        return tipoDesarrolladorId;
     }
 
-    public void setTipoDesarrolladorList(List<TipoDesarrollador> tipoDesarrolladorList) {
-        this.tipoDesarrolladorList = tipoDesarrolladorList;
+    public void setTipoDesarrolladorId(TipoDesarrollador tipoDesarrolladorId) {
+        this.tipoDesarrolladorId = tipoDesarrolladorId;
     }
 
     @XmlTransient

@@ -33,7 +33,7 @@ public class BaseDatosFacade extends AbstractFacade<BaseDatos> implements BaseDa
 
     @Override
     public BaseDatos findDB(String nombre) {
-        String Consulta = "select db from BaseDatos db where db.nombre ="+nombre;
+        String Consulta = "select db from BaseDatos db where db.nombre = '"+nombre+"'";
          try {
             Query query = em.createQuery(Consulta);
             return (BaseDatos) query.getSingleResult();

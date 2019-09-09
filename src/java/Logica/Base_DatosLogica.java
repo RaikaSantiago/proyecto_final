@@ -20,7 +20,6 @@ public class Base_DatosLogica implements Base_DatosLogicaLocal {
     
     @Override
     public void registrarBaseDatos(BaseDatos db) throws Exception {
-
         if (db.getNombre().equals("")){
              throw new Exception ("El nombre de la Base de Datos es Obligatorio");  
         }
@@ -62,8 +61,8 @@ public class Base_DatosLogica implements Base_DatosLogicaLocal {
     }
 
     @Override
-    public void eliminarBaseDatos(BaseDatos c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminarBaseDatos(BaseDatos db) throws Exception {
+        baseDatosDAO.remove(db);
     }
 
    

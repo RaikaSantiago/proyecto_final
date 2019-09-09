@@ -33,7 +33,7 @@ public class FasesFacade extends AbstractFacade<Fases> implements FasesFacadeLoc
 
     @Override
     public Fases findNombre(String nombre) {
-        String Consulta = "select f from Fases f where f.nombre ="+nombre;
+         String Consulta = "select f from Fases f where f.nombre ="+nombre;
          try {
             Query query = em.createQuery(Consulta);
             return (Fases) query.getSingleResult();

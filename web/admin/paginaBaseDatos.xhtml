@@ -34,27 +34,23 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioBaseDeDatos">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="2" id="panelBaseDeDatos">
+                        <p:panelGrid columns="4" id="panelBaseDeDatos">
                             <h:outputText value="Nombre"/>
                             <p:inputText id="Nombre"
-                                         binding="#{basedatosVista.txtNombre}"
-                                         required="true" 
-                                         requiredMessage="El nombre de la base de datos es obligatorio!"/>
+                                         binding="#{basedatosVista.txtNombre}"/>
                             <h:outputText value="Tipo"/>
                             <p:inputText id="Tipo"
-                                         binding="#{basedatosVista.txtTipo}"
-                                         required="true" 
-                                         requiredMessage="El tipo para la base de datos es obligatorio!"/>
+                                         binding="#{basedatosVista.txtTipo}"/>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{basedatosVista.registrarDB()}"
-                                             update=":FormularioBaseDeDatos"/>
+                                             update="FormularioBaseDeDatos"/>
                             <p:commandButton value="Modificar"
                                              actionListener="#{basedatosVista.modificarDB()}"
-                                             update=":FormularioBaseDeDatos"/>
+                                             update="FormularioBaseDeDatos"/>
                             <p:commandButton value="Eliminar" 
                                              action="#{basedatosVista.eliminarDB()}" 
-                                             update=":FormularioBaseDeDatos">
+                                             update="FormularioBaseDeDatos">
                                 <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -72,6 +68,10 @@
                                     listener="#{basedatosVista.selectedDB}" 
                                     update=":FormularioBaseDeDatos:panelBaseDeDatos"/>
 
+                            <p:column headerText="Id_BD">
+                                <h:outputText value="#{c.id}" />
+                            </p:column>
+                            
                             <p:column headerText="Nombre_BD">
                                 <h:outputText value="#{c.nombre}" />
                             </p:column>

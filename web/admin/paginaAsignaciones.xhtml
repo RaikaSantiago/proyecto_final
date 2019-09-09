@@ -34,12 +34,7 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioAsignaciones">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="5" id="panelAsignaciones">
-                            <h:outputText value="Id"/>
-                            <p:inputText id="IdAsignaciones"
-                                         binding="#{asignacionesVista.txtId}"
-                                         required="true" 
-                                         requiredMessage="La ID de la asignacion es obligatorio!"/>
+                        <p:panelGrid columns="4" id="panelAsignaciones">
                             <h:outputText value="Cantidad Proyectos"/>
                             <p:inputText id="Cantidad_Proyectos"
                                          binding="#{asignacionesVista.txtcantidad_proyectos}"
@@ -55,6 +50,11 @@
                                          binding="#{asignacionesVista.txthoras}"
                                          required="true" 
                                          requiredMessage="La cantidad de horas para el proyecto es obligatorio!"/>
+                            <h:outputText value="Empleado"/>
+                            <p:selectOneMenu id="Empleado" binding="#{asignacionesVista.txtEmpleado}">
+                                <f:selectItem itemLabel="#{asignacionesVista.txtEmpleado}" 
+                                              itemValue="#{asignacionesVista.txtEmpleado}"/>
+                            </p:selectOneMenu>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{asignacionesVista.registrarAsignaciones()}"
@@ -72,8 +72,8 @@
                             <p:ajax event="rowSelect" 
                                     listener="#{asignacionesVista.selectedAsig}" 
                                     update=":FormularioAsignaciones:panelAsignaciones"/>
-                            <p:column headerText="IdAsignaciones">
-                                <h:outputText value="#{c.asignacionesPK}" />
+                            <p:column headerText="Id">
+                                <h:outputText value="#{c.asignacionesPK.id}" />
                             </p:column>
 
                             <p:column headerText="Cantidad_Proyectos">
@@ -86,6 +86,10 @@
 
                             <p:column headerText="Horas">
                                 <h:outputText value="#{c.horas}" />
+                            </p:column>
+                            
+                            <p:column headerText="Empleado">
+                                <h:outputText value="#{c.empleados.cedula}" />
                             </p:column>
 
                             <f:facet name="paginatorTopLeft">

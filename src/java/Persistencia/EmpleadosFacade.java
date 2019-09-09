@@ -33,7 +33,7 @@ public class EmpleadosFacade extends AbstractFacade<Empleados> implements Emplea
 
     @Override
     public Empleados findCedula(String cedula) {
-        String Consulta = "select e from Empleados e where e.cedula ="+cedula;
+         String Consulta = "select e from Empleados e where e.cedula ="+cedula;
          try {
             Query query = em.createQuery(Consulta);
             return (Empleados) query.getSingleResult();
@@ -41,5 +41,7 @@ public class EmpleadosFacade extends AbstractFacade<Empleados> implements Emplea
             return null;
         }
     }
+
+    
     
 }

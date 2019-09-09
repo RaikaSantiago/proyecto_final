@@ -18,6 +18,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean
@@ -32,6 +33,7 @@ public class asignacionesVista {
     private InputText txtpresupuesto;
     private InputText txtcantidad_proyectos;
     private InputText txtId;
+    private SelectOneMenu txtEmpleado;
     private CommandButton Registrar;
     private CommandButton Modificar;
     private Asignaciones selectedAsig;
@@ -112,12 +114,21 @@ public class asignacionesVista {
         this.selectedAsig = selectedAsig;
     }
 
+    public SelectOneMenu getTxtEmpleado() {
+        return txtEmpleado;
+    }
+
+    public void setTxtEmpleado(SelectOneMenu txtEmpleado) {
+        this.txtEmpleado = txtEmpleado;
+    }
+
     public void seleccionarAsignaciones(SelectEvent e) {
         selectedAsig = (Asignaciones) e.getObject();
         txthoras.setValue(selectedAsig.getHoras());
         txtpresupuesto.setValue(selectedAsig.getPresupuestos());
         txtcantidad_proyectos.setValue(selectedAsig.getCantidadProyectos());
         txtId.setValue(selectedAsig.getAsignacionesPK());
+        txtEmpleado.setValue(selectedAsig.getEmpleados());
     }
 
     public void registrarAsignaciones() {
@@ -126,7 +137,7 @@ public class asignacionesVista {
             nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
             nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
             nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
-
+            //nuevaAsig.setEmpleados(Integer.parseInt(txtEmpleado.getValue().toString()));
             asignacionesLogica.registrarAsignaciones(nuevaAsig);
 
             FacesContext.getCurrentInstance().addMessage(null,

@@ -22,13 +22,13 @@ public class AsignacionesLogica implements AsignacionesLogicaLocal {
         if (c == null) {
             throw new Exception("La asignacion ha realizar no tiene información");
         }
-        if (c.getHoras().equals("")){
+        if (c.getHoras() == null){
           throw new Exception ("El campo horas no puede ir vacio");
         }
-        if (c.getCantidadProyectos().equals("")){
+        if (c.getCantidadProyectos() == null){
           throw new Exception ("Agregue la cantidad de proyectos");
         }
-        if (c.getPresupuestos().equals("")){
+        if (c.getPresupuestos() == null){
           throw new Exception ("El presupuesto debe estar digitado");
         }
         asignacionesDAO.create(c);
@@ -53,7 +53,7 @@ public class AsignacionesLogica implements AsignacionesLogicaLocal {
         if(c.getCantidadProyectos()==0){
             throw new Exception("La cantidad de proyectos  ha sido modificado");
         }
-        if(c.getHoras().equals("")){
+        if(c.getHoras() == null){
             throw new Exception("Las horas fueron modificadas");
         }
         Asignaciones objContratista = asignacionesDAO.find(c.getAsignacionesPK());

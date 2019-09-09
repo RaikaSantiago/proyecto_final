@@ -39,7 +39,7 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
             return (Universidad) query.getSingleResult();
         } catch (NoResultException nre) {
             return null;
-        }
+        }        
     }
     
 }

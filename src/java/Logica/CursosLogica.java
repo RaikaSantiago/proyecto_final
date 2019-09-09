@@ -10,22 +10,25 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class CursosLogica implements CursosLogicaLocal {
+    
     @EJB
     CursosFacadeLocal cursosDAO;
     
     @Override
     public void registrarCursos(Cursos c) throws Exception {
-       if (c.getId()== 0){
-             throw new Exception ("El ID es Obligatorio");  
-        }
         if (c.getNombre().equals("")){
              throw new Exception ("El nombre es Obligatorio");  
         }
         if (c.getLugar().equals("")){
              throw new Exception ("El lugar es Obligatorio");  
         }
-        
-        Cursos objCursos = cursosDAO.find(c.getNombre());
+        if (c.getFechaInicio() == null){
+             throw new Exception ("La fecha del inicio del curso es Obligatorio");  
+        }
+        if (c.getFechaFin() == null){
+             throw new Exception ("La fecha del  fin del curso es Obligatorio");  
+        }
+        Cursos objCursos = cursosDAO.findNombre(c.getNombre());
         if (objCursos != null){
           throw new Exception ("El curso ya existe!");
         }
@@ -44,25 +47,17 @@ public class CursosLogica implements CursosLogicaLocal {
 
     @Override
     public void modificarCurso(Cursos c) throws Exception {
-        if (c.getId()== 0){
-             throw new Exception ("El ID es Obligatorio");  
-        }
         if (c.getNombre().equals("")){
              throw new Exception ("El nombre es Obligatorio");  
         }
         if (c.getLugar().equals("")){
              throw new Exception ("El lugar es Obligatorio");  
         }
-        if (c.getFechaInicio().equals("")){
+        if (c.getFechaInicio() == null){
              throw new Exception ("La fecha del inicio del curso es Obligatorio");  
         }
-        if (c.getFechaFin().equals("")){
+        if (c.getFechaFin() == null){
              throw new Exception ("La fecha del  fin del curso es Obligatorio");  
-        }
-        
-        Cursos objCursos = cursosDAO.find(c.getNombre());
-        if (objCursos != null){
-          throw new Exception ("El curso ya existe!");
         }
         cursosDAO.edit(c);
     }

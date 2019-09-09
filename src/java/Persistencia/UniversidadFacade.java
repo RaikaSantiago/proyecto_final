@@ -33,7 +33,7 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
 
     @Override
     public Universidad findNombre(String nombre) {
-        String Consulta = "select u from Universidad u where u.nombre ="+nombre;
+        String Consulta = "select u from Universidad u where u.nombre = '"+nombre+"'";
          try {
             Query query = em.createQuery(Consulta);
             return (Universidad) query.getSingleResult();

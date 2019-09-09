@@ -23,6 +23,8 @@ public interface CursosFacadeLocal {
     void remove(Cursos cursos);
 
     Cursos find(Object id);
+    
+    Cursos findNombre(String nombre);
 
     List<Cursos> findAll();
 

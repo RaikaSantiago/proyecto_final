@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -154,7 +153,7 @@ public class asignacionesVista {
 
     public void modificarAsignaciones() {
         try {
-            Asignaciones nuevaAsig = new Asignaciones();
+            Asignaciones nuevaAsig = selectedAsig;
             nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
             nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
             nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));

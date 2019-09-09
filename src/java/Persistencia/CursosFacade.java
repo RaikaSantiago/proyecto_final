@@ -8,7 +8,9 @@ package Persistencia;
 import Modelo.Cursos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,17 @@ public class CursosFacade extends AbstractFacade<Cursos> implements CursosFacade
 
     public CursosFacade() {
         super(Cursos.class);
+    }
+
+    @Override
+    public Cursos findNombre(String nombre) {
+        String Consulta = "SELECT c FROM Cursos c WHERE c.nombre = '"+nombre+"'";
+        try {
+            Query query = em.createQuery(Consulta);
+            return (Cursos) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
     }
     
 }

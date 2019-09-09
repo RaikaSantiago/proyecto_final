@@ -52,7 +52,7 @@
                                          requiredMessage="La cantidad de horas para el proyecto es obligatorio!"/>
                             <h:outputText value="Empleado"/>
                             <p:selectOneMenu id="Empleado" binding="#{asignacionesVista.txtEmpleado}">
-                                <f:selectItem itemLabel="#{asignacionesVista.txtEmpleado}" 
+                                <f:selectItem itemLabel="#{asignacionesVista.txtEmpleado.id}" 
                                               itemValue="#{asignacionesVista.txtEmpleado}"/>
                             </p:selectOneMenu>
                             </p:panelGrid>
@@ -89,7 +89,7 @@
                             </p:column>
                             
                             <p:column headerText="Empleado">
-                                <h:outputText value="#{c.empleados.cedula}" />
+                                <h:outputText value="#{c.empleados.id}" />
                             </p:column>
 
                             <f:facet name="paginatorTopLeft">

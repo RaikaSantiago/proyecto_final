@@ -123,17 +123,14 @@ public class cursosVista {
 
     public void seleccionarCursos(SelectEvent e) {
         selectedCurso = (Cursos) e.getObject();
-        txtId.setValue(selectedCurso.getId());
         txtNombre.setValue(selectedCurso.getNombre());
         txtLugar.setValue(selectedCurso.getLugar());
-        //falta las fechas para poder seleccionar en las tablas.
     }
 
     public void registrarCurso() {
         try {
             Cursos nuevoCurso = new Cursos();
             nuevoCurso.setNombre(txtNombre.getValue().toString());
-            nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevoCurso.setLugar(txtLugar.getValue().toString());
             nuevoCurso.setFechaInicio(txtFechaInicio);
             nuevoCurso.setFechaFin(txtFechaFin);
@@ -154,9 +151,8 @@ public class cursosVista {
 
     public void modificarCurso() {
         try {
-            Cursos nuevoCurso = new Cursos();
+            Cursos nuevoCurso = selectedCurso;
             nuevoCurso.setNombre(txtNombre.getValue().toString());
-            nuevoCurso.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevoCurso.setLugar(txtLugar.getValue().toString());
             nuevoCurso.setFechaInicio(txtFechaInicio);
             nuevoCurso.setFechaFin(txtFechaFin);

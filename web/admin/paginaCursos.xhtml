@@ -34,40 +34,27 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioCursos">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelCursos">
-                            <h:outputText value="Id"/>
-                            <p:inputText id="IdCursos"
-                                         binding="#{cursosVista.txtId}"
-                                         required="true" 
-                                         requiredMessage="La ID de los cursos es obligatorio!"/>
+                        <p:panelGrid columns="4" id="panelCursos">
                             <h:outputText value="Nombre"/>
                             <p:inputText id="Nombre"
-                                         binding="#{cursosVista.txtNombre}"
-                                         required="true" 
-                                         requiredMessage="El nombre del curso es obligatorio!"/>
+                                         binding="#{cursosVista.txtNombre}"/>
                             <h:outputText value="Lugar"/>
                             <p:inputText id="Lugar"
-                                         binding="#{cursosVista.txtLugar}"
-                                         required="true" 
-                                         requiredMessage="El lugar para el curso es obligatorio!"/>
-                            <h:outputText value="FechaInicio:" />
-                            <h:outputText value="#{cursosVista.txtFechaInicio}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                            <h:outputText value="FechaFin:" />
-                            <h:outputText value="#{cursosVista.txtFechaFin}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
+                                         binding="#{cursosVista.txtLugar}"/>
+                            <p:outputLabel for="FechaInicio" value="FechaInicio:" />
+                            <p:calendar id="FechaInicio" value="#{cursosVista.txtFechaInicio}"/>
+                            <p:outputLabel for="FechaFin" value="FechaFin:" />
+                            <p:calendar id="FechaFin" value="#{cursosVista.txtFechaFin}"/>
                         </p:panelGrid>
                         <p:commandButton value="Resgistrar"
                                          actionListener="#{cursosVista.registrarCurso()}"
-                                         update=":FormularioCursos"/>
+                                         update="FormularioCursos"/>
                         <p:commandButton value="Modificar"
                                          actionListener="#{cursosVista.modificarCurso()}"
-                                         update=":FormularioCursos"/>
+                                         update="FormularioCursos"/>
                         <p:commandButton value="Eliminar" 
                                          action="#{cursosVista.eliminarCurso()}" 
-                                         update=":FormularioCursos">
+                                         update="FormularioCursos">
                             <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -82,26 +69,26 @@
                                      selectionMode="single"
                                      rowKey="#{c.id}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{cursosVista.selectedCurso}" 
+                                    listener="#{cursosVista.seleccionarCursos}" 
                                     update=":FormularioCursos:panelCursos"/>
-                            <p:column headerText="Id_Cursos">
-                                <h:outputText value="#{c.id}" />
+                            <p:column headerText="Id">
+                                <h:outputText value="#{c.id}"/>
                             </p:column>
 
-                            <p:column headerText="Nombre_Cursos">
-                                <h:outputText value="#{c.nombre}" />
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{c.nombre}"/>
                             </p:column>
 
-                            <p:column headerText="Lugar_Cursos">
-                                <h:outputText value="#{c.lugar}" />
+                            <p:column headerText="Lugar">
+                                <h:outputText value="#{c.lugar}"/>
                             </p:column>
 
-                            <p:column headerText="FechaInicio_Cursos">
-                                <h:outputText value="#{c.fechaInicio}" />
+                            <p:column headerText="FechaInicio">
+                                <h:outputText value="#{c.fechaInicio}"/>
                             </p:column>
-                            
-                            <p:column headerText="FechaFin_Cursos">
-                                <h:outputText value="#{c.fechaFin}" />
+
+                            <p:column headerText="FechaFin">
+                                <h:outputText value="#{c.fechaFin}"/>
                             </p:column>
 
                             <f:facet name="paginatorTopLeft">

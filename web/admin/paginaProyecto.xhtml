@@ -39,18 +39,15 @@
                             <h:outputText value="CodigoProyecto"/>
                             <p:inputText id="CodigoProyecto"
                                          binding="#{proyectoVista.txtCodigo}"
-                                         required="true" 
-                                         requiredMessage="El codigo del proyecto es obligatorio!"/>
+                                         required="true" />
                             <h:outputText value="NombreProyecto"/>
                             <p:inputText id="NombreProyecto"
                                          binding="#{proyectoVista.txtNombre}"
-                                         required="true" 
-                                         requiredMessage="El nombre del proyecto es obligatorio!"/>
+                                         required="true"/>
                             <h:outputText value="AreaProyecto"/>
                             <p:inputText id="AreaProyecto"
                                          binding="#{proyectoVista.txtArea}"
-                                         required="true" 
-                                         requiredMessage="El area del proyecto es obligatoria!"/>
+                                         required="true"/>
                             <h:outputText value="Fecha:" />
                             <h:outputText value="#{proyectoVista.txtFecha}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -70,15 +67,14 @@
                             <h:outputText value="CostoTotal"/>
                             <p:inputText id="CostoTotal"
                                          binding="#{proyectoVista.txtCostoTotal}"
-                                         required="true"
-                                         requiredMessage="El costo total es obligatorio!"/>
+                                         required="true"/>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{proyectoVista.registrarProyecto()}"
-                                             update=":FormularioProyecto"/>
+                                             update="FormularioProyecto"/>
                             <p:commandButton value="Modificar"
                                              actionListener="#{proyectoVista.modificarProyecto()}"
-                                             update=":FormularioProyecto"/> 
+                                             update="FormularioProyecto"/> 
                             <p:dataTable var="c" value="#{proyectoVista.listaProyecto}" rows="10"
                                          paginator="true"
                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -87,7 +83,7 @@
                                          selectionMode="single"
                                          rowKey="#{c.id}">
                                 <p:ajax event="rowSelect" 
-                                        listener="#{proyectoVista.selectedProyecto}" 
+                                        listener="#{proyectoVista.seleccionarProyecto}" 
                                         update=":FormularioProyecto:panelProyecto"/>
                                 <p:column headerText="Codigo_proyecto">
                                     <h:outputText value="#{c.codigo}" />

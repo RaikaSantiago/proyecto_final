@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Pagina GradosAcademicos</title>
+                <title>Pagina TD</title>
             </f:facet>
         </h:head>
 
@@ -32,37 +32,34 @@
 
 
                 <p:layoutUnit position="center">
-                    <h:form id="FormularioGradosAcademicos">
+                    <h:form id="FormularioTD">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelGradosAcademicos">
-                            <h:outputText value="Tipo"/>
-                            <p:inputText id="TipoGradosAcademicos"
-                                         binding="#{gradosAcademicosVista.txtTipo}"
-                                         required="true" 
-                                         requiredMessage="El tipo de Grados academicos es obligatorio!"/>
+                        <p:panelGrid columns="3" id="panelTD">
+                         
+                            <h:outputText value="NombreTD"/>
+                            <p:inputText id="NombreTD"
+                                         binding="#{tipodesarrolladorVista.txtNombre_Cargo}"
+                                         required="true" />
                             </p:panelGrid>
-                            <p:commandButton value="Resgistrar"
-                                             actionListener="#{gradosAcademicosVista.registrarGA()}"
-                                             update=":FormularioGradosAcademicos"/>
+                            <p:commandButton value="Registrar"
+                                             actionListener="#{tipodesarrolladorVista.registrarTipoDesarrollador()}"
+                                             update="FormularioTD"/>
                             <p:commandButton value="Modificar"
-                                             actionListener="#{gradosAcademicosVista.modificarGA()}"
-                                             update=":FormularioGradosAcademicos"/>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                            <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-                        </p:confirmDialog> 
-                            <p:dataTable var="c" value="#{gradosAcademicosVista.listaGradosA}" rows="10"
+                                             actionListener="#{tipodesarrolladorVista.modificarTipoDesarrllador()}"
+                                             update="FormularioTD"/>
+                            <p:dataTable var="c" value="#{tipodesarrolladorVista.listaTD}" rows="10"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,10,15"
-                                     selection="#{gradosAcademicosVista.selectedGradosA}"
+                                     selection="#{tipodesarrolladorVista.selectedTD}"
                                      selectionMode="single"
-                                     rowKey="#{c.gradosAcademicosPK}">
+                                     rowKey="#{c.id}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{gradosAcademicosVista.seleccionarGradosAcademicos}" 
-                                    update=":FormularioGradosAcademicos:panelGradosAcademicos"/>
-                            <p:column headerText="Tipo_gradosAcademicos">
-                                <h:outputText value="#{c.tipo}" />
+                                    listener="#{tipodesarrolladorVista.seleccionarTipoDesarrollador}" 
+                                    update=":FormularioTD:panelTD"/>
+
+                            <p:column headerText="NombreTD">
+                                <h:outputText value="#{c.nombreCargo}" />
                             </p:column>
 
                             <f:facet name="paginatorTopLeft">

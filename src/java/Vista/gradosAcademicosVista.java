@@ -93,7 +93,7 @@ public class gradosAcademicosVista {
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
-                            "Fase Registrada Satisfactoriamente"));
+                            "El Grado Academico se ha  Registrado Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
@@ -105,14 +105,14 @@ public class gradosAcademicosVista {
 
     public void modificarGA() {
         try {
-            GradosAcademicos nuevaGA = new GradosAcademicos();
+            GradosAcademicos nuevaGA = selectedGradosA ;
             nuevaGA.setTipo(txtTipo.getValue().toString());
 
             GradosAcademicosLogica.modificarGradosAcademicos(nuevaGA);
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
-                            "Fase Modificada Satisfactoriamente"));
+                            "El Grado Academico se ha Modificado Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",

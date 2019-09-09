@@ -10,7 +10,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.event.SelectEvent;
@@ -108,7 +107,7 @@ public class sistemaOperativoVista {
 
     public void modificarSistemaOperativo() {
         try {
-            SistemaOperativo nuevoso = new SistemaOperativo();
+            SistemaOperativo nuevoso = selectedSO;
             nuevoso.setNombre(txtNombre.getValue().toString());
 
             sistemaOperativoLogica.modificarSistemaOperativo(nuevoso);

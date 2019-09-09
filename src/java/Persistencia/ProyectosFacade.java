@@ -29,4 +29,5 @@ public class ProyectosFacade extends AbstractFacade<Proyectos> implements Proyec
         super(Proyectos.class);
     }
     
+    
 }

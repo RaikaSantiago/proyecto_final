@@ -126,7 +126,6 @@ public class asignacionesVista {
         txthoras.setValue(selectedAsig.getHoras());
         txtpresupuesto.setValue(selectedAsig.getPresupuestos());
         txtcantidad_proyectos.setValue(selectedAsig.getCantidadProyectos());
-        txtId.setValue(selectedAsig.getAsignacionesPK());
         txtEmpleado.setValue(selectedAsig.getEmpleados());
     }
 

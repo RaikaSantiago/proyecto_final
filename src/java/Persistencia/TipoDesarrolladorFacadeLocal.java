@@ -23,6 +23,8 @@ public interface TipoDesarrolladorFacadeLocal {
     void remove(TipoDesarrollador tipoDesarrollador);
 
     TipoDesarrollador find(Object id);
+    
+    TipoDesarrollador findCargo(String cargo);
 
     List<TipoDesarrollador> findAll();
 

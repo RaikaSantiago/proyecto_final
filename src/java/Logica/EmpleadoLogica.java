@@ -147,7 +147,7 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         if (empleado.getClave().equals("")){
             throw new Exception("Clave es obligatorio");
         }
-        Empleados objEmpleado = empleadoDAO.find(empleado.getCedula());
+        Empleados objEmpleado = empleadoDAO.findCedula(empleado.getCedula());
         if (objEmpleado == null){
             throw new Exception("Usuario no registrado!");
         }

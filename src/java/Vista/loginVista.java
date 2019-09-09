@@ -8,11 +8,11 @@ package Vista;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import Logica.EmpleadoLogicaLocal;
 import Modelo.Empleados;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.primefaces.component.commandbutton.CommandButton;
@@ -77,7 +77,7 @@ public class loginVista {
                     .getSessionMap().put("Empleados", empleadoLogueado);
 
             //Redirecciono a la pagina deseada
-            if (empleadoLogueado.getTipoDesarrolladorId().equals("1")){
+            if (empleadoLogueado.getTipoDesarrolladorId().equals(1)){
                 FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("admin/paginaBaseDatos.xhtml");
             }else{
@@ -97,7 +97,7 @@ public class loginVista {
     public void cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext()
-                    .getSessionMap().remove("Empleado");
+                    .getSessionMap().remove("Empleados");
             FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("../index.xhtml");
         } catch (IOException ex) {

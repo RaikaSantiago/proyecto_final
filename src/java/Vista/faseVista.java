@@ -88,14 +88,12 @@ public class faseVista {
 
     public void seleccionarFases(SelectEvent e) {
         selectedFase = (Fases) e.getObject();
-        txtId.setValue(selectedFase.getId());
         txtNombre.setValue(selectedFase.getNombre());
     }
 
     public void registrarFase() {
         try {
             Fases nuevaFase = new Fases();
-            nuevaFase.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevaFase.setNombre(txtNombre.getValue().toString());
             faseLogica.registrarFases(nuevaFase);
 
@@ -113,8 +111,7 @@ public class faseVista {
 
     public void modificarFase() {
         try {
-            Fases nuevaFase = new Fases();
-            nuevaFase.setId(Integer.parseInt(txtId.getValue().toString()));
+            Fases nuevaFase = selectedFase;
             nuevaFase.setNombre(txtNombre.getValue().toString());
             faseLogica.modificarFases(nuevaFase);
 

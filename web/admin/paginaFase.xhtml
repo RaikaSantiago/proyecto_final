@@ -35,16 +35,11 @@
                     <h:form id="FormularioFase">
                         <p:messages id="mensajes" showDetail="true"/>
                         <p:panelGrid columns="3" id="panelFase">
-                            <h:outputText value="Id"/>
-                            <p:inputText id="IdFase"
-                                         binding="#{faseVista.txtId}"
-                                         required="true" 
-                                         requiredMessage="La ID de la fase es obligatorio!"/>
+                         
                             <h:outputText value="NombreFase"/>
                             <p:inputText id="NombreFase"
                                          binding="#{faseVista.txtNombre}"
-                                         required="true" 
-                                         requiredMessage="El nombre es obligatorio!"/>
+                                         required="true" />
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{faseVista.registrarFase()}"
@@ -60,11 +55,8 @@
                                      selectionMode="single"
                                      rowKey="#{c.id}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{faseVista.selectedFase}" 
+                                    listener="#{faseVista.seleccionarFases}" 
                                     update=":FormularioFase:panelFase"/>
-                            <p:column headerText="IdFase">
-                                <h:outputText value="#{c.id}" />
-                            </p:column>
 
                             <p:column headerText="NombreFase">
                                 <h:outputText value="#{c.nombre}" />

@@ -23,9 +23,6 @@ public class FasesLogica implements FasesLogicaLocal {
         if (f == null) {
             throw new Exception("La Fase no tiene información");
         }
-        if (f.getId()== 0){
-             throw new Exception ("El ID de la Fase es Obligatorio");  
-        }
         if (f.getNombre().equals("")){
           throw new Exception ("El Nombre de la Fase es obligatorio");
         }
@@ -51,9 +48,6 @@ public class FasesLogica implements FasesLogicaLocal {
     public void modificarFases(Fases f) throws Exception {
         if (f == null) {
             throw new Exception("La Fase no tiene información");
-        }
-        if (f.getId()== 0){
-             throw new Exception ("El ID de la Fase es Obligatorio");  
         }
         if (f.getNombre().equals("")){
           throw new Exception ("El Nombre de la Fase es obligatorio");

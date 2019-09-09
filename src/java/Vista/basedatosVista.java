@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -106,7 +105,6 @@ public class basedatosVista {
 
     public void seleccionarBaseDeDatos(SelectEvent e) {
         selectedDB = (BaseDatos) e.getObject();
-        txtId.setValue(selectedDB.getId());
         txtNombre.setValue(selectedDB.getNombre());
         txtTipo.setValue(selectedDB.getTipo());
     }

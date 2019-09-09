@@ -64,4 +64,9 @@ public class Tipo_DesarrolladorLogica implements Tipo_DesarrolladorLogicaLocal {
 
     }
 
+    @Override
+    public void eliminarTipoDesarrollador(TipoDesarrollador c) throws Exception {
+        tipodesarrolladorDAO.remove(c);
+    }
+
 }

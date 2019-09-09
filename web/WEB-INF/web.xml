@@ -23,10 +23,10 @@
     </welcome-file-list>
     <filter>
         <filter-name>FiltroUsuario</filter-name>
-        <filter-class>filtros.FiltroUsuario</filter-class>
+        <filter-class>Filtros.FiltroUsuario</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>FiltroUsuario</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/admin/</url-pattern>
     </filter-mapping>
 </web-app>

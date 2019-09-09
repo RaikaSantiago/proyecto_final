@@ -16,7 +16,7 @@
         <h:body>
 
             <p:layout fullPage="true">
-                
+
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <h:form>
                         <p:menu>
@@ -35,19 +35,26 @@
                     <h:form id="FormularioTD">
                         <p:messages id="mensajes" showDetail="true"/>
                         <p:panelGrid columns="3" id="panelTD">
-                         
                             <h:outputText value="NombreTD"/>
                             <p:inputText id="NombreTD"
-                                         binding="#{tipodesarrolladorVista.txtNombre_Cargo}"
-                                         required="true" />
-                            </p:panelGrid>
-                            <p:commandButton value="Registrar"
-                                             actionListener="#{tipodesarrolladorVista.registrarTipoDesarrollador()}"
-                                             update="FormularioTD"/>
-                            <p:commandButton value="Modificar"
-                                             actionListener="#{tipodesarrolladorVista.modificarTipoDesarrllador()}"
-                                             update="FormularioTD"/>
-                            <p:dataTable var="c" value="#{tipodesarrolladorVista.listaTD}" rows="10"
+                                         binding="#{tipodesarrolladorVista.txtNombre_Cargo}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Registrar"
+                                         actionListener="#{tipodesarrolladorVista.registrarTipoDesarrollador()}"
+                                         update="FormularioTD"/>
+                        <p:commandButton value="Modificar"
+                                         actionListener="#{tipodesarrolladorVista.modificarTipoDesarrllador()}"
+                                         update="FormularioTD"/>
+                        <p:commandButton value="Eliminar" 
+                                         action="#{tipodesarrolladorVista.eliminarTipoDesarrollador()}" 
+                                         update="FormularioTD">
+                            <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                            <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+                        </p:confirmDialog> 
+                        <p:dataTable var="c" value="#{tipodesarrolladorVista.listaTD}" rows="10"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,10,15"

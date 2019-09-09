@@ -25,6 +25,7 @@ public class tipodesarrolladorVista {
     private InputText txtNombre_Cargo;
     private CommandButton Registrar;
     private CommandButton Modificar;
+    private CommandButton Eliminar;
     private TipoDesarrollador selectedTD;
 
     public List<TipoDesarrollador> getListaTD() {
@@ -76,6 +77,14 @@ public class tipodesarrolladorVista {
         this.txtNombre_Cargo = txtNombre_Cargo;
     }
 
+    public CommandButton getEliminar() {
+        return Eliminar;
+    }
+
+    public void setEliminar(CommandButton Eliminar) {
+        this.Eliminar = Eliminar;
+    }
+
     public tipodesarrolladorVista() {
         
     }
@@ -119,6 +128,23 @@ public class tipodesarrolladorVista {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
                             ex.getMessage()));
             Logger.getLogger(tipodesarrolladorVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public void eliminarTipoDesarrollador() {
+        try {
+
+            tipodesarrolladorLogica.eliminarTipoDesarrollador(selectedTD);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "El tipo desarrollador se ha Eliminado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(basedatosVista.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

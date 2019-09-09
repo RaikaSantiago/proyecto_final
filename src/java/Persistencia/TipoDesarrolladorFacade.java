@@ -33,7 +33,7 @@ public class TipoDesarrolladorFacade extends AbstractFacade<TipoDesarrollador> i
     
     @Override
     public TipoDesarrollador findCargo(String cargo) {
-         String Consulta = "select t from TipoDesarrollador t where t.cargo = '"+cargo+"'";
+         String Consulta = "SELECT t FROM TipoDesarrollador t WHERE t.nombreCargo = '"+cargo+"'";
          try {
             Query query = em.createQuery(Consulta);
             return (TipoDesarrollador) query.getSingleResult();
@@ -43,8 +43,8 @@ public class TipoDesarrolladorFacade extends AbstractFacade<TipoDesarrollador> i
     }
 
     @Override
-    public TipoDesarrollador findID(Integer id) {
-        String Consulta = "select t from TipoDesarrollador t where t.id = '"+id+"'";
+    public TipoDesarrollador findID(int id) {
+        String Consulta = "SELECT t FROM TipoDesarrollador t WHERE t.id = '"+id+"'";
          try {
             Query query = em.createQuery(Consulta);
             return (TipoDesarrollador) query.getSingleResult();

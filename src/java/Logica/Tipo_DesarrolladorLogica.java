@@ -22,7 +22,7 @@ public class Tipo_DesarrolladorLogica implements Tipo_DesarrolladorLogicaLocal {
           throw new Exception ("El nombre del cargo  no puede ir vacio");
         }
         
-        TipoDesarrollador objDesarrollador = tipodesarrolladorDAO.findID(c.getId());
+        TipoDesarrollador objDesarrollador = tipodesarrolladorDAO.findCargo(c.getNombreCargo());
         if (objDesarrollador != null){
           throw new Exception ("El desarrollador ya existe!");
         }

@@ -25,13 +25,13 @@ public interface TipoDesarrolladorFacadeLocal {
     TipoDesarrollador find(Object id);
     
     TipoDesarrollador findCargo(String cargo);
+    
+    TipoDesarrollador findID(int id);
 
     List<TipoDesarrollador> findAll();
 
     List<TipoDesarrollador> findRange(int[] range);
 
     int count();
-
-    public TipoDesarrollador findID(Integer id);
     
 }

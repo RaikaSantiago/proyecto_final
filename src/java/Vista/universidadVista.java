@@ -159,4 +159,21 @@ public class universidadVista {
         }
 
     }
+    
+        public void eliminarUniversidad() {
+        try {
+
+            universidadLogica.eliminarUniversidad(selectedUni);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
+                            "La universidad se ha Eliminado Satisfactoriamente"));
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                            ex.getMessage()));
+            Logger.getLogger(universidadVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

@@ -26,7 +26,7 @@ public class UniversidadLogica implements UniversidadLogicaLocal {
         if (u.getNombre().equals("")) {
             throw new Exception("El nombre de la universidad es obligatorio");
         }
-        if (u.getFechaGrado().equals("")) {
+        if (u.getFechaGrado()== null) {
             throw new Exception("La fecha es obligatoria");
         }
         if (u.getTitulo().equals("")) {
@@ -71,6 +71,13 @@ public class UniversidadLogica implements UniversidadLogicaLocal {
         }
         universidadDAO.edit(u);
     }
-
-   
+    
+    @Override
+     public void eliminarUniversidad(Universidad u) throws Exception {
+         Universidad objBorrar = universidadDAO.find(u.getId());
+       if(objBorrar == null){
+         throw new Exception("La universidad no existe");  
+       }
+       universidadDAO.remove(objBorrar); 
+     }
 }

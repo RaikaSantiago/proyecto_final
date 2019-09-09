@@ -15,5 +15,6 @@ public interface UniversidadLogicaLocal {
    public void registrarUniversidad(Universidad c) throws Exception;
     public Universidad consultarUniversidad(Universidad c) throws Exception;
     public List<Universidad> consultaUniversidad();
-    public void modificarUniversidad(Universidad c) throws Exception;  
+    public void modificarUniversidad(Universidad c) throws Exception;
+     public void eliminarUniversidad(Universidad u) throws Exception;
 }

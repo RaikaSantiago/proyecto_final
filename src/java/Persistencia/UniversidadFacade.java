@@ -14,11 +14,10 @@ import javax.persistence.Query;
 
 /**
  *
- * @author usuario
+ * @author cristian
  */
 @Stateless
 public class UniversidadFacade extends AbstractFacade<Universidad> implements UniversidadFacadeLocal {
-
     @PersistenceContext(unitName = "proyecto_finalPU")
     private EntityManager em;
 
@@ -39,7 +38,7 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
             return (Universidad) query.getSingleResult();
         } catch (NoResultException nre) {
             return null;
-        }        
+        }
     }
     
 }

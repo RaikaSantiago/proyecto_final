@@ -23,9 +23,9 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         if (e == null) {
             throw new Exception("El empleado no tiene información");
         }
-        if (e.getId()== 0){
-             throw new Exception ("La ID es Obligatorio");  
-        }
+//        if (e.getId()== 0){
+//             throw new Exception ("La ID es Obligatorio");  
+//        }
         if (e.getNombre().equals("")){
           throw new Exception ("El Nombre es obligatorio");
         }
@@ -85,9 +85,9 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
        if (e == null) {
             throw new Exception("El empleado no tiene información");
         }
-        if (e.getId()== 0){
-             throw new Exception ("La ID es Obligatorio");  
-        }
+//        if (e.getId()== 0){
+//             throw new Exception ("La ID es Obligatorio");  
+//        }
         if (e.getNombre().equals("")){
           throw new Exception ("El Nombre es obligatorio");
         }
@@ -129,7 +129,7 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         }
         
         Empleados objEmpleado = empleadoDAO.findCedula(e.getCedula());
-        if (objEmpleado != null){
+        if (objEmpleado == null){
           throw new Exception ("El empleado ya existe!");
         }
         empleadoDAO.edit(e);
@@ -163,7 +163,14 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
 
     @Override
     public void eliminarEmpleado(Empleados e) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e==null) {
+            throw new Exception("El empleado no tiene información");
+        }
+        Empleados objBorrar = empleadoDAO.find(e);
+        if(objBorrar == null){
+            throw new Exception("El empleado no existe");
+        }
+        empleadoDAO.remove(objBorrar);
     }
     }
 

@@ -27,8 +27,9 @@ public class empleadoVista {
     @EJB
     EmpleadoLogicaLocal empleadoLogica;
 
+
     private List<Empleados> listaEmpleados;
-    private InputText txtId;
+    //private InputText txtId;
     private InputText txtNombre;
     private InputText txtApellidos;
     private InputText txtEmail;
@@ -45,7 +46,8 @@ public class empleadoVista {
     private Empleados selectedEmpleado;
     private CommandButton Registrar;
     private CommandButton Modificar;
-
+    private CommandButton Eliminar;
+    
     public List<Empleados> getListaEmpleados() {
         listaEmpleados = empleadoLogica.consultaEmpleados();
         return listaEmpleados;
@@ -62,15 +64,14 @@ public class empleadoVista {
     public void setTxtClave(InputText txtClave) {
         this.txtClave = txtClave;
     }
-    private CommandButton Eliminar;
 
-    public InputText getTxtId() {
-        return txtId;
-    }
-
-    public void setTxtId(InputText txtId) {
-        this.txtId = txtId;
-    }
+//    public InputText getTxtId() {
+//        return txtId;
+//    }
+//
+//    public void setTxtId(InputText txtId) {
+//        this.txtId = txtId;
+//    }
 
     public InputText getTxtNombre() {
         return txtNombre;
@@ -176,31 +177,59 @@ public class empleadoVista {
         this.selectedEmpleado = selectedEmpleado;
     }
 
+    public CommandButton getRegistrar() {
+        return Registrar;
+    }
+
+    public void setRegistrar(CommandButton Registrar) {
+        this.Registrar = Registrar;
+    }
+
+    public CommandButton getModificar() {
+        return Modificar;
+    }
+
+    public void setModificar(CommandButton Modificar) {
+        this.Modificar = Modificar;
+    }
+
+    public CommandButton getEliminar() {
+        return Eliminar;
+    }
+
+    public void setEliminar(CommandButton Eliminar) {
+        this.Eliminar = Eliminar;
+    }
+    
+    
+
     public empleadoVista() {
     }
 
     public void seleccionarEmpleado(SelectEvent e) {
         selectedEmpleado = (Empleados) e.getObject();
-        txtId.setValue(selectedEmpleado.getId());
+       // txtId.setValue(selectedEmpleado.getId());
         txtNombre.setValue(selectedEmpleado.getNombre());
         txtApellidos.setValue(selectedEmpleado.getApellidos());
         txtCedula.setValue(selectedEmpleado.getCedula());
         txtEmail.setValue(selectedEmpleado.getEmail());
         txtDireccion.setValue(selectedEmpleado.getDireccion());
+        //FechaNacimiento.after(selectedEmpleado.getFechaNacimiento());
         txtEdad.setValue(selectedEmpleado.getEdad());
         txtSexo.setValue(selectedEmpleado.getSexo());
+        //FechaIngreso.after(selectedEmpleado.getFechaIngreso()); 
         txtTelefonoFijo.setValue(selectedEmpleado.getTelefonoFijo());
         txtTelefonoMovil.setValue(selectedEmpleado.getTelefonoMovil());
         txtAntiguedad.setValue(selectedEmpleado.getAntiguedad());
         txtClave.setValue(selectedEmpleado.getClave());
-        //FechaNacimiento.setValue(selectedEmpleado.getFechaNacimiento());
-        //FechaIngreso.setValue(selectedEmpleado.getFechaIngreso());
+        
+        
     }
 
     public void registrarEmpleado() {
         try {
             Empleados nuevoEmpleado = new Empleados();
-            nuevoEmpleado.setId(Integer.parseInt(txtId.getValue().toString()));
+           // nuevoEmpleado.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevoEmpleado.setNombre(txtNombre.getValue().toString());
             nuevoEmpleado.setApellidos(txtApellidos.getValue().toString());
             nuevoEmpleado.setEmail(txtEmail.getValue().toString());
@@ -237,10 +266,12 @@ public class empleadoVista {
         this.listaEmpleados = listaEmpleado;
     }
 
+
+    
     public void modificarEmpleado() {
         try {
             Empleados nuevoEmpleado = selectedEmpleado;
-            nuevoEmpleado.setId(Integer.parseInt(txtId.getValue().toString()));
+            //nuevoEmpleado.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevoEmpleado.setNombre(txtNombre.getValue().toString());
             nuevoEmpleado.setApellidos(txtApellidos.getValue().toString());
             nuevoEmpleado.setEmail(txtEmail.getValue().toString());
@@ -271,7 +302,7 @@ public class empleadoVista {
 
     public void eliminarEmpleado() {
         try {
-
+           
             empleadoLogica.eliminarEmpleado(selectedEmpleado);
 
             FacesContext.getCurrentInstance().addMessage(null,

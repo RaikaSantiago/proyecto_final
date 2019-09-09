@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Pagina Empleados</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Menu">
+                                <p:menuitem value="salir" 
+                                            action="#{loginVista.cerrarSesion()}"/>
+
+                            </p:submenu>
+
+                        </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+
+                <p:layoutUnit position="center">
+                    <h:form id="FormularioEmpleados">
+                        <p:messages id="mensajes" showDetail="true"/>
+                        <p:panelGrid columns="14" id="panelEmpleados">
+                            <!--<h:outputText value="Id"/>
+                            <p:inputText id="IdEmpleados"
+                                         binding="#{empleadoVista.txtId}"
+                                         required="true" 
+                                         requiredMessage="La ID del empleado es obligatoria!"/> -->
+                            <h:outputText value="Nombre"/>
+                            <p:inputText id="Nombre"
+                                         binding="#{empleadoVista.txtNombre}"
+                                         required="true" 
+                                         requiredMessage="El nombre es obligatorio!"/>
+                            <h:outputText value="Apellido"/>
+                            <p:inputText id="Apellido"
+                                         binding="#{empleadoVista.txtApellidos}"
+                                         required="true" 
+                                         requiredMessage="EL apellido es obligatorio!"/>
+                            <h:outputText value="Email"/>
+                            <p:inputText id="Email"
+                                         binding="#{empleadoVista.txtEmail}"
+                                         required="true" 
+                                         requiredMessage="El email es obligatorio!"/>
+                            
+                            <h:outputText value="Cedula"/>
+                            <p:inputText id="Cedula"
+                                         binding="#{empleadoVista.txtCedula}"
+                                         required="true" 
+                                         requiredMessage="La cedula es obligatoria!"/>
+                            <h:outputText value="Telefono Fijo"/>
+                            <p:inputText id="TelefonoFijo"
+                                         binding="#{empleadoVista.txtTelefonoFijo}"
+                                         required="true" 
+                                         requiredMessage="El Telefono Fijo es obligatorio!"/>
+                            <h:outputText value="Telefono Movil"/>
+                            <p:inputText id="TelefonoMovil"
+                                         binding="#{empleadoVista.txtTelefonoMovil}"
+                                         required="true" 
+                                         requiredMessage="El Telefono Movil es obligatorio!"/>
+                            <h:outputText value="Direccion"/>
+                            <p:inputText id="Direccion"
+                                         binding="#{empleadoVista.txtDireccion}"
+                                         required="true" 
+                                         requiredMessage="La direccion es obligatoria!"/>
+                           
+                            <p:outputLabel for="FechaNacimiento" value="Fecha de Nacimiento:" />
+                            <p:calendar id="FechaNacimiento" value="#{empleadoVista.fechaNacimiento}" />
+                            <h:outputText value="Edad"/>
+                            <p:inputText id="Edad"
+                                         binding="#{empleadoVista.txtEdad}"
+                                         required="true" 
+                                         requiredMessage="La edad es obligatoria!"/>
+                            <h:outputText value="Sexo"/>
+                            <p:inputText id="Sexo"
+                                         binding="#{empleadoVista.txtSexo}"
+                                         required="true" 
+                                         requiredMessage="El sexo es obligatorio!"/>
+                            <p:outputLabel for="FechaIngreso" value="Fecha de Ingreso:" />
+                            <p:calendar id="FechaIngreso" value="#{empleadoVista.fechaIngreso}" />
+                            
+                            <h:outputText value="Antigüedad"/>
+                            <p:inputText id="Antigüedad"
+                                         binding="#{empleadoVista.txtAntiguedad}"
+                                         required="true" 
+                                         requiredMessage="La antigüedad es obligatoria!"/>
+                            <h:outputText value="Clave"/>
+                            <p:inputText id="Clave"
+                                         binding="#{empleadoVista.txtClave}"
+                                         required="true" 
+                                         requiredMessage="La clave es obligatoria!"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Resgistrar"
+                                         actionListener="#{empleadoVista.registrarEmpleado()}"
+                                         update="FormularioEmpleados"/>
+                        <p:commandButton value="Modificar"
+                                         actionListener="#{empleadoVista.modificarEmpleado()}"
+                                         update="FormularioEmpleados"/>
+                        <p:commandButton value="Eliminar"
+                                         actionListener="#{empleadoVista.eliminarEmpleado()}"
+                                         update="FormularioEmpleados"/>
+                        <p:dataTable var="e" value="#{empleadoVista.listaEmpleados}" rows="10"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     selection="#{empleadoVista.selectedEmpleado}"
+                                     selectionMode="single"
+                                     rowKey="#{e.id}">
+                            <p:ajax event="rowSelect" 
+                                    listener="#{empleadoVista.seleccionarEmpleado}" 
+                                    update=":FormularioEmpleados:panelEmpleados"/>
+                           <!-- <p:column headerText="Id">
+                                <h:outputText value="#{e.id}" />
+                            </p:column>
+                           -->
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{e.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido">
+                                <h:outputText value="#{e.apellidos}" />
+                            </p:column>
+
+                            <p:column headerText="Email">
+                                <h:outputText value="#{e.email}" />
+                            </p:column>
+
+                            <p:column headerText="Cedula">
+                                <h:outputText value="#{e.cedula}" />
+                            </p:column>
+
+                            <p:column headerText="Telefono Fijo">
+                                <h:outputText value="#{e.telefonoFijo}" />
+                            </p:column>
+
+                            <p:column headerText="Telefono Movil">
+                                <h:outputText value="#{e.telefonoMovil}" />
+                            </p:column>
+
+                            <p:column headerText="Direccion">
+                                <h:outputText value="#{e.direccion}" />
+                            </p:column>
+
+                            <p:column headerText="Fecha de Nacimiento">
+                                <h:outputText value="#{e.fechaNacimiento}" />
+                            </p:column>
+
+                            <p:column headerText="Edad">
+                                <h:outputText value="#{e.edad}" />
+                            </p:column>
+
+                            <p:column headerText="Sexo">
+                                <h:outputText value="#{e.sexo}" />
+                            </p:column>
+
+                            <p:column headerText="Fecha de Ingreso">
+                                <h:outputText value="#{e.fechaIngreso}" />
+                            </p:column>
+
+                            <p:column headerText="Antigüedad">
+                                <h:outputText value="#{e.antiguedad}" />
+                            </p:column>
+
+                            <f:facet name="paginatorTopLeft">
+                                <p:commandButton type="button" icon="pi pi-refresh" />
+                            </f:facet>
+
+                            <f:facet name="paginatorBottomRight">
+                                <p:commandButton type="button" icon="pi pi-cloud-upload" />
+                            </f:facet>
+
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>

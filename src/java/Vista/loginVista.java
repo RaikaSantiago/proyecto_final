@@ -83,7 +83,7 @@ public class loginVista {
             }else{
                 FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("admin/paginaAsignaciones.xhtml");
-            }
+            } 
 
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,

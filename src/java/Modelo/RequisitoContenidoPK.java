@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author usuario
+ * @author ALEJANDRA
  */
 @Embeddable
 public class RequisitoContenidoPK implements Serializable {

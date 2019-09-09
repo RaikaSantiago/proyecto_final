@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author usuario
+ * @author ALEJANDRA
  */
 @Entity
 @Table(name = "grados_academicos")

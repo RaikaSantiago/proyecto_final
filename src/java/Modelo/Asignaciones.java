@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author usuario
+ * @author ALEJANDRA
  */
 @Entity
 @Table(name = "asignaciones")

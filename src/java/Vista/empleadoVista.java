@@ -268,6 +268,7 @@ public class empleadoVista {
 
 
     
+    
     public void modificarEmpleado() {
         try {
             Empleados nuevoEmpleado = selectedEmpleado;

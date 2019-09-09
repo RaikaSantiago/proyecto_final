@@ -35,11 +35,6 @@
                     <h:form id="FormularioEmpleados">
                         <p:messages id="mensajes" showDetail="true"/>
                         <p:panelGrid columns="14" id="panelEmpleados">
-                            <!--<h:outputText value="Id"/>
-                            <p:inputText id="IdEmpleados"
-                                         binding="#{empleadoVista.txtId}"
-                                         required="true" 
-                                         requiredMessage="La ID del empleado es obligatoria!"/> -->
                             <h:outputText value="Nombre"/>
                             <p:inputText id="Nombre"
                                          binding="#{empleadoVista.txtNombre}"
@@ -122,10 +117,7 @@
                             <p:ajax event="rowSelect" 
                                     listener="#{empleadoVista.seleccionarEmpleado}" 
                                     update=":FormularioEmpleados:panelEmpleados"/>
-                           <!-- <p:column headerText="Id">
-                                <h:outputText value="#{e.id}" />
-                            </p:column>
-                           -->
+                         
                             <p:column headerText="Nombre">
                                 <h:outputText value="#{e.nombre}" />
                             </p:column>

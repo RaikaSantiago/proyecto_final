@@ -77,9 +77,9 @@ public class loginVista {
                     .getSessionMap().put("Empleados", empleadoLogueado);
 
             //Redirecciono a la pagina deseada
-            if (empleadoLogueado.getTipoDesarrolladorId().equals(1)){
+            if (empleadoLogueado.getTipoDesarrolladorId().getId()== 1){
                 FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("admin/paginaBaseDatos.xhtml");
+                    .redirect("admin/paginaEmpleados.xhtml");
             }else{
                 FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("admin/paginaAsignaciones.xhtml");

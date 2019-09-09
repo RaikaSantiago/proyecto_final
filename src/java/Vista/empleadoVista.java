@@ -65,13 +65,7 @@ public class empleadoVista {
         this.txtClave = txtClave;
     }
 
-//    public InputText getTxtId() {
-//        return txtId;
-//    }
-//
-//    public void setTxtId(InputText txtId) {
-//        this.txtId = txtId;
-//    }
+
 
     public InputText getTxtNombre() {
         return txtNombre;

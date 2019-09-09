@@ -6,7 +6,10 @@
 package Vista;
 
 import Logica.EmpleadoLogicaLocal;
+import Logica.Tipo_DesarrolladorLogicaLocal;
 import Modelo.Empleados;
+import Modelo.TipoDesarrollador;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,8 +19,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean
@@ -26,9 +31,13 @@ public class empleadoVista {
 
     @EJB
     EmpleadoLogicaLocal empleadoLogica;
+    
+    @EJB
+    Tipo_DesarrolladorLogicaLocal desarrolloLogica;
 
 
     private List<Empleados> listaEmpleados;
+    private List<TipoDesarrollador> listaTipoDesarrollador;
     //private InputText txtId;
     private InputText txtNombre;
     private InputText txtApellidos;
@@ -43,6 +52,8 @@ public class empleadoVista {
     private Date FechaIngreso;
     private InputText txtAntiguedad;
     private InputText txtClave;
+    private SelectOneMenu Desarrollador;
+    private ArrayList<SelectItem> itemDesarrollador;
     private Empleados selectedEmpleado;
     private CommandButton Registrar;
     private CommandButton Modificar;
@@ -65,7 +76,45 @@ public class empleadoVista {
         this.txtClave = txtClave;
     }
 
+    public Tipo_DesarrolladorLogicaLocal getDesarrolloLogica() {
+        return desarrolloLogica;
+    }
 
+    public void setDesarrolloLogica(Tipo_DesarrolladorLogicaLocal desarrolloLogica) {
+        this.desarrolloLogica = desarrolloLogica;
+    }
+
+    public SelectOneMenu getDesarrollador() {
+        return Desarrollador;
+    }
+
+    public void setDesarrollador(SelectOneMenu Desarrollador) {
+        this.Desarrollador = Desarrollador;
+    }
+
+    public ArrayList<SelectItem> getItemDesarrollador() {
+        itemDesarrollador = new ArrayList<>();
+        for(int i = 0; i < getListaTipoDesarrollador().size(); i++){
+            itemDesarrollador.add(new SelectItem(getListaTipoDesarrollador().get(i).getId().toString(), getListaTipoDesarrollador().get(i).getNombreCargo()));
+        }
+        return itemDesarrollador;
+    }
+
+    public void setItemDesarrollador(ArrayList<SelectItem> itemDesarrollador) {
+        this.itemDesarrollador = itemDesarrollador;
+    }
+
+    public List<TipoDesarrollador> getListaTipoDesarrollador() {
+        return listaTipoDesarrollador;
+    }
+
+    public void setListaTipoDesarrollador(List<TipoDesarrollador> listaTipoDesarrollador) {
+        this.listaTipoDesarrollador = listaTipoDesarrollador;
+    }
+
+
+    
+    
 
     public InputText getTxtNombre() {
         return txtNombre;
@@ -217,12 +266,12 @@ public class empleadoVista {
         txtAntiguedad.setValue(selectedEmpleado.getAntiguedad());
         txtClave.setValue(selectedEmpleado.getClave());
         
-        
     }
 
     public void registrarEmpleado() {
         try {
             Empleados nuevoEmpleado = new Empleados();
+            TipoDesarrollador nuevoDesarrollador = new TipoDesarrollador();
            // nuevoEmpleado.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevoEmpleado.setNombre(txtNombre.getValue().toString());
             nuevoEmpleado.setApellidos(txtApellidos.getValue().toString());
@@ -237,6 +286,10 @@ public class empleadoVista {
             nuevoEmpleado.setFechaIngreso(FechaIngreso);
             nuevoEmpleado.setAntiguedad(txtAntiguedad.getValue().toString());
             nuevoEmpleado.setClave(txtClave.getValue().toString());
+            
+            nuevoDesarrollador = desarrolloLogica.buscarTipo(Integer.parseInt(Desarrollador.getValue().toString()));
+            nuevoEmpleado.setTipoDesarrolladorId(nuevoDesarrollador); 
+            
             empleadoLogica.registrarEmpleado(nuevoEmpleado);
 
             FacesContext.getCurrentInstance().addMessage(null,
@@ -266,6 +319,7 @@ public class empleadoVista {
     public void modificarEmpleado() {
         try {
             Empleados nuevoEmpleado = selectedEmpleado;
+            TipoDesarrollador nuevoDesarrollador = new TipoDesarrollador();
             //nuevoEmpleado.setId(Integer.parseInt(txtId.getValue().toString()));
             nuevoEmpleado.setNombre(txtNombre.getValue().toString());
             nuevoEmpleado.setApellidos(txtApellidos.getValue().toString());
@@ -280,6 +334,9 @@ public class empleadoVista {
             nuevoEmpleado.setFechaIngreso(FechaIngreso);
             nuevoEmpleado.setAntiguedad(txtAntiguedad.getValue().toString());
             nuevoEmpleado.setClave(txtClave.getValue().toString());
+            
+            nuevoDesarrollador = desarrolloLogica.buscarTipo(Integer.parseInt(Desarrollador.getValue().toString()));
+            nuevoEmpleado.setTipoDesarrolladorId(nuevoDesarrollador);
 
             empleadoLogica.modificarEmpleado(nuevoEmpleado);
 

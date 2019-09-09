@@ -15,5 +15,6 @@ public interface Tipo_DesarrolladorLogicaLocal {
     public void registrarTipoDesarrollador(TipoDesarrollador c) throws Exception;
     public TipoDesarrollador consultarTipoDesarrollador(TipoDesarrollador c) throws Exception;
     public List<TipoDesarrollador> consultaTipoDesarrollador();
+    public TipoDesarrollador buscarTipo(Integer id);
     public void modificarTipoDesarrollador(TipoDesarrollador c) throws Exception; 
 }

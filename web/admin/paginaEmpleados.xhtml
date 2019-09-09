@@ -97,6 +97,10 @@
                                          binding="#{empleadoVista.txtClave}"
                                          required="true" 
                                          requiredMessage="La clave es obligatoria!"/>
+                            <p:selectOneMenu id="Desarrollador" binding="#{empleadoVista.desarrollador}">
+                                <f:selectItem itemLabel="Master" itemValue="0"/>
+                                <f:selectItem itemLabel="Junior" itemValue="1"/>
+                            </p:selectOneMenu>
                         </p:panelGrid>
                         <p:commandButton value="Resgistrar"
                                          actionListener="#{empleadoVista.registrarEmpleado()}"
@@ -166,6 +170,10 @@
                                 <h:outputText value="#{e.antiguedad}" />
                             </p:column>
 
+                            <p:column headerText="Tipo de Desarrollador">
+                                <h:outputText value="#{e.tipoDesarrolladorId}" />
+                            </p:column>
+                            
                             <f:facet name="paginatorTopLeft">
                                 <p:commandButton type="button" icon="pi pi-refresh" />
                             </f:facet>

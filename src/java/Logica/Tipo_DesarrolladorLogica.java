@@ -21,6 +21,11 @@ public class Tipo_DesarrolladorLogica implements Tipo_DesarrolladorLogicaLocal {
         if (c.getNombreCargo().equals("")){
           throw new Exception ("El nombre del cargo  no puede ir vacio");
         }
+        
+        TipoDesarrollador objDesarrollador = tipodesarrolladorDAO.findID(c.getId());
+        if (objDesarrollador != null){
+          throw new Exception ("El desarrollador ya existe!");
+        }
      
         tipodesarrolladorDAO.create(c);
     }
@@ -43,8 +48,20 @@ public class Tipo_DesarrolladorLogica implements Tipo_DesarrolladorLogicaLocal {
         if (c.getNombreCargo().equals("")){
           throw new Exception ("El nombre del cargo  no puede ir vacio");
         }
+        
+        TipoDesarrollador objDesarrollador = tipodesarrolladorDAO.findID(c.getId());
+        if (objDesarrollador == null){
+          throw new Exception ("El desarrollador ya existe!");
+        }
      
         tipodesarrolladorDAO.edit(c); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TipoDesarrollador buscarTipo(Integer id) {
+        
+        return tipodesarrolladorDAO.findID(id);
+
     }
 
 }

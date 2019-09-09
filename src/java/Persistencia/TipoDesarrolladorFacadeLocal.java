@@ -31,5 +31,7 @@ public interface TipoDesarrolladorFacadeLocal {
     List<TipoDesarrollador> findRange(int[] range);
 
     int count();
+
+    public TipoDesarrollador findID(Integer id);
     
 }

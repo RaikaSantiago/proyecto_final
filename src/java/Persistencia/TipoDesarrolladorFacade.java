@@ -41,4 +41,15 @@ public class TipoDesarrolladorFacade extends AbstractFacade<TipoDesarrollador> i
             return null;
         }
     }
+
+    @Override
+    public TipoDesarrollador findID(Integer id) {
+        String Consulta = "select t from TipoDesarrollador t where t.id = '"+id+"'";
+         try {
+            Query query = em.createQuery(Consulta);
+            return (TipoDesarrollador) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
 }

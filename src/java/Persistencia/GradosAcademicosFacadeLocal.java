@@ -23,6 +23,8 @@ public interface GradosAcademicosFacadeLocal {
     void remove(GradosAcademicos gradosAcademicos);
 
     GradosAcademicos find(Object id);
+    
+    GradosAcademicos findTipo(String tipo);
 
     List<GradosAcademicos> findAll();
 

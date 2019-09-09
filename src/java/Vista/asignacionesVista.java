@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -127,7 +126,6 @@ public class asignacionesVista {
         txthoras.setValue(selectedAsig.getHoras());
         txtpresupuesto.setValue(selectedAsig.getPresupuestos());
         txtcantidad_proyectos.setValue(selectedAsig.getCantidadProyectos());
-        txtId.setValue(selectedAsig.getAsignacionesPK());
         txtEmpleado.setValue(selectedAsig.getEmpleados());
     }
 

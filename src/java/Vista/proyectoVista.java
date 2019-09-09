@@ -37,7 +37,7 @@ public class proyectoVista {
     private Date txtFechaAsignacion;
     private Date txtFechaLiberacion;
     private Date txtFechaFases;
-    private Float txtCostoTotal;
+    private InputText txtCostoTotal;
     private CommandButton Registrar;
     private CommandButton Modificar;
     private Proyectos selectedProyecto;
@@ -107,11 +107,11 @@ public class proyectoVista {
         this.txtFechaFases = txtFechaFases;
     }
 
-    public Float getTxtCostoTotal() {
+    public InputText getTxtCostoTotal() {
         return txtCostoTotal;
     }
 
-    public void setTxtCostoTotal(Float txtCostoTotal) {
+    public void setTxtCostoTotal(InputText txtCostoTotal) {
         this.txtCostoTotal = txtCostoTotal;
     }
 
@@ -177,7 +177,7 @@ public class proyectoVista {
         //txtFechaAsignacion.setValue(selectedProyecto.getFechaAsignacion());
         //txtFechaFases.setValue(selectedProyecto.getFechaFases());
         //txtFechaLiberacion.setValue(selectedProyecto.getFechaLiberacion());
-        //txtCostoTotal.(selectedProyecto.getCostoTotal());
+        txtCostoTotal.setValue(selectedProyecto.getCostoTotal());
     }
     
      public void registrarProyecto() {
@@ -190,7 +190,7 @@ public class proyectoVista {
         nuevoproyecto.setFechaLiberacion(txtFechaLiberacion);
         nuevoproyecto.setFechaAsignacion(txtFechaAsignacion);
         nuevoproyecto.setFechaFases(txtFechaFases);
-        nuevoproyecto.setCostoTotal(txtCostoTotal);
+        nuevoproyecto.setCostoTotal(Float.parseFloat(txtCostoTotal.getValue().toString()));
         ProyectoLogica.registrarProyectos(nuevoproyecto);
         
         FacesContext.getCurrentInstance().addMessage(null,
@@ -206,7 +206,7 @@ public class proyectoVista {
     }
       public void modificarProyecto() {
       try {
-        Proyectos nuevoproyecto = new Proyectos();
+        Proyectos nuevoproyecto = selectedProyecto;
         nuevoproyecto.setCodigo(txtCodigo.getValue().toString());
         nuevoproyecto.setNombre(txtNombre.getValue().toString());
         nuevoproyecto.setArea(txtArea.getValue().toString());
@@ -214,7 +214,7 @@ public class proyectoVista {
         nuevoproyecto.setFechaLiberacion(txtFechaLiberacion);
         nuevoproyecto.setFechaAsignacion(txtFechaAsignacion);
         nuevoproyecto.setFechaFases(txtFechaFases);
-        nuevoproyecto.setCostoTotal(txtCostoTotal);
+        nuevoproyecto.setCostoTotal(Float.parseFloat(txtCostoTotal.getValue().toString()));
         ProyectoLogica.modificarProyectos(nuevoproyecto);
         
         FacesContext.getCurrentInstance().addMessage(null,

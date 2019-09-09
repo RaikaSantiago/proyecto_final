@@ -27,8 +27,8 @@ public class Grado_AcademicoLogica implements Grado_AcademicoLogicaLocal {
              throw new Exception ("El Tipo es Obligatorio");  
         }
         
-        GradosAcademicos objFase = gradosAcademicosDAO.find(c.getGradosAcademicosPK());
-        if (objFase != null){
+        GradosAcademicos objGA = gradosAcademicosDAO.findTipo(c.getTipo());
+        if (objGA != null){
           throw new Exception ("El Grado  Academico ya existe!");
         }
         gradosAcademicosDAO.create(c);
@@ -53,8 +53,8 @@ public class Grado_AcademicoLogica implements Grado_AcademicoLogicaLocal {
              throw new Exception ("El Tipo es Obligatorio");  
         }
         
-        GradosAcademicos objFase = gradosAcademicosDAO.find(c.getGradosAcademicosPK());
-        if (objFase != null){
+        GradosAcademicos objGA = gradosAcademicosDAO.findTipo(c.getTipo());
+        if (objGA != null){
           throw new Exception ("El Grado  Academico ya existe!");
         }
         gradosAcademicosDAO.edit(c);

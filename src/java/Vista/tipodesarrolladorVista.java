@@ -97,7 +97,7 @@ public class tipodesarrolladorVista {
                             "El Tipo de Desarrollador  se ha Registrado Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al Registrar",
                             ex.getMessage()));
             Logger.getLogger(tipodesarrolladorVista.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -106,7 +106,7 @@ public class tipodesarrolladorVista {
 
     public void modificarTipoDesarrllador() {
         try {
-            TipoDesarrollador nuevoTD = new TipoDesarrollador();
+            TipoDesarrollador nuevoTD = selectedTD ;
             nuevoTD.setNombreCargo(txtNombre_Cargo.getValue().toString());
 
             tipodesarrolladorLogica.modificarTipoDesarrollador(nuevoTD);

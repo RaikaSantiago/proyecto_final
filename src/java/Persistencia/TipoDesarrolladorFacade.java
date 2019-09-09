@@ -8,7 +8,9 @@ package Persistencia;
 import Modelo.TipoDesarrollador;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,14 @@ public class TipoDesarrolladorFacade extends AbstractFacade<TipoDesarrollador> i
         super(TipoDesarrollador.class);
     }
     
+    @Override
+    public TipoDesarrollador findCargo(String cargo) {
+         String Consulta = "select t from TipoDesarrollador t where t.cargo = '"+cargo+"'";
+         try {
+            Query query = em.createQuery(Consulta);
+            return (TipoDesarrollador) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
 }

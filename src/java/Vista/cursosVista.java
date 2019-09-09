@@ -155,7 +155,7 @@ public class cursosVista {
             nuevoCurso.setNombre(txtNombre.getValue().toString());
             nuevoCurso.setLugar(txtLugar.getValue().toString());
             nuevoCurso.setFechaInicio(txtFechaInicio);
-            nuevoCurso.setFechaFin(txtFechaFin); 
+            nuevoCurso.setFechaFin(txtFechaFin);  
 
             cursosLogica.modificarCurso(nuevoCurso);
 

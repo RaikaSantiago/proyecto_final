@@ -58,7 +58,7 @@ public class CursosLogica implements CursosLogicaLocal {
         }
         if (c.getFechaFin() == null){
              throw new Exception ("La fecha del  fin del curso es Obligatorio");  
-        } 
+        }  
         cursosDAO.edit(c);
     }
 

@@ -41,5 +41,16 @@ public class FasesFacade extends AbstractFacade<Fases> implements FasesFacadeLoc
             return null;
         }
     }
+
+    @Override
+    public Fases findID(Integer id) {
+        String Consulta = "select f from Fases f where f.id = '"+id+"'";
+         try {
+            Query query = em.createQuery(Consulta);
+            return (Fases) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
     
 }

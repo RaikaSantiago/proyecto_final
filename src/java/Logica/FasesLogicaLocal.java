@@ -16,4 +16,5 @@ public interface FasesLogicaLocal {
     public Fases consultarFases(Fases f) throws Exception;
     public List<Fases> consultaFases();
     public void modificarFases(Fases f) throws Exception;
+    public Fases buscarF(Integer f);
 }

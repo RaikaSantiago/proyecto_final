@@ -8,7 +8,9 @@ package Persistencia;
 import Modelo.Proyectos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,17 @@ public class ProyectosFacade extends AbstractFacade<Proyectos> implements Proyec
 
     public ProyectosFacade() {
         super(Proyectos.class);
+    }
+
+    @Override
+    public Proyectos findID(Integer id) {
+        String Consulta = "select p from Proyectos p where p.id = '"+id+"'";
+         try {
+            Query query = em.createQuery(Consulta);
+            return (Proyectos) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
     }
     
     

@@ -59,4 +59,9 @@ public class FasesLogica implements FasesLogicaLocal {
         }
         fasesDAO.edit(f);
     }
+
+    @Override
+    public Fases buscarF(Integer f) {
+        return fasesDAO.findID(f);
+    }
 }

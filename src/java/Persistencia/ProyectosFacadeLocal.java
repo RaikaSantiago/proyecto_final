@@ -23,6 +23,8 @@ public interface ProyectosFacadeLocal {
     void remove(Proyectos proyectos);
 
     Proyectos find(Object id);
+    
+    Proyectos findID(Integer id);
 
     List<Proyectos> findAll();
 

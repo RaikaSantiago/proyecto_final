@@ -16,5 +16,6 @@ public interface ProyectoLogicaLocal {
     public Proyectos consultarProyectos(Proyectos c) throws Exception;
     public List<Proyectos> consultaProyectos();
     public void modificarProyectos(Proyectos c) throws Exception;
-    public void eliminarProyectos(Proyectos c) throws Exception; 
+    public void eliminarProyectos(Proyectos c) throws Exception;
+    public Proyectos buscarP(Integer p);
 }

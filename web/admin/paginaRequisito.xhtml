@@ -45,6 +45,14 @@
                                 <f:selectItem itemLabel="IMPLEMENTADO" itemValue="IMPLEMENTADO"/>
                                 <f:selectItem itemLabel="NO IMPLEMENTADO" itemValue="NO IMPLEMENTADO"/>
                             </p:selectOneMenu>
+                            <h:outputText value="Proyecto:"/>
+                            <p:selectOneMenu id="Proyecto" binding="#{requisitoVista.estadoProyecto}">
+                                <f:selectItems value="#{requisitoVista.itemProyecto}"/>
+                            </p:selectOneMenu>
+                            <h:outputText value="Fases:"/>
+                            <p:selectOneMenu id="Fases" binding="#{requisitoVista.estadoFases}">
+                                <f:selectItems value="#{requisitoVista.itemFases}"/>
+                            </p:selectOneMenu>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{requisitoVista.registrarRequisito()}"

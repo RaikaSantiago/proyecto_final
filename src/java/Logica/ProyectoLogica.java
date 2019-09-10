@@ -114,4 +114,9 @@ public class ProyectoLogica implements ProyectoLogicaLocal {
 //       }
        proyectoDAO.remove(objBorrar);
     }
+
+    @Override
+    public Proyectos buscarP(Integer p) {
+        return proyectoDAO.findID(p);
+    }
 }

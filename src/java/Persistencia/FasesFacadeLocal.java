@@ -26,6 +26,8 @@ public interface FasesFacadeLocal {
     
     Fases findNombre(String nombre);
 
+    Fases findID(Integer id);
+    
     List<Fases> findAll();
 
     List<Fases> findRange(int[] range);

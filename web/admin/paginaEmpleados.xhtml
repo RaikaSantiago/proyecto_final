@@ -36,69 +36,45 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioEmpleados">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="14" id="panelEmpleados">
-                            <h:outputText value="Nombre"/>
+                        <p:panelGrid columns="4" id="panelEmpleados">
+                            <h:outputText value="Nombre:"/>
                             <p:inputText id="Nombre"
-                                         binding="#{empleadoVista.txtNombre}"
-                                         required="true" 
-                                         requiredMessage="El nombre es obligatorio!"/>
-                            <h:outputText value="Apellido"/>
+                                         binding="#{empleadoVista.txtNombre}"/>
+                            <h:outputText value="Apellido:"/>
                             <p:inputText id="Apellido"
-                                         binding="#{empleadoVista.txtApellidos}"
-                                         required="true" 
-                                         requiredMessage="EL apellido es obligatorio!"/>
-                            <h:outputText value="Email"/>
+                                         binding="#{empleadoVista.txtApellidos}"/>
+                            <h:outputText value="Email:"/>
                             <p:inputText id="Email"
-                                         binding="#{empleadoVista.txtEmail}"
-                                         required="true" 
-                                         requiredMessage="El email es obligatorio!"/>
-                            
-                            <h:outputText value="Cedula"/>
+                                         binding="#{empleadoVista.txtEmail}"/>                           
+                            <h:outputText value="Cedula:"/>
                             <p:inputText id="Cedula"
-                                         binding="#{empleadoVista.txtCedula}"
-                                         required="true" 
-                                         requiredMessage="La cedula es obligatoria!"/>
-                            <h:outputText value="Telefono Fijo"/>
+                                         binding="#{empleadoVista.txtCedula}"/>
+                            <h:outputText value="Telefono Fijo:"/>
                             <p:inputText id="TelefonoFijo"
-                                         binding="#{empleadoVista.txtTelefonoFijo}"
-                                         required="true" 
-                                         requiredMessage="El Telefono Fijo es obligatorio!"/>
-                            <h:outputText value="Telefono Movil"/>
+                                         binding="#{empleadoVista.txtTelefonoFijo}"/>
+                            <h:outputText value="Telefono Movil:"/>
                             <p:inputText id="TelefonoMovil"
-                                         binding="#{empleadoVista.txtTelefonoMovil}"
-                                         required="true" 
-                                         requiredMessage="El Telefono Movil es obligatorio!"/>
-                            <h:outputText value="Direccion"/>
+                                         binding="#{empleadoVista.txtTelefonoMovil}"/>
+                            <h:outputText value="Direccion:"/>
                             <p:inputText id="Direccion"
-                                         binding="#{empleadoVista.txtDireccion}"
-                                         required="true" 
-                                         requiredMessage="La direccion es obligatoria!"/>
-                           
+                                         binding="#{empleadoVista.txtDireccion}"/>                           
                             <p:outputLabel for="FechaNacimiento" value="Fecha de Nacimiento:" />
                             <p:calendar id="FechaNacimiento" value="#{empleadoVista.fechaNacimiento}" />
-                            <h:outputText value="Edad"/>
+                            <h:outputText value="Edad:"/>
                             <p:inputText id="Edad"
-                                         binding="#{empleadoVista.txtEdad}"
-                                         required="true" 
-                                         requiredMessage="La edad es obligatoria!"/>
-                            <h:outputText value="Sexo"/>
+                                         binding="#{empleadoVista.txtEdad}"/>
+                            <h:outputText value="Sexo:"/>
                             <p:inputText id="Sexo"
-                                         binding="#{empleadoVista.txtSexo}"
-                                         required="true" 
-                                         requiredMessage="El sexo es obligatorio!"/>
+                                         binding="#{empleadoVista.txtSexo}"/>
                             <p:outputLabel for="FechaIngreso" value="Fecha de Ingreso:" />
-                            <p:calendar id="FechaIngreso" value="#{empleadoVista.fechaIngreso}" />
-                            
-                            <h:outputText value="Antigüedad"/>
+                            <p:calendar id="FechaIngreso" value="#{empleadoVista.fechaIngreso}" />                            
+                            <h:outputText value="Antigüedad:"/>
                             <p:inputText id="Antigüedad"
-                                         binding="#{empleadoVista.txtAntiguedad}"
-                                         required="true" 
-                                         requiredMessage="La antigüedad es obligatoria!"/>
-                            <h:outputText value="Clave"/>
+                                         binding="#{empleadoVista.txtAntiguedad}"/>
+                            <h:outputText value="Clave:"/>
                             <p:inputText id="Clave"
-                                         binding="#{empleadoVista.txtClave}"
-                                         required="true" 
-                                         requiredMessage="La clave es obligatoria!"/>
+                                         binding="#{empleadoVista.txtClave}"/>
+                            <h:outputText value="Desarrollador:"/>
                             <p:selectOneMenu id="Desarrollador" binding="#{empleadoVista.desarrollador}">
                                 <f:selectItem itemLabel="Master" itemValue="0"/>
                                 <f:selectItem itemLabel="Junior" itemValue="1"/>
@@ -173,7 +149,7 @@
                             </p:column>
 
                             <p:column headerText="Tipo de Desarrollador">
-                                <h:outputText value="#{e.tipoDesarrolladorId}" />
+                                <h:outputText value="#{e.tipoDesarrolladorId.nombreCargo}" />
                             </p:column>
                             
                             <f:facet name="paginatorTopLeft">
@@ -186,6 +162,15 @@
 
                            
                         </p:dataTable>
+                    </h:form>
+                    <h:form id="CargaDeDatos">
+                        <p:messages id="mensajes" showDetail="true"/>
+                        <p:fileUpload label="Seleccionar:"
+                                      fileUploadListener="#{empleadoVista.handleFileUpload}"
+                                      mode="advanced" dragDropSupport="false"
+                                      update="mensajes" sizeLimit="100000"
+                                      invalidFileMessage="El archivo debe ser .XML"
+                                      allowTypes="/(\.|\/)(xls)$/"/>
                     </h:form>
                 </p:layoutUnit>
 

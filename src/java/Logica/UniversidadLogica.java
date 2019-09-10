@@ -80,4 +80,9 @@ public class UniversidadLogica implements UniversidadLogicaLocal {
        }
        universidadDAO.remove(objBorrar); 
      }
+
+    @Override
+    public Universidad buscarU(Integer id) {
+        return universidadDAO.findID(id);
+    }
 }

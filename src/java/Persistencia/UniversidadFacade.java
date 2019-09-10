@@ -40,5 +40,16 @@ public class UniversidadFacade extends AbstractFacade<Universidad> implements Un
             return null;
         }
     }
+
+    @Override
+    public Universidad findID(Integer id) {
+        String Consulta = "select u from Universidad u where u.id = '"+id+"'";
+         try {
+            Query query = em.createQuery(Consulta);
+            return (Universidad) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
     
 }

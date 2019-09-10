@@ -1,7 +1,11 @@
 package Vista;
 
 import Logica.Grado_AcademicoLogicaLocal;
+import Logica.UniversidadLogicaLocal;
 import Modelo.GradosAcademicos;
+import Modelo.GradosAcademicosPK;
+import Modelo.Universidad;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +14,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean
@@ -21,10 +27,17 @@ public class gradosAcademicosVista {
     @EJB
     Grado_AcademicoLogicaLocal GradosAcademicosLogica;
 
+    @EJB 
+    UniversidadLogicaLocal universidadLogica;
+    
     private List<GradosAcademicos> listaGradosA;
+    private List<Universidad> listaUniversidad;
     private InputText txtTipo;
     private CommandButton Registrar;
     private CommandButton Modificar;
+    private SelectOneMenu Universidad;
+    private ArrayList<SelectItem> itemUniversidad;
+    private Universidad selectedUniversidad;
     private GradosAcademicos selectedGradosA;
 
     public Grado_AcademicoLogicaLocal getFaseLogica() {
@@ -80,6 +93,48 @@ public class gradosAcademicosVista {
 
     }
 
+    public List<Universidad> getListaUniversidad() {
+        listaUniversidad = universidadLogica.consultaUniversidad();
+        return listaUniversidad;
+    }
+
+    public void setListaUniversidad(List<Universidad> listaUniversidad) {
+        this.listaUniversidad = listaUniversidad;
+    }
+
+    public SelectOneMenu getUniversidad() {
+        return Universidad;
+    }
+
+    public void setUniversidad(SelectOneMenu Universidad) {
+        this.Universidad = Universidad;
+    }
+
+    public ArrayList<SelectItem> getItemUniversidad() {
+        itemUniversidad = new ArrayList<>();
+        for (int i = 0; i < getListaUniversidad().size(); i++) {
+            itemUniversidad.add(new SelectItem(getListaUniversidad().get(i).getId().toString(),
+                                               getListaUniversidad().get(i).getNombre()));
+            
+        }
+        return itemUniversidad;
+        
+    }
+
+    public void setItemUniversidad(ArrayList<SelectItem> itemUniversidad) {
+        this.itemUniversidad = itemUniversidad;
+    }
+
+    public Universidad getSelectedUniversidad() {
+        return selectedUniversidad;
+    }
+
+    public void setSelectedUniversidad(Universidad selectedUniversidad) {
+        this.selectedUniversidad = selectedUniversidad;
+    }
+
+    
+    
     public void seleccionarGradosAcademicos(SelectEvent e) {
         selectedGradosA = (GradosAcademicos) e.getObject();
         txtTipo.setValue(selectedGradosA.getTipo());
@@ -88,7 +143,15 @@ public class gradosAcademicosVista {
     public void registrarGA() {
         try {
             GradosAcademicos nuevaGA = new GradosAcademicos();
+            Universidad nuevaU = new Universidad();
+            GradosAcademicosPK nuevaGAPK = new GradosAcademicosPK();
+            
+            
+            nuevaU = universidadLogica.buscarU(Integer.parseInt(Universidad.getValue().toString()));
             nuevaGA.setTipo(txtTipo.getValue().toString());
+            
+            nuevaGAPK.setUniversidadId(nuevaU.getId());
+            nuevaGA.setGradosAcademicosPK(nuevaGAPK); 
             GradosAcademicosLogica.registrarGradosAcademicos(nuevaGA);
 
             FacesContext.getCurrentInstance().addMessage(null,

@@ -17,4 +17,5 @@ public interface UniversidadLogicaLocal {
     public List<Universidad> consultaUniversidad();
     public void modificarUniversidad(Universidad c) throws Exception;
      public void eliminarUniversidad(Universidad u) throws Exception;
+     public Universidad buscarU(Integer id);
 }

@@ -25,6 +25,8 @@ public interface UniversidadFacadeLocal {
     Universidad find(Object id);
     
     Universidad findNombre(String nombre);
+    
+    Universidad findID(Integer id);
 
     List<Universidad> findAll();
 

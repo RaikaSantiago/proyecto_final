@@ -6,10 +6,15 @@
 package Logica;
 
 import Modelo.Empleados;
+import Modelo.TipoDesarrollador;
 import Persistencia.EmpleadosFacadeLocal;
+import Persistencia.TipoDesarrolladorFacadeLocal;
+import java.io.File;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import jxl.Sheet;
+import jxl.Workbook;
 
 
 @Stateless
@@ -17,6 +22,9 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
 
     @EJB
     public EmpleadosFacadeLocal empleadoDAO;
+    
+    @EJB
+    public TipoDesarrolladorFacadeLocal tipoDesarrolladorDAO;
     
     @Override
     public void registrarEmpleado(Empleados e) throws Exception {
@@ -175,6 +183,46 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
     @Override
     public Empleados buscar(Integer id) {
         return empleadoDAO.findID(id);
+    }
+
+    @Override
+    public String CargaDeDatosEmpleado(String archivo) throws Exception {
+        Workbook archivoExcel = Workbook.getWorkbook(new File(archivo));
+        Sheet hoja = archivoExcel.getSheet(0);
+        int filas = hoja.getRows();
+        for (int i = 1; i < filas; i++) {
+            Empleados nuevoEmpleado = new Empleados();
+            TipoDesarrollador nuevoTipoDesarrollador = new TipoDesarrollador();
+            
+            nuevoEmpleado.setNombre(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setApellidos(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setEmail(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setCedula(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setTelefonoFijo(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setTelefonoMovil(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setDireccion(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setFechaNacimiento(null);
+            nuevoEmpleado.setEdad(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setSexo(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setFechaIngreso(null);
+            nuevoEmpleado.setAntiguedad(hoja.getCell(0, i).getContents());
+            nuevoEmpleado.setClave(hoja.getCell(0, i).getContents());
+            nuevoTipoDesarrollador.setNombreCargo(hoja.getCell(1, i).getContents());
+            
+            //VALIDAR AL CONTRATISTA
+            TipoDesarrollador objC = tipoDesarrolladorDAO.findCargo(nuevoTipoDesarrollador.getNombreCargo());
+            if(objC == null){
+                tipoDesarrolladorDAO.create(nuevoTipoDesarrollador);
+            }
+            
+            TipoDesarrollador newObjD = tipoDesarrolladorDAO.find(nuevoTipoDesarrollador.getId());
+            
+            nuevoEmpleado.setTipoDesarrolladorId(newObjD);
+            
+            empleadoDAO.create(nuevoEmpleado);
+            
+        }
+        return "Se registraron los datos de los proyectos correctamente";
     }
     }
 

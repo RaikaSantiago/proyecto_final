@@ -19,4 +19,5 @@ public interface EmpleadoLogicaLocal {
     public void modificarEmpleado(Empleados e) throws Exception;
     public void eliminarEmpleado(Empleados e) throws Exception;
     public Empleados buscar(Integer id);
+    public String CargaDeDatosEmpleado (String archivo) throws Exception;
 }

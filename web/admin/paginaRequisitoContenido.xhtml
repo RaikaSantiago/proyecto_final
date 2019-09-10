@@ -63,6 +63,9 @@
                             <h:outputText value="PrioridadSolicitanteRC:"/>
                             <p:inputText id="prioridadSolicitanteRC"
                                          binding="#{requisitoContenidoVista.prioridadSolicitanteRC}"/>
+                             <h:outputText value="PrioridadRealizacionRC:"/>
+                            <p:inputText id="prioridadRealizacionRC"
+                                         binding="#{requisitoContenidoVista.prioridadRealizacionRC}"/>
                             <h:outputText value="VerificadorRC:"/>
                             <p:inputText id="verificadorRC"
                                          binding="#{requisitoContenidoVista.verificadorRC}"/>
@@ -91,10 +94,10 @@
                             <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                         <p:commandButton value="AmpliacionRC"
-                                         actionListener="#{requisitoContenidoVista}"
+                                         actionListener="#{requisitoContenidoVista.ampliacionRC}"
                                          update="FormularioRequisitoContenido"/>
                         <p:commandButton value="ReduccionRC"
-                                         actionListener="#{requisitoContenidoVista}"
+                                         actionListener="#{requisitoContenidoVista.redeuccionRC}"
                                          update="FormularioRequisitoContenido"/>
                         <p:commandButton value="CambioRC"
                                          actionListener="#{requisitoContenidoVista.modificarRequisitoContenido()}"

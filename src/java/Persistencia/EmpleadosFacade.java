@@ -42,6 +42,17 @@ public class EmpleadosFacade extends AbstractFacade<Empleados> implements Emplea
         }
     }
 
+    @Override
+    public Empleados findID(Integer id) {
+        String Consulta = "select e from Empleados e where e.id = '"+id+"'";
+         try {
+            Query query = em.createQuery(Consulta);
+            return (Empleados) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+
     
     
 }

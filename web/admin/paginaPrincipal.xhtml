@@ -9,40 +9,51 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Pagina Principal</title>
+                <title>Home</title>
             </f:facet>
+                                  <h:form>  
+    
+         </h:form>
         </h:head>
 
+         <style type="text/css">
+        </style>
+     
+        
         <h:body>
+   
+ 
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
+                <p:layoutUnit position="center">
+                    
+                    <h:form >
+                        
+                        <p:growl id="messages" showDetail="false"/>
+                         
+                                <h3 style="margin-top:0">Menú</h3>
+                                <p:menu>
+                                    <p:submenu label="Proyecto Final" >
+                                        <p:menuitem value="Empleados" url="./paginaEmpleados.xhtml" update="messages" icon="pi pi-save" />
+                                        <p:menuitem value="Asignaciones" url="./paginaAsignaciones.xhtml" update="messages" icon="pi pi-refresh"/>
+                                        <p:menuitem value="Base de Datos" url="./paginaBaseDatos.xhtml" update="messages" icon="pi pi-save" />
+                                        <p:menuitem value="Cursos" url="./paginaCursos.xhtml" update="messages" icon="pi pi-refresh"/>
+                                        <p:menuitem value="Fases" url="./paginaFase.xhtml" update="messages" icon="pi pi-save" />
+                                        <p:menuitem value="Grados Academicos" url="./paginaGradosAcademicos.xhtml" update="messages" icon="pi pi-refresh"/>
+                                        <p:menuitem value="Proyecto" url="./paginaProyecto.xhtml" update="messages" icon="pi pi-save" />
+                                        <p:menuitem value="Requisito" url="./paginaRequisito.xhtml" update="messages" icon="pi pi-refresh"/>
+                                        <p:menuitem value="Requisito Contenido" url="./paginaRequisitoContenido.xhtml" update="messages" icon="pi pi-save" />
+                                        <p:menuitem value="Sistema Operativo" url="./paginaSO.xhtml" update="messages" icon="pi pi-refresh"/>
+                                        <p:menuitem value="Tipo Desarrollador" url="./paginaTD.xhtml" update="messages" icon="pi pi-save" />
+                                        <p:menuitem value="Universidad" url="./paginaUniversidad.xhtml" update="messages" icon="pi pi-refresh"/>
+                                    </p:submenu>
+                                    
+                                </p:menu>
+                        
+                    </h:form>  
+                  
                 </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
-                </p:layoutUnit>
-
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <h:form>
-                        <p:menu>
-                            <p:submenu label="Resources">
-                                <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                                <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                                <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                                <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-                                <p:menuitem value="salir" 
-                                            action="#{loginVista.cerrarSesion()}"/>
-
-                            </p:submenu>
-
-                        </p:menu>
-                    </h:form>
-                </p:layoutUnit>
-
-                
 
             </p:layout>
 
@@ -50,3 +61,4 @@
 
     </f:view>
 </html>
+

@@ -81,8 +81,9 @@ public class loginVista {
                 FacesContext.getCurrentInstance().getExternalContext()
                     .redirect("admin/paginaPrincipal.xhtml");
             }else{
-                FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("./SesionInvalida.xhtml");
+                  FacesContext.getCurrentInstance().addMessage(null,
+                 new FacesMessage(FacesMessage.SEVERITY_WARN,"Falta de Permisos",
+                 "El empleado no tiene permisos"));
             } 
 
         } catch (Exception ex) {

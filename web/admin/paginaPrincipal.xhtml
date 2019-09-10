@@ -47,8 +47,11 @@
                                         <p:menuitem value="Sistema Operativo" url="./paginaSO.xhtml" update="messages" icon="pi pi-refresh"/>
                                         <p:menuitem value="Tipo Desarrollador" url="./paginaTD.xhtml" update="messages" icon="pi pi-save" />
                                         <p:menuitem value="Universidad" url="./paginaUniversidad.xhtml" update="messages" icon="pi pi-refresh"/>
+                                        <p:submenu label="Login">
+                                            <p:menuitem value="salir" action="#{loginVista.cerrarSesion()}"/>
+                                        </p:submenu>
                                     </p:submenu>
-                                    
+                                   
                                 </p:menu>
                         
                     </h:form>  

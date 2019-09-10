@@ -173,6 +173,11 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
         }
         empleadoDAO.remove(objBorrar);
     }
+
+    @Override
+    public Empleados buscar(Integer id) {
+        return empleadoDAO.findID(id);
+    }
     }
 
     

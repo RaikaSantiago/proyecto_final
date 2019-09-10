@@ -40,11 +40,13 @@
                                          binding="#{asignacionesVista.txtcantidad_proyectos}"
                                          required="true" 
                                          requiredMessage="La cantidad de proyectos es obligatorio!"/>
+                            
                             <h:outputText value="Presupuesto"/>
                             <p:inputText id="Presupuesto"
                                          binding="#{asignacionesVista.txtpresupuesto}"
                                          required="true" 
                                          requiredMessage="La presupuesto para el proyecto es obligatorio!"/>
+                            
                             <h:outputText value="Horas"/>
                             <p:inputText id="Horas"
                                          binding="#{asignacionesVista.txthoras}"
@@ -52,8 +54,7 @@
                                          requiredMessage="La cantidad de horas para el proyecto es obligatorio!"/>
                             <h:outputText value="Empleado"/>
                             <p:selectOneMenu id="Empleado" binding="#{asignacionesVista.txtEmpleado}">
-                                <f:selectItem itemLabel="#{asignacionesVista.txtEmpleado.id}" 
-                                              itemValue="#{asignacionesVista.txtEmpleado}"/>
+                                <f:selectItems value="#{asignacionesVista.itemEmpleado}"/>
                             </p:selectOneMenu>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
@@ -66,11 +67,11 @@
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,10,15"
-                                     selection="#{asignacionesVista.selectedAsig}"
+                                     selection="#{asignacionesVista.selectedAsignacion}"
                                      selectionMode="single"
                                      rowKey="#{c.asignacionesPK}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{asignacionesVista.selectedAsig}" 
+                                    listener="#{asignacionesVista.seleccionarAsignaciones}" 
                                     update=":FormularioAsignaciones:panelAsignaciones"/>
                             <p:column headerText="Id">
                                 <h:outputText value="#{c.asignacionesPK.id}" />

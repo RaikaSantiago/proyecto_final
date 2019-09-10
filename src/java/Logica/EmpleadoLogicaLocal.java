@@ -18,4 +18,5 @@ public interface EmpleadoLogicaLocal {
     public List<Empleados> consultaEmpleados();
     public void modificarEmpleado(Empleados e) throws Exception;
     public void eliminarEmpleado(Empleados e) throws Exception;
+    public Empleados buscar(Integer id);
 }

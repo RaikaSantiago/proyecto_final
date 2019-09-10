@@ -31,6 +31,9 @@ public class AsignacionesLogica implements AsignacionesLogicaLocal {
         if (c.getPresupuestos() == null){
           throw new Exception ("El presupuesto debe estar digitado");
         }
+        if (c.getEmpleados() == null){
+          throw new Exception ("El empleado no puede ir vacio");
+        }
         asignacionesDAO.create(c);
     }
 

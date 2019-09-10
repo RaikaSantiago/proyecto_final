@@ -6,7 +6,11 @@
 package Vista;
 
 import Logica.AsignacionesLogicaLocal;
+import Logica.EmpleadoLogicaLocal;
 import Modelo.Asignaciones;
+import Modelo.AsignacionesPK;
+import Modelo.Empleados;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +19,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
@@ -26,16 +31,21 @@ public class asignacionesVista {
 
     @EJB
     private AsignacionesLogicaLocal asignacionesLogica;
+    
+    @EJB
+    private EmpleadoLogicaLocal empleadoLogica;
 
     private List<Asignaciones> listaAsignaciones;
+    private List<Empleados> listaEmpleados;
     private InputText txthoras;
     private InputText txtpresupuesto;
     private InputText txtcantidad_proyectos;
     private InputText txtId;
     private SelectOneMenu txtEmpleado;
+    private ArrayList<SelectItem> itemEmpleado;
+    private Asignaciones selectedAsignacion;
     private CommandButton Registrar;
     private CommandButton Modificar;
-    private Asignaciones selectedAsig;
 
     public asignacionesVista() {
     }
@@ -105,13 +115,6 @@ public class asignacionesVista {
         this.Modificar = Modificar;
     }
 
-    public Asignaciones getSelectedAsig() {
-        return selectedAsig;
-    }
-
-    public void setSelectedAsig(Asignaciones selectedAsig) {
-        this.selectedAsig = selectedAsig;
-    }
 
     public SelectOneMenu getTxtEmpleado() {
         return txtEmpleado;
@@ -121,26 +124,78 @@ public class asignacionesVista {
         this.txtEmpleado = txtEmpleado;
     }
 
+    public List<Empleados> getListaEmpleados() {
+        listaEmpleados = empleadoLogica.consultaEmpleados();
+        return listaEmpleados;
+    }
+
+    public void setListaEmpleados(List<Empleados> listaEmpleados) {
+        this.listaEmpleados = listaEmpleados;
+    }
+
+    public ArrayList<SelectItem> getItemEmpleado() {
+        itemEmpleado = new ArrayList<>();
+        for (int i = 0; i < getListaEmpleados().size(); i++) {
+            itemEmpleado.add(new SelectItem(getListaEmpleados().get(i).getId().toString(),
+                                            getListaEmpleados().get(i).getNombre() + ' ' + getListaEmpleados().get(i).getApellidos() ));
+            
+        }
+        return itemEmpleado;
+        
+    }
+
+    public void setItemEmpleado(ArrayList<SelectItem> itemEmpleado) {
+        this.itemEmpleado = itemEmpleado;
+    }
+
+    public Asignaciones getSelectedAsignacion() {
+        return selectedAsignacion;
+    }
+
+    public void setSelectedAsignacion(Asignaciones selectedAsignacion) {
+        this.selectedAsignacion = selectedAsignacion;
+    }
+    
+    
+    
+
     public void seleccionarAsignaciones(SelectEvent e) {
-        selectedAsig = (Asignaciones) e.getObject();
-        txthoras.setValue(selectedAsig.getHoras());
-        txtpresupuesto.setValue(selectedAsig.getPresupuestos());
-        txtcantidad_proyectos.setValue(selectedAsig.getCantidadProyectos());
-        txtEmpleado.setValue(selectedAsig.getEmpleados());
+        selectedAsignacion = (Asignaciones) e.getObject();
+        txthoras.setValue(selectedAsignacion.getHoras());
+        txtpresupuesto.setValue(selectedAsignacion.getPresupuestos());
+        txtcantidad_proyectos.setValue(selectedAsignacion.getCantidadProyectos());
+        txtEmpleado.setValue(selectedAsignacion.getEmpleados());
     }
 
     public void registrarAsignaciones() {
         try {
             Asignaciones nuevaAsig = new Asignaciones();
+            Empleados nuevoEmpleado = new Empleados();
+            
+            AsignacionesPK nuevoAsiPK = new AsignacionesPK();
+            
+            nuevoEmpleado = empleadoLogica.buscar(Integer.parseInt(txtEmpleado.getValue().toString()));            
             nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
             nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
             nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
-            //nuevaAsig.setEmpleados(Integer.parseInt(txtEmpleado.getValue().toString()));
+            
+ 
+            nuevoAsiPK.setEmpleadosId(nuevoEmpleado.getId());
+            
+            nuevaAsig.setAsignacionesPK(nuevoAsiPK);
+            
+            
+            nuevaAsig.setEmpleados(nuevoEmpleado);
+            
+             
+            
+            System.out.println("++++++++++++++++++++++++++++++++++++++"+nuevoEmpleado.getId());
+            
             asignacionesLogica.registrarAsignaciones(nuevaAsig);
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",
-                            "La Asignacion  se ha Registrado Satisfactoriamente"));
+                            "La Asignacion se ha Registrado Satisfactoriamente"));
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mensaje",
@@ -152,11 +207,21 @@ public class asignacionesVista {
 
     public void modificarAsignaciones() {
         try {
-            Asignaciones nuevaAsig = selectedAsig;
+            Asignaciones nuevaAsig = selectedAsignacion;
+            Empleados nuevoEmpleado = new Empleados();
+//            AsignacionesPK nuevoAsiPK = new AsignacionesPK();
+            
             nuevaAsig.setHoras(Integer.parseInt(txthoras.getValue().toString()));
             nuevaAsig.setCantidadProyectos(Integer.parseInt(txtcantidad_proyectos.getValue().toString()));
             nuevaAsig.setPresupuestos(Float.parseFloat(txtpresupuesto.getValue().toString()));
+            
+//            nuevoAsiPK.setEmpleadosId(nuevoEmpleado.getId());
+//            
+//            nuevaAsig.setAsignacionesPK(nuevoAsiPK);
 
+            nuevoEmpleado = empleadoLogica.buscar(Integer.parseInt(txtEmpleado.getValue().toString()));
+            nuevaAsig.setEmpleados(nuevoEmpleado);
+            
             asignacionesLogica.modificarAsignaciones(nuevaAsig);
 
             FacesContext.getCurrentInstance().addMessage(null,
@@ -174,7 +239,7 @@ public class asignacionesVista {
     public void eliminarAsignaciones() {
         try {
 
-            asignacionesLogica.eliminarAsignaciones(selectedAsig);
+            asignacionesLogica.eliminarAsignaciones(selectedAsignacion);
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje",

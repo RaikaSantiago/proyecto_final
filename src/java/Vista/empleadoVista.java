@@ -95,7 +95,8 @@ public class empleadoVista {
     public ArrayList<SelectItem> getItemDesarrollador() {
         itemDesarrollador = new ArrayList<>();
         for(int i = 0; i < getListaTipoDesarrollador().size(); i++){
-            itemDesarrollador.add(new SelectItem(getListaTipoDesarrollador().get(i).getId().toString(), getListaTipoDesarrollador().get(i).getNombreCargo()));
+            itemDesarrollador.add(new SelectItem(getListaTipoDesarrollador().get(i).getId().toString(), 
+                                                 getListaTipoDesarrollador().get(i).getNombreCargo()));
         }
         return itemDesarrollador;
     }

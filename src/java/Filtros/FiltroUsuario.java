@@ -24,7 +24,7 @@ public class FiltroUsuario implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        Empleados u = (Empleados) ((HttpServletRequest) request).getSession().getAttribute("empleado");
+        Empleados u = (Empleados) ((HttpServletRequest) request).getSession().getAttribute("Empleados");
         if (u != null) {
             chain.doFilter(request, response);
         } else {

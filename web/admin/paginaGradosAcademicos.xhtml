@@ -36,12 +36,16 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioGradosAcademicos">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelGradosAcademicos">
+                        <p:panelGrid columns="2" id="panelGradosAcademicos">
                             <h:outputText value="Tipo"/>
                             <p:inputText id="TipoGradosAcademicos"
                                          binding="#{gradosAcademicosVista.txtTipo}"
                                          required="true" 
                                          requiredMessage="El tipo de Grados academicos es obligatorio!"/>
+                            <h:outputText value="Universidad"/>
+                            <p:selectOneMenu id="Universidad" binding="#{gradosAcademicosVista.universidad}">
+                                <f:selectItems value="#{gradosAcademicosVista.itemUniversidad}"/>
+                            </p:selectOneMenu>
                             </p:panelGrid>
                             <p:commandButton value="Resgistrar"
                                              actionListener="#{gradosAcademicosVista.registrarGA()}"
@@ -65,6 +69,10 @@
                                     update=":FormularioGradosAcademicos:panelGradosAcademicos"/>
                             <p:column headerText="Tipo_gradosAcademicos">
                                 <h:outputText value="#{c.tipo}" />
+                            </p:column>
+                            
+                            <p:column headerText="Universidad">
+                                <h:outputText value="#{c.universidad.nombre}" />
                             </p:column>
 
                             <f:facet name="paginatorTopLeft">

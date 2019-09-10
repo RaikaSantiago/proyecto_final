@@ -86,9 +86,7 @@ public class EmpleadoLogica implements EmpleadoLogicaLocal {
        if (e == null) {
             throw new Exception("El empleado no tiene información");
         }
-//        if (e.getId()== 0){
-//             throw new Exception ("La ID es Obligatorio");  
-//        }
+
         if (e.getNombre().equals("")){
           throw new Exception ("El Nombre es obligatorio");
         }

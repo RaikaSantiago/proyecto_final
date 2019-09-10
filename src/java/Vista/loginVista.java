@@ -79,10 +79,10 @@ public class loginVista {
             //Redirecciono a la pagina deseada
             if (empleadoLogueado.getTipoDesarrolladorId().getId()== 1){
                 FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("admin/paginaEmpleados.xhtml");
+                    .redirect("admin/paginaPrincipal.xhtml");
             }else{
                 FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("admin/paginaAsignaciones.xhtml");
+                    .redirect("./SesionInvalida.xhtml");
             } 
 
         } catch (Exception ex) {

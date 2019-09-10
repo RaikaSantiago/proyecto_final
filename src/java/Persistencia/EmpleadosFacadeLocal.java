@@ -25,6 +25,8 @@ public interface EmpleadosFacadeLocal {
     Empleados find(Object id);
     
     Empleados findCedula(String cedula);
+    
+    Empleados findID(Integer id);
 
     List<Empleados> findAll();
 

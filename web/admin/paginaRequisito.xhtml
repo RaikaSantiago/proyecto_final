@@ -33,17 +33,14 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioRequisito">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="3" id="panelRequisito">
+                        <p:panelGrid columns="4" id="panelRequisito">
                             <h:outputText value="Descripción:"/>
                             <p:inputText id="descripcionRequisito"
-                                         binding="#{requisitoVista.descripcionRequisito}"
-                                         required="true" 
-                                         requiredMessage="La descripcion del requisito es obligatorio!"/>
-                            <h:outputText value="Estado:"/>
+                                         binding="#{requisitoVista.descripcionRequisito}"/>
+                            <h:outputText value="Tipo:"/>
                             <p:inputText id="tipoRequisito"
-                                         binding="#{requisitoVista.tipoRequisito}"
-                                         required="true" 
-                                         requiredMessage="El tipo del requisito es obligatorio!"/>
+                                         binding="#{requisitoVista.tipoRequisito}"/>
+                            <h:outputText value="Estado Requisito:"/>
                             <p:selectOneMenu id="estadoRequisito" binding="#{requisitoVista.estadoRequisito}">
                                 <f:selectItem itemLabel="IMPLEMENTADO" itemValue="IMPLEMENTADO"/>
                                 <f:selectItem itemLabel="NO IMPLEMENTADO" itemValue="NO IMPLEMENTADO"/>
@@ -72,10 +69,10 @@
                                      selectionMode="single"
                                      rowKey="#{c.requisitoPK}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{requisitoVista.selectedRequisito}" 
+                                    listener="#{requisitoVista.seleccionarRequisito}" 
                                     update=":FormularioRequisito:panelRequisito"/>
                             <p:column headerText="IdRequisito">
-                                <h:outputText value="#{c.requisitoPK}" />
+                                <h:outputText value="#{c.requisitoPK.id}" />
                             </p:column>
 
                             <p:column headerText="Descripción">

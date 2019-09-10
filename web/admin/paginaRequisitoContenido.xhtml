@@ -33,7 +33,7 @@
                 <p:layoutUnit position="center">
                     <h:form id="FormularioRequisitoContenido">
                         <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns="7" id="panelRequisitoContenido">
+                        <p:panelGrid columns="4" id="panelRequisitoContenido">
                             <h:outputText value="NombreProyecto:"/>
                             <p:inputText id="nombreProyectoRC"
                                          binding="#{requisitoContenidoVista.nombreProyectoRC}"/>
@@ -43,15 +43,15 @@
                             <h:outputText value="TituloRC:"/>
                             <p:inputText id="tituloRC"
                                          binding="#{requisitoContenidoVista.tituloRC}"/>
-                            <h:outputText value="FechaRC:"/>
-                            <p:inputText id="fechaRC"
-                                         binding="#{requisitoContenidoVista.fechaRC}"/>
+                            <p:outputLabel for="FechaRC" value="FechaRC:" />
+                            <p:calendar id="FechaRC" value="#{requisitoContenidoVista.fechaRC}"/>
                             <h:outputText value="SolicitanteRC:"/>
                             <p:inputText id="solicitanteRC"
                                          binding="#{requisitoContenidoVista.solicitanteRC}"/>
                             <h:outputText value="OrigenRC:"/>
                             <p:inputText id="origenRC"
                                          binding="#{requisitoContenidoVista.origenRC}"/>
+                            <h:outputText value="EstadoRC:"/>
                             <p:selectOneMenu id="estadoRC" binding="#{requisitoContenidoVista.estadoRC}">
                                 <f:selectItem itemLabel="REGISTRADO" itemValue="REGISTRADO"/>
                                 <f:selectItem itemLabel="EVALUADO" itemValue="EVALUADO"/>
@@ -63,17 +63,14 @@
                             <h:outputText value="PrioridadSolicitanteRC:"/>
                             <p:inputText id="prioridadSolicitanteRC"
                                          binding="#{requisitoContenidoVista.prioridadSolicitanteRC}"/>
-                            <h:outputText value="PrioridadRealizaciónRC:"/>
-                            <p:inputText id="prioridadSolicitanteRC"
-                                         binding="#{requisitoContenidoVista.prioridadRealizacionRC}"/>
                             <h:outputText value="VerificadorRC:"/>
                             <p:inputText id="verificadorRC"
                                          binding="#{requisitoContenidoVista.verificadorRC}"/>
-                            <h:outputText value="FechaUltimaActualizacionRC:"/>
-                            <p:inputText id="fechaUltimaActualizacionRC"
-                                         binding="#{requisitoContenidoVista.fechaUltimaActualizacionRC}"/>
-                            <h:outputText value="ReleaseRC:"/>
-                            <p:inputText id="releaseRC"
+                            <p:outputLabel for="FechaUltimaActualizacionRC" value="FechaUltimaActualizacionRC:" />
+                            <p:calendar id="FechaUltimaActualizacionRC" 
+                                        value="#{requisitoContenidoVista.fechaUltimaActualizacionRC}"/>
+                            <h:outputText value="ReleasesRC:"/>
+                            <p:inputText id="releasesRC"
                                          binding="#{requisitoContenidoVista.releaseRC}"/>
                             <h:outputText value="EsfuerzoRC:"/>
                             <p:inputText id="esfuerzoRC"
@@ -87,21 +84,21 @@
                         </p:panelGrid>
                         <p:commandButton value="ResgistrarRC"
                                          actionListener="#{requisitoContenidoVista.registrarRequisitoContenido()}"
-                                         update=":FormularioRequisitoContenido"/>
+                                         update="FormularioRequisitoContenido"/>
                         <p:commandButton value="EliminarRC" 
                                          action="#{requisitoContenidoVista.eliminarRequisitoContenido()}" 
-                                         update=":FormularioRequisitoContenido">
+                                         update="FormularioRequisitoContenido">
                             <p:confirm header="Confirmation" message="Esta Seguro? DIGA QUE SI!!!" icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                         <p:commandButton value="AmpliacionRC"
                                          actionListener="#{requisitoContenidoVista}"
-                                         update=":FormularioRequisitoContenido"/>
+                                         update="FormularioRequisitoContenido"/>
                         <p:commandButton value="ReduccionRC"
                                          actionListener="#{requisitoContenidoVista}"
-                                         update=":FormularioRequisitoContenido"/>
+                                         update="FormularioRequisitoContenido"/>
                         <p:commandButton value="CambioRC"
                                          actionListener="#{requisitoContenidoVista.modificarRequisitoContenido()}"
-                                         update=":FormularioRequisitoContenido"/>
+                                         update="FormularioRequisitoContenido"/>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
                             <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
@@ -114,7 +111,7 @@
                                      selectionMode="single"
                                      rowKey="#{c.requisitoContenidoPK}">
                             <p:ajax event="rowSelect" 
-                                    listener="#{requisitoContenidoVista.selectedRequisitoContenido}" 
+                                    listener="#{requisitoContenidoVista.seleccionarRequisitoContenido}" 
                                     update=":FormularioRequisitoContenido:panelRequisitoContenido"/>
                             <p:column headerText="NombreProyectoRC">
                                 <h:outputText value="#{c.nombreProyecto}" />

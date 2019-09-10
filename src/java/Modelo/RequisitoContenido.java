@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "RequisitoContenido.findByPrioridadRealizacion", query = "SELECT r FROM RequisitoContenido r WHERE r.prioridadRealizacion = :prioridadRealizacion")
     , @NamedQuery(name = "RequisitoContenido.findByVerificador", query = "SELECT r FROM RequisitoContenido r WHERE r.verificador = :verificador")
     , @NamedQuery(name = "RequisitoContenido.findByFechaActualizacion", query = "SELECT r FROM RequisitoContenido r WHERE r.fechaActualizacion = :fechaActualizacion")
-    , @NamedQuery(name = "RequisitoContenido.findByRelease", query = "SELECT r FROM RequisitoContenido r WHERE r.release = :release")
+    , @NamedQuery(name = "RequisitoContenido.findByReleases", query = "SELECT r FROM RequisitoContenido r WHERE r.releases = :releases")
     , @NamedQuery(name = "RequisitoContenido.findByEsfuerzo", query = "SELECT r FROM RequisitoContenido r WHERE r.esfuerzo = :esfuerzo")
     , @NamedQuery(name = "RequisitoContenido.findByDescripcion", query = "SELECT r FROM RequisitoContenido r WHERE r.descripcion = :descripcion")
     , @NamedQuery(name = "RequisitoContenido.findByComentarios", query = "SELECT r FROM RequisitoContenido r WHERE r.comentarios = :comentarios")
@@ -86,8 +86,8 @@ public class RequisitoContenido implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaActualizacion;
     @Size(max = 45)
-    @Column(name = "release")
-    private String release;
+    @Column(name = "releases")
+    private String releases;
     @Size(max = 45)
     @Column(name = "esfuerzo")
     private String esfuerzo;
@@ -100,7 +100,8 @@ public class RequisitoContenido implements Serializable {
     @JoinColumns({
         @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false),
         @JoinColumn(name = "requisito_id", referencedColumnName = "id", insertable = false, updatable = false)
-        , @JoinColumn(name = "requisito_fases_id", referencedColumnName = "fases_id", insertable = false, updatable = false)})
+        , @JoinColumn(name = "requisito_fases_id", referencedColumnName = "fases_id", insertable = false, updatable = false)
+            })
     @ManyToOne(optional = false)
     private Requisito requisito;
 
@@ -212,11 +213,11 @@ public class RequisitoContenido implements Serializable {
     }
 
     public String getRelease() {
-        return release;
+        return releases;
     }
 
     public void setRelease(String release) {
-        this.release = release;
+        this.releases = release;
     }
 
     public String getEsfuerzo() {

@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +26,7 @@ import org.primefaces.event.SelectEvent;
 @RequestScoped
 public class requisitoContenidoVista {
 
+    @EJB
     private Requisito_ContenidoLogicaLocal requisitoContenidoLogica;
     
     private List<RequisitoContenido> listaRequisitoContenido;
@@ -45,7 +47,7 @@ public class requisitoContenidoVista {
     private InputText prioridadRealizacionRC;
     private InputText verificadorRC;
     private Date fechaUltimaActualizacionRC;
-    private InputText releaseRC;
+    private InputText releasesRC;
     private InputText esfuerzoRC;
     private InputText descripcionRC;
     private InputText comentariosRC;
@@ -199,11 +201,11 @@ public class requisitoContenidoVista {
     }
 
     public InputText getReleaseRC() {
-        return releaseRC;
+        return releasesRC;
     }
 
     public void setReleaseRC(InputText releaseRC) {
-        this.releaseRC = releaseRC;
+        this.releasesRC = releaseRC;
     }
 
     public InputText getEsfuerzoRC() {
@@ -235,15 +237,13 @@ public class requisitoContenidoVista {
         nombreProyectoRC.setValue(selectedRequisitoContenido.getNombreProyecto());
         numeroSolicitudRC.setValue(selectedRequisitoContenido.getNumeroSolicitud());
         tituloRC.setValue(selectedRequisitoContenido.getTitulo());
-        //fechaRC.setDate(selectedRequisitoContenido.getFecha());
         solicitanteRC.setValue(selectedRequisitoContenido.getSolicitante());
         origenRC.setValue(selectedRequisitoContenido.getOrigen());
         estadoRC.setValue(selectedRequisitoContenido.getEstado());
         prioridadSolicitanteRC.setValue(selectedRequisitoContenido.getPrioridadSolicitante());
         prioridadRealizacionRC.setValue(selectedRequisitoContenido.getPrioridadRealizacion());
         verificadorRC.setValue(selectedRequisitoContenido.getVerificador());
-        //fechaUltimaActualizacionRC.setValue(selectedRequisitoContenido.getFechaActualizacion());
-        releaseRC.setValue(selectedRequisitoContenido.getRelease());
+        releasesRC.setValue(selectedRequisitoContenido.getRelease());
         esfuerzoRC.setValue(selectedRequisitoContenido.getEsfuerzo());
         descripcionRC.setValue(selectedRequisitoContenido.getDescripcion());
         comentariosRC.setValue(selectedRequisitoContenido.getComentarios());
@@ -263,7 +263,7 @@ public class requisitoContenidoVista {
             nuevoRequisitoContendio.setPrioridadRealizacion(prioridadRealizacionRC.getValue().toString());
             nuevoRequisitoContendio.setVerificador(verificadorRC.getValue().toString());
             nuevoRequisitoContendio.setFechaActualizacion(fechaUltimaActualizacionRC);
-            nuevoRequisitoContendio.setRelease(releaseRC.getValue().toString());
+            nuevoRequisitoContendio.setRelease(releasesRC.getValue().toString());
             nuevoRequisitoContendio.setEsfuerzo(esfuerzoRC.getValue().toString());
             nuevoRequisitoContendio.setDescripcion(descripcionRC.getValue().toString());
             nuevoRequisitoContendio.setComentarios(comentariosRC.getValue().toString());
@@ -282,7 +282,7 @@ public class requisitoContenidoVista {
     
     public void modificarRequisitoContenido() {
         try {
-            RequisitoContenido nuevoRequisitoContendio = new RequisitoContenido();
+            RequisitoContenido nuevoRequisitoContendio = selectedRequisitoContenido;
             nuevoRequisitoContendio.setNombreProyecto(nombreProyectoRC.getValue().toString());
             nuevoRequisitoContendio.setNumeroSolicitud(Integer.parseInt(numeroSolicitudRC.getValue().toString()));
             nuevoRequisitoContendio.setTitulo(tituloRC.getValue().toString());
@@ -294,7 +294,7 @@ public class requisitoContenidoVista {
             nuevoRequisitoContendio.setPrioridadRealizacion(prioridadRealizacionRC.getValue().toString());
             nuevoRequisitoContendio.setVerificador(verificadorRC.getValue().toString());
             nuevoRequisitoContendio.setFechaActualizacion(fechaUltimaActualizacionRC);
-            nuevoRequisitoContendio.setRelease(releaseRC.getValue().toString());
+            nuevoRequisitoContendio.setRelease(releasesRC.getValue().toString());
             nuevoRequisitoContendio.setEsfuerzo(esfuerzoRC.getValue().toString());
             nuevoRequisitoContendio.setDescripcion(descripcionRC.getValue().toString());
             nuevoRequisitoContendio.setComentarios(comentariosRC.getValue().toString());
